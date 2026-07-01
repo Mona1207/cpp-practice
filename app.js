@@ -32,6 +32,7 @@ const state = {
   selectedAnswers: new Set(),
   answerVisible: false,
   lastResult: null,
+  autoAdvanceTimer: null,
 };
 
 function loadRecords() {
@@ -116,7 +117,15 @@ function currentQuestion() {
   return list[state.currentIndex];
 }
 
+function clearAutoAdvance() {
+  if (state.autoAdvanceTimer) {
+    clearTimeout(state.autoAdvanceTimer);
+    state.autoAdvanceTimer = null;
+  }
+}
+
 function resetAnswerState(question) {
+  clearAutoAdvance();
   state.selectedAnswers = new Set();
   state.answerVisible = false;
   state.lastResult = null;
@@ -124,6 +133,28 @@ function resetAnswerState(question) {
   if (record?.lastChoice?.length && !record?.wrong) {
     state.selectedAnswers = new Set(record.lastChoice);
   }
+}
+
+function scheduleAutoAdvance(questionId) {
+  clearAutoAdvance();
+  state.autoAdvanceTimer = setTimeout(() => {
+    if (currentQuestion()?.id !== questionId) return;
+    const list = getFilteredQuestions();
+    if (list.length <= 1) return;
+    move(1);
+  }, 850);
+}
+
+function revealAnswer(question) {
+  state.answerVisible = true;
+  renderQuestion();
+  requestAnimationFrame(() => {
+    const panel = els.questionCard.querySelector(".answer-panel");
+    if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (question?.type === "program") {
+      els.questionCard.querySelector("[data-action='show-answer']")?.focus();
+    }
+  });
 }
 
 function renderSections() {
@@ -237,10 +268,11 @@ function renderChoiceArea(question) {
 function renderProgramArea(question, record) {
   const draftKey = `draft:${question.id}`;
   const draft = localStorage.getItem(draftKey) || "";
+  const answerLabel = state.answerVisible ? "参考答案已展开" : "查看参考答案";
   return `
     <textarea data-draft="${question.id}" spellcheck="false" placeholder="这里写你的思路或代码，内容只保存在本机浏览器。">${escapeHtml(draft)}</textarea>
     <div class="action-row">
-      <button class="primary-button" data-action="show-answer">查看参考答案</button>
+      <button class="primary-button" data-action="show-answer">${answerLabel}</button>
       <button class="secondary-button" data-action="mark-correct">做对了</button>
       <button class="secondary-button" data-action="mark-wrong">记入错题</button>
       ${record.wrong ? `<button class="secondary-button" data-action="clear-wrong">移出错题</button>` : ""}
@@ -251,16 +283,17 @@ function renderProgramArea(question, record) {
 
 function renderResult() {
   const ok = state.lastResult === "correct";
-  return `<div class="result-line ${ok ? "ok" : "bad"}">${ok ? "判定正确，错题状态已清除。" : "已记入错题，之后可在错题筛选里重练。"}</div>`;
+  return `<div class="result-line ${ok ? "ok" : "bad"}">${ok ? "答对了，即将进入下一题。" : "已记入错题，之后可在错题筛选里重练。"}</div>`;
 }
 
 function renderAnswerPanels(question) {
   const answer = question.referenceAnswer
     ? `<pre><code>${escapeHtml(question.referenceAnswer)}</code></pre>`
     : `<p>${renderBlock(question.answerText || question.answer)}</p>`;
+  const answerTitle = question.referenceAnswer ? "参考答案" : "答案";
   return `
-    <section class="answer-panel">
-      <h3>答案</h3>
+    <section class="answer-panel ${question.referenceAnswer ? "program-answer" : ""}">
+      <h3>${answerTitle}</h3>
       ${answer}
     </section>
     <section class="explanation-panel">
@@ -327,6 +360,7 @@ function gradeChoice(question) {
   state.answerVisible = true;
   saveRecords();
   renderAll();
+  if (isCorrect) scheduleAutoAdvance(question.id);
 }
 
 function markCurrent(outcome) {
@@ -344,6 +378,7 @@ function markCurrent(outcome) {
   state.answerVisible = true;
   saveRecords();
   renderAll();
+  if (outcome === "correct") scheduleAutoAdvance(question.id);
 }
 
 function move(delta) {
@@ -428,10 +463,7 @@ function bindEvents() {
     }
 
     if (action === "submit-choice") gradeChoice(question);
-    if (action === "show-answer") {
-      state.answerVisible = true;
-      renderQuestion();
-    }
+    if (action === "show-answer") revealAnswer(question);
     if (action === "clear-choice") {
       state.selectedAnswers.clear();
       state.answerVisible = false;
