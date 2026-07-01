@@ -30,6 +30,7 @@ const state = {
   selectedSections: new Set(),
   currentIndex: 0,
   selectedAnswers: new Set(),
+  optionOrders: {},
   answerVisible: false,
   lastResult: null,
   autoAdvanceTimer: null,
@@ -85,6 +86,33 @@ function normalizeAnswer(answer = "") {
     .join("、");
 }
 
+function strippedPrompt(question) {
+  if (!question.options?.length) return question.prompt;
+  const match = question.prompt.match(/\bA\.\s*/);
+  if (!match) return question.prompt;
+  return question.prompt.slice(0, match.index).trim();
+}
+
+function shuffleKeys(keys) {
+  const shuffled = [...keys];
+  for (let index = shuffled.length - 1; index > 0; index--) {
+    const target = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[target]] = [shuffled[target], shuffled[index]];
+  }
+  return shuffled;
+}
+
+function ensureOptionOrder(question) {
+  if (!question?.options?.length) return [];
+  const keys = question.options.map((option) => option.key);
+  const current = state.optionOrders[question.id];
+  if (current?.length === keys.length && current.every((key) => keys.includes(key))) {
+    return current;
+  }
+  state.optionOrders[question.id] = shuffleKeys(keys);
+  return state.optionOrders[question.id];
+}
+
 function getFilteredQuestions() {
   if (!state.data) return [];
   const query = state.query.trim().toLowerCase();
@@ -127,6 +155,7 @@ function clearAutoAdvance() {
 function resetAnswerState(question) {
   clearAutoAdvance();
   state.selectedAnswers = new Set();
+  if (question?.id) delete state.optionOrders[question.id];
   state.answerVisible = false;
   state.lastResult = null;
   const record = state.records[question?.id];
@@ -222,7 +251,7 @@ function renderQuestionContent(question) {
         </button>
       </div>
     </div>
-    <div class="prompt">${renderBlock(question.prompt)}</div>
+    <div class="prompt">${renderBlock(strippedPrompt(question))}</div>
     ${answerArea}
     ${state.answerVisible ? renderAnswerPanels(question) : ""}
   `;
@@ -242,8 +271,10 @@ function renderChoiceArea(question) {
 
   const selected = state.selectedAnswers;
   const correctSet = new Set(normalizeAnswer(question.answer).split("、").filter(Boolean));
-  const options = question.options
-    .map((option) => {
+  const optionMap = new Map(question.options.map((option) => [option.key, option]));
+  const options = ensureOptionOrder(question)
+    .map((key, index) => {
+      const option = optionMap.get(key);
       const isSelected = selected.has(option.key);
       const show = state.answerVisible;
       const isCorrect = correctSet.has(option.key);
@@ -257,7 +288,7 @@ function renderChoiceArea(question) {
         .join(" ");
       return `
         <button class="${className}" data-option="${option.key}" type="button">
-          <span class="option-key">${option.key}</span>
+          <span class="option-key">${index + 1}</span>
           <span>${renderInline(option.text)}</span>
         </button>
       `;
