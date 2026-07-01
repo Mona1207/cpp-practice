@@ -1,0 +1,2730 @@
+{
+  "source": "C++程序设计复习讲义_题目提取与解析.docx",
+  "questionCount": 100,
+  "programCount": 11,
+  "choiceCount": 89,
+  "sections": [
+    "一、基础概念与数据表示",
+    "七、静态成员、常成员、友元与数组",
+    "三、函数、引用与类基础",
+    "九、文件流与 I/O",
+    "二、表达式、分支与循环",
+    "五、继承、派生与多继承",
+    "八、指针与动态内存",
+    "六、虚函数、抽象类与模板",
+    "十、综合编程题",
+    "四、构造、析构、拷贝与组合"
+  ],
+  "questions": [
+    {
+      "id": "q001",
+      "number": 1,
+      "title": "面向对象程序设计的基本特征",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "下面选项中不属于面向对象程序设计的是：A. 继承性 B. 多态性 C. 相似性 D. 封装性",
+      "options": [
+        {
+          "key": "A",
+          "text": "继承性"
+        },
+        {
+          "key": "B",
+          "text": "多态性"
+        },
+        {
+          "key": "C",
+          "text": "相似性"
+        },
+        {
+          "key": "D",
+          "text": "封装性"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "面向对象程序设计的三大典型特征是封装、继承、多态。",
+      "pitfalls": "A 继承性是类之间复用和扩展的机制；B 多态性是同一接口在不同对象上表现出不同行为；D 封装性是把数据和操作组织在类中并控制访问权限。C“相似性”不是面向对象的基本特征。"
+    },
+    {
+      "id": "q002",
+      "number": 2,
+      "title": "面向对象方法与结构化方法",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "以下关于面向对象概念的描述中，错误的是：A. 面向对象方法比面向过程方法更加先进 B. 面向对象方法中使用了一些面向过程方法中没有的概念 C. 面向对象方法替代了结构化程序设计方法 D. 面向对象程序设计方法要使用面向对象的程序设计语言",
+      "options": [
+        {
+          "key": "A",
+          "text": "面向对象方法比面向过程方法更加先进"
+        },
+        {
+          "key": "B",
+          "text": "面向对象方法中使用了一些面向过程方法中没有的概念"
+        },
+        {
+          "key": "C",
+          "text": "面向对象方法替代了结构化程序设计方法"
+        },
+        {
+          "key": "D",
+          "text": "面向对象程序设计方法要使用面向对象的程序设计语言"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "面向对象方法不是简单“替代”结构化方法。在实际程序设计中，类的成员函数内部仍常使用顺序、选择、循环等结构化程序设计思想。",
+      "pitfalls": "A 从抽象、复用、维护性角度看通常更先进；B 类、对象、继承、多态等概念是面向对象特有或强调的概念；D 面向对象程序设计通常需要 C++、Java 等支持类和对象机制的语言。C 错在把两种方法说成完全替代关系。"
+    },
+    {
+      "id": "q003",
+      "number": 3,
+      "title": "C++程序上机步骤",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "C++程序从上机到得到结果的几个操作步骤依次是：A. 编译、编辑、连接、运行 B. 编辑、编译、连接、运行 C. 编译、运行、编辑、连接 D. 编辑、运行、编译、连接",
+      "options": [
+        {
+          "key": "A",
+          "text": "编译、编辑、连接、运行"
+        },
+        {
+          "key": "B",
+          "text": "编辑、编译、连接、运行"
+        },
+        {
+          "key": "C",
+          "text": "编译、运行、编辑、连接"
+        },
+        {
+          "key": "D",
+          "text": "编辑、运行、编译、连接"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "源程序必须先编辑生成源文件，再经编译生成目标文件，连接生成可执行文件，最后运行。",
+      "pitfalls": "A 把编译放在编辑前，逻辑错误；C、D 均把运行放到连接前，可执行文件尚未生成。"
+    },
+    {
+      "id": "q004",
+      "number": 4,
+      "title": "保留字识别",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "以下标识符中不全是保留字的是：A. case for int B. default then while C. bool class long D. goto return char",
+      "options": [
+        {
+          "key": "A",
+          "text": "case for int"
+        },
+        {
+          "key": "B",
+          "text": "default then while"
+        },
+        {
+          "key": "C",
+          "text": "bool class long"
+        },
+        {
+          "key": "D",
+          "text": "goto return char"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "`then` 不是 C++关键字。",
+      "pitfalls": "A、C、D 中的单词均为 C++关键字或保留字，不能作为普通标识符使用。"
+    },
+    {
+      "id": "q005",
+      "number": 5,
+      "title": "十进制转二进制",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "十进制数 23 对应的二进制数为：A. 11011 B. 10111 C. 10110 D. 11001",
+      "options": [
+        {
+          "key": "A",
+          "text": "11011"
+        },
+        {
+          "key": "B",
+          "text": "10111"
+        },
+        {
+          "key": "C",
+          "text": "10110"
+        },
+        {
+          "key": "D",
+          "text": "11001"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "23=16+4+2+1，对应二进制为 `10111`。",
+      "pitfalls": "A `11011`=27；C `10110`=22；D `11001`=25。"
+    },
+    {
+      "id": "q006",
+      "number": 6,
+      "title": "补码表示",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "十进制数 30 和 -20，对应的二进制补码分别为：A. 00011110, 11101100 B. 01010110, 01100100 C. 10011010, 10001100 D. 00011110, 10010100",
+      "options": [
+        {
+          "key": "A",
+          "text": "00011110, 11101100"
+        },
+        {
+          "key": "B",
+          "text": "01010110, 01100100"
+        },
+        {
+          "key": "C",
+          "text": "10011010, 10001100"
+        },
+        {
+          "key": "D",
+          "text": "00011110, 10010100"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "30 的 8 位二进制为 `00011110`。20 为 `00010100`，取反得 `11101011`，加 1 得 `11101100`，所以 -20 的补码为 `11101100`。",
+      "pitfalls": "B 第一个数不是 30；C 第一个数最高位为 1，不是正数 30；D 后半部分不是 -20 的补码。"
+    },
+    {
+      "id": "q007",
+      "number": 7,
+      "title": "二进制小数转八进制",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "二进制数 `1101001.11` 对应的八进制表示为：A. 644.6 B. 151.6 C. 641.3 D. 451.6",
+      "options": [
+        {
+          "key": "A",
+          "text": "644.6"
+        },
+        {
+          "key": "B",
+          "text": "151.6"
+        },
+        {
+          "key": "C",
+          "text": "641.3"
+        },
+        {
+          "key": "D",
+          "text": "451.6"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "整数部分从小数点向左三位分组：`1 101 001`，补齐为 `001 101 001`，即八进制 `151`；小数部分 `.11` 向右补 0 为 `.110`，即八进制 `.6`。结果为 `151.6`。",
+      "pitfalls": "A、C、D 的分组或权值计算错误。"
+    },
+    {
+      "id": "q008",
+      "number": 8,
+      "title": "输入输出头文件",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "在 C++程序中，使用基本输入输出流需要包含的头文件是：A. `#include <iostream>` B. `#include <iostream>;` C. `#include <stdio.h>` D. `#include <stdio.h>;`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`#include <iostream>`"
+        },
+        {
+          "key": "B",
+          "text": "`#include <iostream>;`"
+        },
+        {
+          "key": "C",
+          "text": "`#include <stdio.h>`"
+        },
+        {
+          "key": "D",
+          "text": "`#include <stdio.h>;`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "C++标准输入输出流 `cin`、`cout` 位于 `<iostream>`，预处理指令末尾不加分号。",
+      "pitfalls": "B 多了分号；C、D 是 C 风格输入输出头文件，不是 C++流的标准头文件，D 还多了分号。"
+    },
+    {
+      "id": "q009",
+      "number": 9,
+      "title": "变量命名",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "以下变量名命名错误的是：A. `g_how2People` B. `_time_` C. `2Friend` D. `MAX_LENGTH`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`g_how2People`"
+        },
+        {
+          "key": "B",
+          "text": "`_time_`"
+        },
+        {
+          "key": "C",
+          "text": "`2Friend`"
+        },
+        {
+          "key": "D",
+          "text": "`MAX_LENGTH`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "C++标识符只能由字母、数字、下划线组成，且不能以数字开头。",
+      "pitfalls": "A、B、D 都符合词法规则。注意以下划线开头的名字在某些场合可能与实现保留名冲突，但本题考查“数字不能开头”。"
+    },
+    {
+      "id": "q010",
+      "number": 10,
+      "title": "字符串常量所占字节",
+      "section": "一、基础概念与数据表示",
+      "type": "choice",
+      "prompt": "在 C++中，字符串常量 `\"This is a test\"` 所占的字节数是：A. 12 B. 13 C. 15 D. 16",
+      "options": [
+        {
+          "key": "A",
+          "text": "12"
+        },
+        {
+          "key": "B",
+          "text": "13"
+        },
+        {
+          "key": "C",
+          "text": "15"
+        },
+        {
+          "key": "D",
+          "text": "16"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "字符串内容有 14 个字符：`This`4 个、两个空格、`is`2 个、`a`1 个、`test`4 个，共 14 个；字符串常量末尾自动补 `'\\0'`，所以占 15 字节。",
+      "pitfalls": "A、B 漏算字符；D 多算 1 个字节。"
+    },
+    {
+      "id": "q011",
+      "number": 11,
+      "title": "运算符优先级",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "下列运算符中，优先级最低的是：A. `==` B. `?:` C. `||` D. `&&`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`==`"
+        },
+        {
+          "key": "B",
+          "text": "`?:`"
+        },
+        {
+          "key": "C",
+          "text": "`||`"
+        },
+        {
+          "key": "D",
+          "text": "`&&`"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "条件运算符 `?:` 的优先级低于逻辑或 `||`、逻辑与 `&&` 和相等运算符 `==`。",
+      "pitfalls": "`==` 高于 `&&`，`&&` 高于 `||`，`||` 高于 `?:`。"
+    },
+    {
+      "id": "q012",
+      "number": 12,
+      "title": "表达式合法性",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "已知 `int b=5`，下列表达式中，正确的是：A. `b=\"a\"` B. `++(b-1)` C. `b%2.5` D. `b=3,b+1,b+2`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`b=\"a\"`"
+        },
+        {
+          "key": "B",
+          "text": "`++(b-1)`"
+        },
+        {
+          "key": "C",
+          "text": "`b%2.5`"
+        },
+        {
+          "key": "D",
+          "text": "`b=3,b+1,b+2`"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "逗号表达式合法，依次求值；`b=3,b+1,b+2` 可编译，最终表达式值为 5。",
+      "pitfalls": "A 把字符串常量赋给整型变量，类型不匹配；B `b-1` 是临时值，不能作为自增左值；C `%` 只能用于整数，不能对 `double` 使用。"
+    },
+    {
+      "id": "q013",
+      "number": 13,
+      "title": "表达式值为 0",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "下列表达式中，其值为 0 的是：A. `5/10` B. `!0` C. `2>4?0:1` D. `2&&2||0`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`5/10`"
+        },
+        {
+          "key": "B",
+          "text": "`!0`"
+        },
+        {
+          "key": "C",
+          "text": "`2>4?0:1`"
+        },
+        {
+          "key": "D",
+          "text": "`2&&2||0`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "整数除法 `5/10` 结果为 0。",
+      "pitfalls": "B `!0` 为 1；C 条件 `2>4` 为假，取 `1`；D `2&&2` 为真，再与 `0` 做逻辑或，结果为真即 1。"
+    },
+    {
+      "id": "q014",
+      "number": 14,
+      "title": "循环语句",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "下列关于循环语句的描述中，错误的是：A. `while` 循环条件不能为非 0 常量，否则便是死循环 B. `for` 循环体内可以出现 `while`、`do-while` 和 `for` C. 循环体可以是空语句 D. 循环体内可以出现 `break` 和 `continue`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`while` 循环条件不能为非 0 常量，否则便是死循环"
+        },
+        {
+          "key": "B",
+          "text": "`for` 循环体内可以出现 `while`、`do-while` 和 `for`"
+        },
+        {
+          "key": "C",
+          "text": "循环体可以是空语句"
+        },
+        {
+          "key": "D",
+          "text": "循环体内可以出现 `break` 和 `continue`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "`while(1)` 等常量条件是合法的，是否死循环取决于循环体是否有 `break`、`return` 等退出机制。",
+      "pitfalls": "B 循环可嵌套；C 空语句循环合法；D `break` 和 `continue` 是循环控制语句。"
+    },
+    {
+      "id": "q015",
+      "number": 15,
+      "title": "do-while 循环次数",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "已知 `int i=3`，执行：\ndo {\n    cout << i-- << endl;\n    i--;\n} while (i != 0);\n循环次数是：A. 0 B. 3 C. 1 D. 无限",
+      "options": [
+        {
+          "key": "A",
+          "text": "0"
+        },
+        {
+          "key": "B",
+          "text": "3"
+        },
+        {
+          "key": "C",
+          "text": "1"
+        },
+        {
+          "key": "D",
+          "text": "无限"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "第一次后 `i` 从 3 变为 1；第二次后变为 -1；之后依次 -3、-5……永远不会等于 0，因此无限循环。",
+      "pitfalls": "A 忽略了 `do-while` 至少执行一次；B、C 没有跟踪两次自减导致跳过 0。"
+    },
+    {
+      "id": "q016",
+      "number": 16,
+      "title": "if-else 描述",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "下列关于条件语句的描述中，错误的是：A. `if` 语句中最多只能有一个 `else` B. `if` 语句的 if 体内可以出现 `switch` C. `if` 语句中 `else if` 子句和 `else` 子句的顺序是没有限制的 D. `else` 子句与它最近的未配对 `if` 配对",
+      "options": [
+        {
+          "key": "A",
+          "text": "`if` 语句中最多只能有一个 `else`"
+        },
+        {
+          "key": "B",
+          "text": "`if` 语句的 if 体内可以出现 `switch`"
+        },
+        {
+          "key": "C",
+          "text": "`if` 语句中 `else if` 子句和 `else` 子句的顺序是没有限制的"
+        },
+        {
+          "key": "D",
+          "text": "`else` 子句与它最近的未配对 `if` 配对"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`else if` 必须出现在最终 `else` 之前；最终 `else` 后不能再接 `else if`。",
+      "pitfalls": "A 一个 `if` 链最多有一个最终 `else`；B 分支语句可以嵌套；D 是悬挂 `else` 的配对规则。"
+    },
+    {
+      "id": "q017",
+      "number": 17,
+      "title": "for 与 if",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "下列程序段执行后，`j` 的值是：\nfor (int i=0, j=0; i<10; i++)\n    if (i) j++;\nA. 0 B. 9 C. 10 D. 无限",
+      "options": [
+        {
+          "key": "A",
+          "text": "0"
+        },
+        {
+          "key": "B",
+          "text": "9"
+        },
+        {
+          "key": "C",
+          "text": "10"
+        },
+        {
+          "key": "D",
+          "text": "无限"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "`i` 从 0 到 9，共 10 次；当 `i=0` 时条件为假，不自增；`i=1..9` 共 9 次自增。",
+      "pitfalls": "A 忽略了后 9 次；C 把 `i=0` 也算进去了；D 循环变量正常递增，不会死循环。"
+    },
+    {
+      "id": "q018",
+      "number": 18,
+      "title": "switch 穿透",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "程序输出结果为：\nint x=1, a=0, b=0;\nswitch (x) {\ncase 0: b++;\ncase 1: a++;\ncase 2: a++; b++;\n}\ncout << \"a=\" << a << \",b=\" << b;",
+      "options": [],
+      "answer": "a=2,b=1",
+      "answerText": "`a=2,b=1`",
+      "referenceAnswer": "",
+      "explanation": "`switch` 中没有 `break` 时会从匹配的 `case 1` 继续向下执行 `case 2`，称为穿透。初值 `a=0,b=0`，进入 `case 1` 后 `a++` 使 `a=1`，继续执行 `case 2` 中的 `a++; b++;`，最终 `a=2,b=1`。",
+      "pitfalls": "只执行一个分支的答案都忽略了 `break` 缺失；把 `case 0` 算进去的答案忽略了匹配入口是 `case 1`。"
+    },
+    {
+      "id": "q019",
+      "number": 19,
+      "title": "死循环判断",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "以下形成死循环的程序段是：A. `for(int x=0; x<3;) x++` B. `int k=0; do {++k;} while(k>=0);` C. `int a=5; while(a){a--;}` D. `int i=3; for(; i; i--)`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`for(int x=0; x<3;) x++`"
+        },
+        {
+          "key": "B",
+          "text": "`int k=0; do {++k;} while(k>=0);`"
+        },
+        {
+          "key": "C",
+          "text": "`int a=5; while(a){a--;}`"
+        },
+        {
+          "key": "D",
+          "text": "`int i=3; for(; i; i--)`"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "`k` 从 0 开始递增，在普通考试语境下会一直满足 `k>=0`，构成死循环。",
+      "pitfalls": "A `x` 会增至 3 退出；C `a` 递减至 0 退出；D `i` 递减至 0 退出。"
+    },
+    {
+      "id": "q020",
+      "number": 20,
+      "title": "逻辑非",
+      "section": "二、表达式、分支与循环",
+      "type": "choice",
+      "prompt": "语句 `while(!E)` 中的表达式 `!E` 等价于：A. `E==0` B. `E!=1` C. `E!=0` D. `E==1`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`E==0`"
+        },
+        {
+          "key": "B",
+          "text": "`E!=1`"
+        },
+        {
+          "key": "C",
+          "text": "`E!=0`"
+        },
+        {
+          "key": "D",
+          "text": "`E==1`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "逻辑非在操作数为 0 时为真，因此 `!E` 与“E 等于 0”逻辑等价。",
+      "pitfalls": "B 对非 1 的所有值都为真，包括 2、-1，但 `!E` 对这些值为假；C、D 与 `!E` 含义相反或不完整。"
+    },
+    {
+      "id": "q021",
+      "number": 21,
+      "title": "return 语句",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "下列关于被调用函数中 `return` 语句的描述，错误的是：A. 一个函数中可以有多条 `return` 语句 B. `return` 语句具有返回程序控制权的作用 C. 函数通过 `return` 语句返回值时仅能返回一个值 D. 一个函数中有且仅有一条 `return` 语句",
+      "options": [
+        {
+          "key": "A",
+          "text": "一个函数中可以有多条 `return` 语句"
+        },
+        {
+          "key": "B",
+          "text": "`return` 语句具有返回程序控制权的作用"
+        },
+        {
+          "key": "C",
+          "text": "函数通过 `return` 语句返回值时仅能返回一个值"
+        },
+        {
+          "key": "D",
+          "text": "一个函数中有且仅有一条 `return` 语句"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "函数可以有 0 条、1 条或多条 `return`；`void` 函数甚至可以没有显式 `return`。",
+      "pitfalls": "A 正确，分支中可有多条返回；B 正确，执行 `return` 后控制权回到调用处；C 正确，C++函数一次返回一个返回值，可通过结构体、引用参数等间接返回多个结果。"
+    },
+    {
+      "id": "q022",
+      "number": 22,
+      "title": "引用参数调用",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "有函数原型 `void fun4(int &);`，正确的调用是：A. `int x=2.17; fun4(&x);` B. `int a=15; fun4(a*3.14);` C. `int b=100; fun4(b);` D. `fun4(256);`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`int x=2.17; fun4(&x);`"
+        },
+        {
+          "key": "B",
+          "text": "`int a=15; fun4(a*3.14);`"
+        },
+        {
+          "key": "C",
+          "text": "`int b=100; fun4(b);`"
+        },
+        {
+          "key": "D",
+          "text": "`fun4(256);`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "非常量左值引用 `int&` 必须绑定到同类型可修改左值，`b` 是 `int` 变量。",
+      "pitfalls": "A 传入的是地址 `int*`；B 表达式结果是临时值且类型可能为 `double`；D 字面量是右值，不能绑定到非常量左值引用。"
+    },
+    {
+      "id": "q023",
+      "number": 23,
+      "title": "函数重载判断条件",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "下列选择重载函数不同实现的判断条件中，错误的是：A. 参数类型不同 B. 参数个数不同 C. 参数名称不同 D. 函数返回值不同",
+      "options": [
+        {
+          "key": "A",
+          "text": "参数类型不同"
+        },
+        {
+          "key": "B",
+          "text": "参数个数不同"
+        },
+        {
+          "key": "C",
+          "text": "参数名称不同"
+        },
+        {
+          "key": "D",
+          "text": "函数返回值不同"
+        }
+      ],
+      "answer": "C、D",
+      "answerText": "C、D",
+      "referenceAnswer": "",
+      "explanation": "函数重载由函数名相同、参数列表不同决定；参数列表包括参数个数、类型、顺序。",
+      "pitfalls": "C 参数名不参与函数签名；D 仅返回值不同不能构成重载，否则调用时无法仅凭实参判断调用哪个函数。"
+    },
+    {
+      "id": "q024",
+      "number": 24,
+      "title": "引用调用中的实参与形参",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "在函数的引用调用中，函数的实参和形参分别是：A. 变量值和变量 B. 地址值和指针 C. 变量名和引用 D. 地址值和引用",
+      "options": [
+        {
+          "key": "A",
+          "text": "变量值和变量"
+        },
+        {
+          "key": "B",
+          "text": "地址值和指针"
+        },
+        {
+          "key": "C",
+          "text": "变量名和引用"
+        },
+        {
+          "key": "D",
+          "text": "地址值和引用"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "引用调用中实参通常是变量名，形参是该变量的引用，函数内操作引用等同于操作原变量。",
+      "pitfalls": "A 是值传递；B 是指针调用；D 地址值不是引用调用的直接实参形式。"
+    },
+    {
+      "id": "q025",
+      "number": 25,
+      "title": "函数定义形式",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "正确的函数定义形式为：A. `void fun(void)` B. `double fun(int x int y)` C. `int fun(int t=0, int)` D. `double fun(int x, y)`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`void fun(void)`"
+        },
+        {
+          "key": "B",
+          "text": "`double fun(int x int y)`"
+        },
+        {
+          "key": "C",
+          "text": "`int fun(int t=0, int)`"
+        },
+        {
+          "key": "D",
+          "text": "`double fun(int x, y)`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "`void fun(void)` 表示无返回值、无参数，是合法函数头。",
+      "pitfalls": "B 缺少逗号；C 默认参数不能出现在非默认参数之前；D `y` 缺少类型。"
+    },
+    {
+      "id": "q026",
+      "number": 26,
+      "title": "函数匹配",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "若同时定义函数 `void fun(float,int)`、`void fun(double,int)`、`void fun(char,float)`、`void fun(double,double)`，`fun(8,3.1)` 调用哪个？",
+      "options": [],
+      "answer": "void fun(double, double)",
+      "answerText": "`void fun(double, double)`",
+      "referenceAnswer": "",
+      "explanation": "`8` 可转换为 `double`，`3.1` 本身是 `double`。该重载对第二个参数完全匹配，对第一个参数标准转换；比转换成 `int` 或 `float` 的其他方案更合适。",
+      "pitfalls": "`float,int` 和 `double,int` 都需要把 `3.1` 转成 `int`；`char,float` 转换更多、更差。"
+    },
+    {
+      "id": "q027",
+      "number": 27,
+      "title": "类与对象",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "下列有关类的说法不正确的是：A. 对象是类的一个实例 B. 任何一个对象只能属于一个具体的类 C. 一个类只能有一个对象 D. 类与对象的关系和数据类型与变量的关系类似",
+      "options": [
+        {
+          "key": "A",
+          "text": "对象是类的一个实例"
+        },
+        {
+          "key": "B",
+          "text": "任何一个对象只能属于一个具体的类"
+        },
+        {
+          "key": "C",
+          "text": "一个类只能有一个对象"
+        },
+        {
+          "key": "D",
+          "text": "类与对象的关系和数据类型与变量的关系类似"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "一个类可以创建多个对象。",
+      "pitfalls": "A、B、D 都是类和对象的基本关系描述。"
+    },
+    {
+      "id": "q028",
+      "number": 28,
+      "title": "成员函数",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "下列关于成员函数的描述中，错误的是：A. 成员函数的定义必须在类体外 B. 成员函数可以是公有的，也可以是私有的 C. 成员函数在类体外定义时，前加 `inline` 可为内联函数 D. 成员函数可以设置参数默认值",
+      "options": [
+        {
+          "key": "A",
+          "text": "成员函数的定义必须在类体外"
+        },
+        {
+          "key": "B",
+          "text": "成员函数可以是公有的，也可以是私有的"
+        },
+        {
+          "key": "C",
+          "text": "成员函数在类体外定义时，前加 `inline` 可为内联函数"
+        },
+        {
+          "key": "D",
+          "text": "成员函数可以设置参数默认值"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "成员函数既可以在类体内定义，也可以在类体外用作用域限定符定义。",
+      "pitfalls": "B 访问控制适用于成员函数；C 类外定义可显式 `inline`；D 成员函数参数可以有默认值。"
+    },
+    {
+      "id": "q029",
+      "number": 29,
+      "title": "构造函数",
+      "section": "三、函数、引用与类基础",
+      "type": "choice",
+      "prompt": "下列关于构造函数的描述中，错误的是：A. 构造函数可以重载 B. 构造函数名同类名 C. 带参数的构造函数具有类型转换作用 D. 构造函数是系统自动调用的",
+      "options": [
+        {
+          "key": "A",
+          "text": "构造函数可以重载"
+        },
+        {
+          "key": "B",
+          "text": "构造函数名同类名"
+        },
+        {
+          "key": "C",
+          "text": "带参数的构造函数具有类型转换作用"
+        },
+        {
+          "key": "D",
+          "text": "构造函数是系统自动调用的"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "只有单参数构造函数在未加 `explicit` 时可能作为转换构造函数；不能笼统说所有带参数构造函数都有类型转换作用。",
+      "pitfalls": "A 构造函数可按参数列表重载；B 名称必须与类名相同；D 创建对象时自动调用。"
+    },
+    {
+      "id": "q030",
+      "number": 30,
+      "title": "构造函数与析构函数数量",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "以下说法正确的是：A. 一个类只能定义一个构造函数，但可以定义多个析构函数 B. 一个类只能定义一个析构函数，但可以定义多个构造函数 C. 析构函数相对于构造函数，只是名字前加了 `~` D. 构造函数可以指定返回类型，而析构函数不能指定任何返回类型",
+      "options": [
+        {
+          "key": "A",
+          "text": "一个类只能定义一个构造函数，但可以定义多个析构函数"
+        },
+        {
+          "key": "B",
+          "text": "一个类只能定义一个析构函数，但可以定义多个构造函数"
+        },
+        {
+          "key": "C",
+          "text": "析构函数相对于构造函数，只是名字前加了 `~`"
+        },
+        {
+          "key": "D",
+          "text": "构造函数可以指定返回类型，而析构函数不能指定任何返回类型"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "构造函数可重载，因此可以有多个；析构函数无参数、不可重载，因此只能有一个。",
+      "pitfalls": "A 说反了；C 析构函数不仅名字不同，而且不能有参数和返回值；D 构造函数也不能指定返回类型。"
+    },
+    {
+      "id": "q031",
+      "number": 31,
+      "title": "默认析构函数",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "默认析构函数的函数体是：A. 不存在的 B. 随机产生的 C. 空的 D. 无法确定的",
+      "options": [
+        {
+          "key": "A",
+          "text": "不存在的"
+        },
+        {
+          "key": "B",
+          "text": "随机产生的"
+        },
+        {
+          "key": "C",
+          "text": "空的"
+        },
+        {
+          "key": "D",
+          "text": "无法确定的"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "编译器生成的默认析构函数通常不执行用户自定义语句，可理解为空函数体，但会自动调用成员对象和基类的析构。",
+      "pitfalls": "A 默认析构存在；B 不会随机生成；D 在语言规则层面是确定的。"
+    },
+    {
+      "id": "q032",
+      "number": 32,
+      "title": "拷贝构造函数声明",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "假设 `OneClass` 为一个类，则该类的复制构造函数声明语句为：A. `OneClass(OneClass p);` B. `OneClass&(OneClass p);` C. `OneClass(OneClass &p);` D. `OneClass(OneClass *p);`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`OneClass(OneClass p);`"
+        },
+        {
+          "key": "B",
+          "text": "`OneClass&(OneClass p);`"
+        },
+        {
+          "key": "C",
+          "text": "`OneClass(OneClass &p);`"
+        },
+        {
+          "key": "D",
+          "text": "`OneClass(OneClass *p);`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "拷贝构造函数一般形式为 `OneClass(const OneClass& p)`；题目选项中最接近且正确的是引用参数形式。",
+      "pitfalls": "A 值传递会再次调用拷贝构造，导致递归；B 形式错误；D 指针参数是普通构造函数，不是拷贝构造函数标准形式。"
+    },
+    {
+      "id": "q033",
+      "number": 33,
+      "title": "类定义语句错误",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "类定义中 `private: int a = 2.5;` 标注为错误项。",
+      "options": [],
+      "answer": "D",
+      "answerText": "D（截图选项为第 4 行）",
+      "referenceAnswer": "",
+      "explanation": "传统 C++教学语境下，普通非静态数据成员不能在类体内用这种方式初始化；且 `int` 用 `2.5` 初始化会发生截断。现代 C++允许类内成员初始化，但本题按教材规则考查。",
+      "pitfalls": "构造函数声明、析构函数声明、默认构造函数声明本身均可出现在类体中。"
+    },
+    {
+      "id": "q034",
+      "number": 34,
+      "title": "封装关键字",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "不能在 C++中实现封装的关键字是：A. `class` B. `struct` C. `type` D. `union`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`class`"
+        },
+        {
+          "key": "B",
+          "text": "`struct`"
+        },
+        {
+          "key": "C",
+          "text": "`type`"
+        },
+        {
+          "key": "D",
+          "text": "`union`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`type` 不是 C++用于定义封装类型的关键字。",
+      "pitfalls": "`class`、`struct`、`union` 都可以定义包含成员的数据类型，只是默认访问权限或语义不同。"
+    },
+    {
+      "id": "q035",
+      "number": 35,
+      "title": "析构输出",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "程序创建 `A x(2);`，构造函数输出 `2,`，随后 `x.set_a(10);`，退出 `main` 时析构函数输出当前 `a`。运行结果？",
+      "options": [],
+      "answer": "2,10",
+      "answerText": "`2,10`",
+      "referenceAnswer": "",
+      "explanation": "构造时 `a=2` 并输出；`set_a(10)` 修改对象内部状态；对象离开作用域时析构，输出修改后的 `10`。",
+      "pitfalls": "只输出 2 的答案忽略析构；输出 2,2 的答案忽略成员值被修改。"
+    },
+    {
+      "id": "q036",
+      "number": 36,
+      "title": "深拷贝与浅拷贝",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "对于复制构造函数有深复制和浅复制之分，二者的区别在于：A. 深复制能用 `=` 运算符复制对象，浅复制不能 B. 深复制能对数据成员初始化，浅复制不能 C. 浅复制不能复制指针型数据成员，而深复制可以 D. 浅复制使对象共享动态分配资源，深复制为对象分配独自拥有的资源",
+      "options": [
+        {
+          "key": "A",
+          "text": "深复制能用 `=` 运算符复制对象，浅复制不能"
+        },
+        {
+          "key": "B",
+          "text": "深复制能对数据成员初始化，浅复制不能"
+        },
+        {
+          "key": "C",
+          "text": "浅复制不能复制指针型数据成员，而深复制可以"
+        },
+        {
+          "key": "D",
+          "text": "浅复制使对象共享动态分配资源，深复制为对象分配独自拥有的资源"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "浅拷贝只复制指针值，两个对象指向同一块动态内存；深拷贝会重新分配资源并复制内容。",
+      "pitfalls": "A 混淆拷贝构造和赋值运算符；B 浅拷贝也会初始化成员；C 浅拷贝会复制指针值，只是不复制指针指向的资源。"
+    },
+    {
+      "id": "q037",
+      "number": 37,
+      "title": "复制构造函数调用时机",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "choice",
+      "prompt": "复制构造函数何时被调用？复制构造函数与赋值运算符 `=` 有何不同？",
+      "options": [],
+      "answer": "复制构造函数在用同类对象初始化新对象、对象按值传参、函数按值返回、临时对象初始化对象时调用。复制构造用于“创建新对象”，赋值运算符用于“已有对象之间赋值”。",
+      "answerText": "复制构造函数在用同类对象初始化新对象、对象按值传参、函数按值返回、临时对象初始化对象时调用。复制构造用于“创建新对象”，赋值运算符用于“已有对象之间赋值”。",
+      "referenceAnswer": "",
+      "explanation": "复制构造函数没有返回值，属于构造过程；赋值运算符通常返回 `ClassName&`，属于运算符重载。若类管理堆资源，二者通常都要自定义深拷贝逻辑，但触发时机不同。",
+      "pitfalls": "把 `A b=a;` 和 `b=a;` 混为一谈是常见错误，前者是初始化，后者是赋值。"
+    },
+    {
+      "id": "q038",
+      "number": 38,
+      "title": "矩形类编程：宽高版本",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "program",
+      "prompt": "定义一个描述矩形的类 `Rectangle`，包含宽度 `width`、高度 `height`；函数成员计算周长、面积；要求定义构造函数、拷贝构造函数、析构函数，并构造对象测试。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\nusing namespace std;\nclass Rectangle {\nprivate:\n    double width, height;\npublic:\n    Rectangle(double w = 0, double h = 0) : width(w), height(h) {}\n    Rectangle(const Rectangle& other) : width(other.width), height(other.height) {}\n    ~Rectangle() {}\n    double perimeter() const { return 2 * (width + height); }\n    double area() const { return width * height; }\n};\nint main() {\n    Rectangle r1(3, 4);\n    Rectangle r2(r1);\n    cout << r1.area() << \" \" << r1.perimeter() << endl;\n    cout << r2.area() << \" \" << r2.perimeter() << endl;\n    return 0;\n}",
+      "explanation": "宽高是普通值成员，默认拷贝也能工作，但题目要求显式写拷贝构造。`area`、`perimeter` 不修改对象，应加 `const`。",
+      "pitfalls": "若忘记构造函数，对象初始化不方便；若面积写成 `2*(w+h)` 是把周长公式用错；若析构函数写返回类型，语法错误。"
+    },
+    {
+      "id": "q039",
+      "number": 39,
+      "title": "组合类矩形：两个点表示",
+      "section": "四、构造、析构、拷贝与组合",
+      "type": "program",
+      "prompt": "设计并测试 `Rectangle` 矩形类，属性为矩形左下角与右上角两个点的坐标，要求用组合类形式实现，设计构造函数和拷贝构造函数，能计算矩形面积。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\n#include <cmath>\nusing namespace std;\nclass Point {\n    double x, y;\npublic:\n    Point(double x = 0, double y = 0) : x(x), y(y) {}\n    Point(const Point& p) : x(p.x), y(p.y) {}\n    double getX() const { return x; }\n    double getY() const { return y; }\n};\nclass Rectangle {\n    Point leftBottom, rightTop;\npublic:\n    Rectangle(Point lb, Point rt) : leftBottom(lb), rightTop(rt) {}\n    Rectangle(const Rectangle& r)\n        : leftBottom(r.leftBottom), rightTop(r.rightTop) {}\n    double area() const {\n        return fabs((rightTop.getX() - leftBottom.getX()) *\n                    (rightTop.getY() - leftBottom.getY()));\n    }\n};\nint main() {\n    Rectangle r(Point(0, 0), Point(3, 4));\n    cout << r.area() << endl;\n    return 0;\n}",
+      "explanation": "组合类的关键是 `Rectangle` 以 `Point` 对象作为成员。构造函数初始化列表会先构造成员对象。",
+      "pitfalls": "若只存四个坐标，就不是题目要求的组合类；若不取绝对值，当点顺序不规范时可能得到负面积。"
+    },
+    {
+      "id": "q040",
+      "number": 40,
+      "title": "继承关系性质",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "在 C++中，类与类之间的继承关系具有：A. 自反性 B. 对称性 C. 传递性 D. 反对称性",
+      "options": [
+        {
+          "key": "A",
+          "text": "自反性"
+        },
+        {
+          "key": "B",
+          "text": "对称性"
+        },
+        {
+          "key": "C",
+          "text": "传递性"
+        },
+        {
+          "key": "D",
+          "text": "反对称性"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "若 C 继承 B，B 继承 A，则 C 间接继承 A 的成员，体现传递性。",
+      "pitfalls": "自反性不符合“类继承自己”；对称性错误，基类与派生类关系不可互换；反对称性不是本题常用描述。"
+    },
+    {
+      "id": "q041",
+      "number": 41,
+      "title": "基类与派生类成员",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "下列关于基类和派生类的描述中，错误的是：A. 一个基类可以生成多个派生类 B. 基类中所有成员都是它的派生类的成员 C. 基类中成员访问权限继承到派生类中不变 D. 派生类中除了继承的基类成员还有自己的成员",
+      "options": [
+        {
+          "key": "A",
+          "text": "一个基类可以生成多个派生类"
+        },
+        {
+          "key": "B",
+          "text": "基类中所有成员都是它的派生类的成员"
+        },
+        {
+          "key": "C",
+          "text": "基类中成员访问权限继承到派生类中不变"
+        },
+        {
+          "key": "D",
+          "text": "派生类中除了继承的基类成员还有自己的成员"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "继承方式会改变基类 `public`、`protected` 成员在派生类中的访问级别，如 `private` 继承会使公有成员变为私有。",
+      "pitfalls": "A、B、D 是继承的基本特征。B 中“成员属于派生类对象的一部分”从对象布局/继承角度成立，但 private 成员不可直接访问。"
+    },
+    {
+      "id": "q042",
+      "number": 42,
+      "title": "派生类描述",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "下列关于派生类的描述中，错误的是：A. 派生类至少有一个基类 B. 一个派生类可以作为另一个派生类的基类 C. 派生类的构造函数中应包含直接基类的构造函数 D. 派生类默认继承方式是 `public`",
+      "options": [
+        {
+          "key": "A",
+          "text": "派生类至少有一个基类"
+        },
+        {
+          "key": "B",
+          "text": "一个派生类可以作为另一个派生类的基类"
+        },
+        {
+          "key": "C",
+          "text": "派生类的构造函数中应包含直接基类的构造函数"
+        },
+        {
+          "key": "D",
+          "text": "派生类默认继承方式是 `public`"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "用 `class` 定义派生类时默认继承方式是 `private`；用 `struct` 时默认是 `public`。",
+      "pitfalls": "A 派生类必须由基类派生；B 可形成多层继承；C 派生类构造时要先构造直接基类，可显式或隐式调用基类构造函数。"
+    },
+    {
+      "id": "q043",
+      "number": 43,
+      "title": "派生类可直接访问的基类成员",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "派生类对象可以直接访问的基类成员是：A. 公有继承的公有成员 B. 保护继承的公有成员 C. 私有继承的公有成员 D. 公有继承的保护成员",
+      "options": [
+        {
+          "key": "A",
+          "text": "公有继承的公有成员"
+        },
+        {
+          "key": "B",
+          "text": "保护继承的公有成员"
+        },
+        {
+          "key": "C",
+          "text": "私有继承的公有成员"
+        },
+        {
+          "key": "D",
+          "text": "公有继承的保护成员"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "对象在类外只能直接访问 `public` 成员。公有继承下基类公有成员仍为公有。",
+      "pitfalls": "B、C 中继承后成员对外不是 public；D `protected` 成员只能在类内或派生类内访问，不能由对象在类外直接访问。"
+    },
+    {
+      "id": "q044",
+      "number": 44,
+      "title": "继承方式下访问权限",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "下列描述中，错误的是：A. 基类 protected 成员在 public 派生类中仍为 protected B. 基类 private 成员在 public 派生类中不可访问 C. 基类 public 成员在 private 派生类中是 private D. 基类 public 成员在 protected 派生类中仍是 public",
+      "options": [
+        {
+          "key": "A",
+          "text": "基类 protected 成员在 public 派生类中仍为 protected"
+        },
+        {
+          "key": "B",
+          "text": "基类 private 成员在 public 派生类中不可访问"
+        },
+        {
+          "key": "C",
+          "text": "基类 public 成员在 private 派生类中是 private"
+        },
+        {
+          "key": "D",
+          "text": "基类 public 成员在 protected 派生类中仍是 public"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "`protected` 继承会把基类 public 和 protected 成员在派生类中都变为 protected。",
+      "pitfalls": "A、B、C 符合继承访问控制规则。"
+    },
+    {
+      "id": "q045",
+      "number": 45,
+      "title": "多继承二义性",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "下列关于多继承二义性的描述中，错误的是：A. 多个基类中出现同名成员时访问可能有二义性 B. 多个直接基类又有共同基类时访问公共基类成员可能有二义性 C. 解决二义性可采用类名限定 D. 基类和派生类中同时出现同名成员时，会产生二义性",
+      "options": [
+        {
+          "key": "A",
+          "text": "多个基类中出现同名成员时访问可能有二义性"
+        },
+        {
+          "key": "B",
+          "text": "多个直接基类又有共同基类时访问公共基类成员可能有二义性"
+        },
+        {
+          "key": "C",
+          "text": "解决二义性可采用类名限定"
+        },
+        {
+          "key": "D",
+          "text": "基类和派生类中同时出现同名成员时，会产生二义性"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "派生类成员会隐藏基类同名成员，默认访问派生类自己的成员，不构成必须报错的二义性。",
+      "pitfalls": "A、B 是典型多继承二义性场景；C 使用 `Base::member` 可明确访问来源。"
+    },
+    {
+      "id": "q046",
+      "number": 46,
+      "title": "虚基类目的",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "设置虚基类的目的是：A. 简化程序 B. 消除二义性 C. 提高运行效率 D. 减少目标代码",
+      "options": [
+        {
+          "key": "A",
+          "text": "简化程序"
+        },
+        {
+          "key": "B",
+          "text": "消除二义性"
+        },
+        {
+          "key": "C",
+          "text": "提高运行效率"
+        },
+        {
+          "key": "D",
+          "text": "减少目标代码"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "菱形继承中使用虚基类可保证公共基类子对象只有一份，避免访问公共基类成员时的二义性。",
+      "pitfalls": "虚继承通常不以效率或代码量为目标，反而可能引入额外开销。"
+    },
+    {
+      "id": "q047",
+      "number": 47,
+      "title": "私有成员访问",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "类 O 定义了私有函数 `F1`，`P` 和 `Q` 为 O 的派生类，问可以访问 `F1` 的是谁？",
+      "options": [],
+      "answer": "O 类内",
+      "answerText": "O 类内",
+      "referenceAnswer": "",
+      "explanation": "基类 `private` 成员只能被基类自己的成员函数和友元访问，派生类成员不能直接访问。",
+      "pitfalls": "O 的对象在类外不能访问私有函数；P 类内、Q 类内也不能直接访问 O 的 private 成员。"
+    },
+    {
+      "id": "q048",
+      "number": 48,
+      "title": "派生类构造函数初始化基类",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "有 `class XA { int x; public: XA(int n){x=n;} }; class XB: public XA { int y; public: XB(int a,int b); };`，正确的构造函数定义是？",
+      "options": [],
+      "answer": "XB::XB(int a,int b) : XA(a), y(b) {}",
+      "answerText": "`XB::XB(int a,int b) : XA(a), y(b) {}`",
+      "referenceAnswer": "",
+      "explanation": "派生类构造函数应在初始化列表中调用基类构造函数 `XA(a)`，并初始化自己的成员 `y(b)`。",
+      "pitfalls": "直接写 `x(a)` 错，因为 `x` 是基类私有成员；写 `XB(b)` 是把类名当成员；漏掉基类构造会因 `XA` 没有默认构造而错误。"
+    },
+    {
+      "id": "q049",
+      "number": 49,
+      "title": "对象构造顺序",
+      "section": "五、继承、派生与多继承",
+      "type": "choice",
+      "prompt": "程序中 `class C: public A { B b; public: C(){cout<<\"C\";} };`，创建 `C obj;` 的输出？",
+      "options": [],
+      "answer": "ABC",
+      "answerText": "`ABC`",
+      "referenceAnswer": "",
+      "explanation": "构造派生类对象时，先构造基类 `A`，再构造成员对象 `B b`，最后执行派生类 `C` 的构造函数体。",
+      "pitfalls": "把 C 放前面忽略了基类优先；把 B 放 A 前面忽略了“先基类后成员”。"
+    },
+    {
+      "id": "q050",
+      "number": 50,
+      "title": "纯虚函数",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "下列成员函数中，纯虚函数是：A. `virtual void f1()=0` B. `void f1()=0` C. `virtual void f1() 0` D. `virtual void f1()==0`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`virtual void f1()=0`"
+        },
+        {
+          "key": "B",
+          "text": "`void f1()=0`"
+        },
+        {
+          "key": "C",
+          "text": "`virtual void f1() 0`"
+        },
+        {
+          "key": "D",
+          "text": "`virtual void f1()==0`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "纯虚函数语法是“虚函数声明后加 `=0`”。",
+      "pitfalls": "B 缺少 `virtual`；C 语法缺少等号；D `==0` 是比较，不是纯虚声明。"
+    },
+    {
+      "id": "q051",
+      "number": 51,
+      "title": "虚函数描述",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "下列关于虚函数的描述中，错误的是：A. 虚函数是成员函数 B. 虚函数具有继承性 C. 静态成员函数可以说明为虚函数 D. 在类继承层次中，虚函数是说明相同接口的函数",
+      "options": [
+        {
+          "key": "A",
+          "text": "虚函数是成员函数"
+        },
+        {
+          "key": "B",
+          "text": "虚函数具有继承性"
+        },
+        {
+          "key": "C",
+          "text": "静态成员函数可以说明为虚函数"
+        },
+        {
+          "key": "D",
+          "text": "在类继承层次中，虚函数是说明相同接口的函数"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "虚函数依赖对象的动态类型和 `this` 指针；静态成员函数不属于某个对象，没有 `this` 指针，不能是虚函数。",
+      "pitfalls": "A、B、D 都是虚函数机制的基本性质。"
+    },
+    {
+      "id": "q052",
+      "number": 52,
+      "title": "抽象类",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "下列关于抽象类的描述中，错误的是：A. 抽象类中至少应该有一个纯虚函数 B. 抽象类可以定义抽象类的指针和引用 C. 抽象类通常用作类族中最顶层的类 D. 抽象类的派生类必定是具体类",
+      "options": [
+        {
+          "key": "A",
+          "text": "抽象类中至少应该有一个纯虚函数"
+        },
+        {
+          "key": "B",
+          "text": "抽象类可以定义抽象类的指针和引用"
+        },
+        {
+          "key": "C",
+          "text": "抽象类通常用作类族中最顶层的类"
+        },
+        {
+          "key": "D",
+          "text": "抽象类的派生类必定是具体类"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "如果派生类没有实现所有纯虚函数，它仍然是抽象类。",
+      "pitfalls": "A 是抽象类定义；B 不能创建抽象类对象，但可定义指针/引用；C 抽象基类常用于统一接口。"
+    },
+    {
+      "id": "q053",
+      "number": 53,
+      "title": "抽象类定义",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "含有一个或多个纯虚函数的类称为：A. 抽象类 B. 具体类 C. 虚基类 D. 派生类",
+      "options": [
+        {
+          "key": "A",
+          "text": "抽象类"
+        },
+        {
+          "key": "B",
+          "text": "具体类"
+        },
+        {
+          "key": "C",
+          "text": "虚基类"
+        },
+        {
+          "key": "D",
+          "text": "派生类"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "含纯虚函数的类不能直接实例化，称为抽象类。",
+      "pitfalls": "具体类可实例化；虚基类解决多继承公共基类问题；派生类只是继承关系中的子类。"
+    },
+    {
+      "id": "q054",
+      "number": 54,
+      "title": "指定调用基类虚函数",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "类 B 是类 A 的公有派生类，A 和 B 都定义虚函数 `func()`，`p` 是指向 A 对象的指针，则 `p->A::func()` 将：A. 调用 A 中的 `func()` B. 调用 B 中的 `func()` C. 根据对象类型确定 D. 两者都调用",
+      "options": [
+        {
+          "key": "A",
+          "text": "调用 A 中的 `func()`"
+        },
+        {
+          "key": "B",
+          "text": "调用 B 中的 `func()`"
+        },
+        {
+          "key": "C",
+          "text": "根据对象类型确定"
+        },
+        {
+          "key": "D",
+          "text": "两者都调用"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "使用作用域限定符 `A::` 会关闭虚调用机制，明确调用 A 版本。",
+      "pitfalls": "B、C 是普通 `p->func()` 通过虚函数动态绑定时才可能；D 一次调用不会自动调用两个函数。"
+    },
+    {
+      "id": "q055",
+      "number": 55,
+      "title": "不能声明为虚函数",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "下列函数中，不能说明为虚函数的是：A. 私有成员函数 B. 公有成员函数 C. 构造函数 D. 析构函数",
+      "options": [
+        {
+          "key": "A",
+          "text": "私有成员函数"
+        },
+        {
+          "key": "B",
+          "text": "公有成员函数"
+        },
+        {
+          "key": "C",
+          "text": "构造函数"
+        },
+        {
+          "key": "D",
+          "text": "析构函数"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "构造函数不能是虚函数，因为构造过程中对象动态类型尚未完整形成。析构函数可以且常应设为虚函数。",
+      "pitfalls": "A 私有虚函数语法上可以存在；B 公有虚函数最常见；D 基类析构函数常设为 `virtual` 以支持通过基类指针删除派生类对象。"
+    },
+    {
+      "id": "q056",
+      "number": 56,
+      "title": "动态绑定",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "在 C++中，要实现动态绑定，必须使用（ ）调用虚函数。A. 基类对象 B. 派生类指针 C. 对象名 D. 基类指针",
+      "options": [
+        {
+          "key": "A",
+          "text": "基类对象"
+        },
+        {
+          "key": "B",
+          "text": "派生类指针"
+        },
+        {
+          "key": "C",
+          "text": "对象名"
+        },
+        {
+          "key": "D",
+          "text": "基类指针"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "动态绑定通常通过基类指针或基类引用调用虚函数，由运行时实际对象类型决定调用版本。",
+      "pitfalls": "对象名调用通常是静态绑定；派生类指针只能指向派生类，不能体现统一接口；基类对象会发生对象切片。"
+    },
+    {
+      "id": "q057",
+      "number": 57,
+      "title": "类模板实例化",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "类模板的使用实际上是将类模板实例化成一个（）：A. 函数 B. 对象 C. 类 D. 抽象类",
+      "options": [
+        {
+          "key": "A",
+          "text": "函数"
+        },
+        {
+          "key": "B",
+          "text": "对象"
+        },
+        {
+          "key": "C",
+          "text": "类"
+        },
+        {
+          "key": "D",
+          "text": "抽象类"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`vector<int>` 这类形式是由类模板按具体模板实参生成的具体类，再由类创建对象。",
+      "pitfalls": "函数模板实例化成函数；对象是类实例化的结果；抽象类与模板无必然关系。"
+    },
+    {
+      "id": "q058",
+      "number": 58,
+      "title": "模板描述",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "下列关于模板的描述，错误的是：A. 模板把数据类型作为设计参数，称为参数化程序设计 B. 使用时模板参数与函数参数相同，是按位置而不是名称对应的 C. 模板参数表中可以有类型参数和非类型参数 D. 类模板和模板类是同一个概念",
+      "options": [
+        {
+          "key": "A",
+          "text": "模板把数据类型作为设计参数，称为参数化程序设计"
+        },
+        {
+          "key": "B",
+          "text": "使用时模板参数与函数参数相同，是按位置而不是名称对应的"
+        },
+        {
+          "key": "C",
+          "text": "模板参数表中可以有类型参数和非类型参数"
+        },
+        {
+          "key": "D",
+          "text": "类模板和模板类是同一个概念"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "类模板是模板定义，模板类通常指由类模板实例化得到的具体类，二者概念不同。",
+      "pitfalls": "A、B、C 均为模板的基本规则。"
+    },
+    {
+      "id": "q059",
+      "number": 59,
+      "title": "虚函数输出",
+      "section": "六、虚函数、抽象类与模板",
+      "type": "choice",
+      "prompt": "`A` 有纯虚 `print()`，`B`、`C` 分别重写；`fun(A *pa){ pa->print(); }`，先 `pa=&b; fun(pa);` 再 `pa=&c; fun(pa);`。输出？",
+      "options": [],
+      "answer": "B print. C print.",
+      "answerText": "`B print. C print.`",
+      "referenceAnswer": "",
+      "explanation": "通过基类指针调用虚函数，发生动态绑定，分别调用实际对象 `B` 和 `C` 的 `print()`。",
+      "pitfalls": "输出 A 版本不可能，因为 A 的 `print` 是纯虚函数；只输出 B 或只输出 C 都忽略了两次调用。"
+    },
+    {
+      "id": "q060",
+      "number": 60,
+      "title": "静态成员",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "下列关于静态成员的描述中，错误的是：A. 静态成员使用 `static` 声明 B. 静态成员属于类，不属于某个对象 C. 静态成员只可以用类名加作用域运算符来引用，不可用对象引用 D. 静态数据成员的初始化在类外进行",
+      "options": [
+        {
+          "key": "A",
+          "text": "静态成员使用 `static` 声明"
+        },
+        {
+          "key": "B",
+          "text": "静态成员属于类，不属于某个对象"
+        },
+        {
+          "key": "C",
+          "text": "静态成员只可以用类名加作用域运算符来引用，不可用对象引用"
+        },
+        {
+          "key": "D",
+          "text": "静态数据成员的初始化在类外进行"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "静态成员既可用 `ClassName::member` 访问，也可通过对象访问；推荐用类名访问以表达其类属性。",
+      "pitfalls": "A、B、D 是静态成员基本规则。"
+    },
+    {
+      "id": "q061",
+      "number": 61,
+      "title": "常成员",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "下列关于常成员的描述中，错误的是：A. 常成员用 `const` 说明 B. 常成员有常数据成员和常函数成员两种 C. 常数据成员的初始化是在类体内定义它时进行的 D. 常数据成员的值不可改变",
+      "options": [
+        {
+          "key": "A",
+          "text": "常成员用 `const` 说明"
+        },
+        {
+          "key": "B",
+          "text": "常成员有常数据成员和常函数成员两种"
+        },
+        {
+          "key": "C",
+          "text": "常数据成员的初始化是在类体内定义它时进行的"
+        },
+        {
+          "key": "D",
+          "text": "常数据成员的值不可改变"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "常数据成员通常必须在构造函数初始化列表中初始化。",
+      "pitfalls": "A、B、D 正确描述了 `const` 成员。"
+    },
+    {
+      "id": "q062",
+      "number": 62,
+      "title": "友元函数",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "关于友元函数的描述中，错误的是：A. 友元函数不是成员函数 B. 友元函数只可访问类的私有成员 C. 友元函数的调用方法同一般函数 D. 友元函数可以是另一类中的成员函数",
+      "options": [
+        {
+          "key": "A",
+          "text": "友元函数不是成员函数"
+        },
+        {
+          "key": "B",
+          "text": "友元函数只可访问类的私有成员"
+        },
+        {
+          "key": "C",
+          "text": "友元函数的调用方法同一般函数"
+        },
+        {
+          "key": "D",
+          "text": "友元函数可以是另一类中的成员函数"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "友元函数可以访问类的私有、保护、公有成员，并非“只可访问私有成员”。",
+      "pitfalls": "A 友元不是本类成员；C 友元函数按普通函数方式调用；D 另一个类的成员函数也可声明为友元。"
+    },
+    {
+      "id": "q063",
+      "number": 63,
+      "title": "一维数组定义",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "以下一维数组 `a` 的正确定义是：A. `int a(10);` B. `int n=10, a[n];` C. `int n; cin>>n; int a[n];` D. `#define S 10` 后 `int a[S];`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`int a(10);`"
+        },
+        {
+          "key": "B",
+          "text": "`int n=10, a[n];`"
+        },
+        {
+          "key": "C",
+          "text": "`int n; cin>>n; int a[n];`"
+        },
+        {
+          "key": "D",
+          "text": "`#define S 10` 后 `int a[S];`"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "标准 C++数组长度必须是编译期常量，宏常量 `S` 可作为数组长度。",
+      "pitfalls": "A 定义的是整型变量 `a`，初始化为 10；B、C 中 `n` 不是标准意义的常量表达式。"
+    },
+    {
+      "id": "q064",
+      "number": 64,
+      "title": "二维数组初始化",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "以下对二维数组 `a` 进行不正确初始化的是：A. `int a[2][3]={0};` B. `int a[][3]={1,2,0};` C. `int a[2][3]={{1,2},{3,4},{5,6}};` D. `int a[][3]={1,2,3,4,5,6};`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`int a[2][3]={0};`"
+        },
+        {
+          "key": "B",
+          "text": "`int a[][3]={1,2,0};`"
+        },
+        {
+          "key": "C",
+          "text": "`int a[2][3]={{1,2},{3,4},{5,6}};`"
+        },
+        {
+          "key": "D",
+          "text": "`int a[][3]={1,2,3,4,5,6};`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`a[2][3]` 只有 2 行 3 列，却给了 3 行初始化数据，行数超出。",
+      "pitfalls": "A 全部初始化为 0；B 可省略第一维；D 可按行顺序展开初始化。"
+    },
+    {
+      "id": "q065",
+      "number": 65,
+      "title": "类友元",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "如果类 A 被声明为类 B 的友元，则正确的是：A. 类 B 也一定是类 A 的友元 B. 类 B 的成员即类 A 的成员 C. 类 A 的成员即类 B 的成员 D. 类 A 的成员函数可以访问类 B 的成员",
+      "options": [
+        {
+          "key": "A",
+          "text": "类 B 也一定是类 A 的友元"
+        },
+        {
+          "key": "B",
+          "text": "类 B 的成员即类 A 的成员"
+        },
+        {
+          "key": "C",
+          "text": "类 A 的成员即类 B 的成员"
+        },
+        {
+          "key": "D",
+          "text": "类 A 的成员函数可以访问类 B 的成员"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "若 `friend class A;` 写在 B 中，则 A 的成员函数可以访问 B 的非公有成员。",
+      "pitfalls": "友元关系不具备相互性、传递性，也不会使两个类的成员合并。"
+    },
+    {
+      "id": "q066",
+      "number": 66,
+      "title": "常对象",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "由于常对象不能被更新，因此：A. 通过常对象只能调用它的常成员函数 B. 通过常对象只能调用静态成员函数 C. 常对象的成员都是常成员 D. 通过常对象可以调用任何不改变对象值的成员函数",
+      "options": [
+        {
+          "key": "A",
+          "text": "通过常对象只能调用它的常成员函数"
+        },
+        {
+          "key": "B",
+          "text": "通过常对象只能调用静态成员函数"
+        },
+        {
+          "key": "C",
+          "text": "常对象的成员都是常成员"
+        },
+        {
+          "key": "D",
+          "text": "通过常对象可以调用任何不改变对象值的成员函数"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "只有声明为 `const` 的成员函数承诺不修改对象，常对象只能调用这类函数。",
+      "pitfalls": "B 静态函数与对象状态无关，但不是“只能”；C 常对象不改变成员声明性质；D 普通成员函数即使实际不改值，也未在类型系统中承诺不修改。"
+    },
+    {
+      "id": "q067",
+      "number": 67,
+      "title": "const/static 编译判断",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "类 `Test` 中标注：1. 构造函数给 `const int c` 赋值；2. `int f(int m) const { a=m; }`；3. `void h(int b){ Test::b=b; }`；4. `static int g(){ return a; }`。能正确编译的是哪行？",
+      "options": [],
+      "answer": "3",
+      "answerText": "3",
+      "referenceAnswer": "",
+      "explanation": "静态数据成员 `b` 可在成员函数中用 `Test::b` 访问并赋值。",
+      "pitfalls": "1 `const` 数据成员必须在初始化列表初始化；2 `const` 成员函数不能修改普通数据成员 `a`；4 静态成员函数没有 `this`，不能访问非静态成员 `a`。"
+    },
+    {
+      "id": "q068",
+      "number": 68,
+      "title": "宏定义",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "在编译指令中，宏定义使用哪个指令：A. `#if` B. `#include` C. `#define` D. `#error`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`#if`"
+        },
+        {
+          "key": "B",
+          "text": "`#include`"
+        },
+        {
+          "key": "C",
+          "text": "`#define`"
+        },
+        {
+          "key": "D",
+          "text": "`#error`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`#define` 用于宏定义。",
+      "pitfalls": "`#if` 条件编译；`#include` 文件包含；`#error` 产生编译错误信息。"
+    },
+    {
+      "id": "q069",
+      "number": 69,
+      "title": "数组递推输出",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "int a[5] = {1,1,1,1,1};\nfor (i=0; i<5; i++)\n    for (j=0; j<i; j++)\n        a[i] = a[i] + a[j];\n最后依次输出 `a[0]..a[4]`。",
+      "options": [],
+      "answer": "1,2,4,8,16",
+      "answerText": "`1,2,4,8,16`",
+      "referenceAnswer": "",
+      "explanation": "`a[0]=1`；`a[1]=1+a0=2`；`a[2]=1+a0+a1=4`；`a[3]=1+1+2+4=8`；`a[4]=16`。",
+      "pitfalls": "写成 `1,2,3,4,5` 是把每次只加 1，当成简单递增，忽略了内层循环累加已有数组值。"
+    },
+    {
+      "id": "q070",
+      "number": 70,
+      "title": "二维数组地址",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "有定义 `int a[2][5];`，若 `a[0][1]` 的地址为 x，则 `a[0][0]`、`a[1][3]` 的地址分别为（一个 int 占 2 字节）：A. `x-2, x+14` B. `x-1, x+7` C. `x+1, x+7` D. `x-1, x+14`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`x-2, x+14`"
+        },
+        {
+          "key": "B",
+          "text": "`x-1, x+7`"
+        },
+        {
+          "key": "C",
+          "text": "`x+1, x+7`"
+        },
+        {
+          "key": "D",
+          "text": "`x-1, x+14`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "二维数组按行连续存储。`a[0][0]` 比 `a[0][1]` 少一个 int，即 `x-2`。`a[1][3]` 的线性下标是 `1*5+3=8`，`a[0][1]` 下标是 1，相差 7 个 int，即 14 字节，地址为 `x+14`。",
+      "pitfalls": "B、C 把元素差当字节差；D 前半部分也把 1 个 int 误算为 1 字节。"
+    },
+    {
+      "id": "q071",
+      "number": 71,
+      "title": "字符指针赋值",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "设 `char s1[10], *s2=s1;`，以下正确语句是：A. `s1=\"computer\"` B. `s1[10]=\"computer\"` C. `s2=\"computer\"` D. `*s2=\"computer\"`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`s1=\"computer\"`"
+        },
+        {
+          "key": "B",
+          "text": "`s1[10]=\"computer\"`"
+        },
+        {
+          "key": "C",
+          "text": "`s2=\"computer\"`"
+        },
+        {
+          "key": "D",
+          "text": "`*s2=\"computer\"`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`s2` 是字符指针，可以指向字符串常量首地址。",
+      "pitfalls": "A 数组名不能整体赋值；B `s1[10]` 越界且类型是 char；D `*s2` 是单个 char，不能赋字符串地址。"
+    },
+    {
+      "id": "q072",
+      "number": 72,
+      "title": "字符串数组比较",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "设有字符指针数组，表达式 `*s[1] > *s[3]` 比较的是什么？截图正确答案为 B。",
+      "options": [],
+      "answer": "比较两个字符串首字符，如 `'5'` 和 `'3'`。",
+      "answerText": "比较两个字符串首字符，如 `'5'` 和 `'3'`。",
+      "referenceAnswer": "",
+      "explanation": "`s[1]` 是第 2 个字符串的首地址，`*s[1]` 是该字符串第 1 个字符；`s[3]` 同理。表达式比较的是字符编码值，不是整个字符串。",
+      "pitfalls": "把它理解成比较 `\"5678\"` 和 `\"3456\"` 是忽略了解引用 `*`；把它理解成比较数组地址也不符合表达式。"
+    },
+    {
+      "id": "q073",
+      "number": 73,
+      "title": "字符串逆序填空",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "choice",
+      "prompt": "补全函数，使字符串逆序存放。\nvoid inverse(char str[]) {\n    char m;\n    int i, j;\n    for (i=0, j=strlen(str); [填空1]; i++, [填空2]) {\n        m = str[i];\n        str[i] = [填空3];\n        [填空4];\n    }\n}",
+      "options": [],
+      "answer": "i<j-1`；`j--`；`str[j-1]`；`str[j-1]=m",
+      "answerText": "`i<j-1`；`j--`；`str[j-1]`；`str[j-1]=m`",
+      "referenceAnswer": "",
+      "explanation": "`strlen(str)` 是字符个数，不含 `'\\0'`，最后一个字符下标是 `j-1`。每次交换首尾字符，然后 `i++`、`j--` 向中间靠拢。",
+      "pitfalls": "若条件写 `i<j` 会多交换或访问错误位置；若用 `str[j]` 会访问到字符串结束符位置。"
+    },
+    {
+      "id": "q074",
+      "number": 74,
+      "title": "Boat 与 Car 友元函数",
+      "section": "七、静态成员、常成员、友元与数组",
+      "type": "program",
+      "prompt": "定义 `Boat` 与 `Car` 两个类，二者都有 `weight` 属性，定义二者的一个友元函数 `totalWeight()`，计算二者重量和。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\nusing namespace std;\nclass Car;\nclass Boat {\n    double weight;\npublic:\n    Boat(double w=0) : weight(w) {}\n    friend double totalWeight(const Boat& b, const Car& c);\n};\nclass Car {\n    double weight;\npublic:\n    Car(double w=0) : weight(w) {}\n    friend double totalWeight(const Boat& b, const Car& c);\n};\ndouble totalWeight(const Boat& b, const Car& c) {\n    return b.weight + c.weight;\n}\nint main() {\n    Boat b(20);\n    Car c(30);\n    cout << totalWeight(b, c) << endl;\n    return 0;\n}",
+      "explanation": "函数需要同时访问两个类的私有成员，因此在两个类中都声明为友元。前向声明 `class Car;` 用于让 `Boat` 的友元声明认识 `Car` 类型。",
+      "pitfalls": "只在一个类中声明友元，则无法访问另一个类的私有成员；把 `totalWeight` 写成成员函数则不符合“二者的一个友元函数”的题意。"
+    },
+    {
+      "id": "q075",
+      "number": 75,
+      "title": "指针描述",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "下列关于指针的描述中，错误的是：A. 指针中存放的是某变量或对象的地址 B. 指针的类型是它所存放的数值的类型 C. 指针是变量，它也具有一个内存地址值 D. 指针的值（非常量指针）是可以改变的",
+      "options": [
+        {
+          "key": "A",
+          "text": "指针中存放的是某变量或对象的地址"
+        },
+        {
+          "key": "B",
+          "text": "指针的类型是它所存放的数值的类型"
+        },
+        {
+          "key": "C",
+          "text": "指针是变量，它也具有一个内存地址值"
+        },
+        {
+          "key": "D",
+          "text": "指针的值（非常量指针）是可以改变的"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "指针类型表示“它所指向对象的类型”，不是地址值本身的类型。",
+      "pitfalls": "A、C、D 都是指针变量的基本性质。"
+    },
+    {
+      "id": "q076",
+      "number": 76,
+      "title": "double 指针定义",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "下列关于定义一个指向 `double` 型变量的指针，正确的是：A. `int a=5, double *p=a;` B. `double d=2.5, *p=&d;` C. `double d=2.5, *p=d;` D. `double d=2.5, p=d;`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`int a=5, double *p=a;`"
+        },
+        {
+          "key": "B",
+          "text": "`double d=2.5, *p=&d;`"
+        },
+        {
+          "key": "C",
+          "text": "`double d=2.5, *p=d;`"
+        },
+        {
+          "key": "D",
+          "text": "`double d=2.5, p=d;`"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "`p` 是 `double*`，应保存 `double` 变量 `d` 的地址 `&d`。",
+      "pitfalls": "A 声明语法和类型都错；C 把 double 值赋给指针；D `p` 不是指针，只是 double 变量。"
+    },
+    {
+      "id": "q077",
+      "number": 77,
+      "title": "数组名与指针",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "有 `int a[5], *p;`，下列描述错误的是：A. `p=p+1` 合法 B. `a=a+1` 合法 C. `p-a` 合法 D. `a+2` 合法",
+      "options": [
+        {
+          "key": "A",
+          "text": "`p=p+1` 合法"
+        },
+        {
+          "key": "B",
+          "text": "`a=a+1` 合法"
+        },
+        {
+          "key": "C",
+          "text": "`p-a` 合法"
+        },
+        {
+          "key": "D",
+          "text": "`a+2` 合法"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "数组名 `a` 在表达式中可转换为首元素地址，但它不是可修改左值，不能给数组名赋值。",
+      "pitfalls": "A 指针可移动；C 同一数组内指针相减合法；D 数组名加整数得到元素地址。"
+    },
+    {
+      "id": "q078",
+      "number": 78,
+      "title": "二维数组行指针",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "已知 `int a[3][4], (*p)[4];`，正确赋值表达式是：A. `p=a+2` B. `p=a[1]` C. `p=*a` D. `p=*a+2`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`p=a+2`"
+        },
+        {
+          "key": "B",
+          "text": "`p=a[1]`"
+        },
+        {
+          "key": "C",
+          "text": "`p=*a`"
+        },
+        {
+          "key": "D",
+          "text": "`p=*a+2`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "`p` 是指向“含 4 个 int 的数组”的指针，`a` 退化为指向第 0 行的指针，`a+2` 指向第 2 行，类型匹配。",
+      "pitfalls": "`a[1]`、`*a`、`*a+2` 都是 `int*` 类型，不是 `int (*)[4]`。"
+    },
+    {
+      "id": "q079",
+      "number": 79,
+      "title": "二维数组元素引用",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "设 `int array[3][4]`，下列引用数组元素的方法中错误的是：A. `array[i][j]` B. `*(*(array+i)+j)` C. `*(array[i]+j)` D. `*(array+i*4+j)`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`array[i][j]`"
+        },
+        {
+          "key": "B",
+          "text": "`*(*(array+i)+j)`"
+        },
+        {
+          "key": "C",
+          "text": "`*(array[i]+j)`"
+        },
+        {
+          "key": "D",
+          "text": "`*(array+i*4+j)`"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "`array+i*4+j` 的单位是“行”，不是“int 元素”，会跳过多行，类型也不符合元素解引用。",
+      "pitfalls": "A 是标准下标；B、C 都是等价的指针形式。"
+    },
+    {
+      "id": "q080",
+      "number": 80,
+      "title": "指针程序输出",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "`int a[]={5,4,3,2,1}; int *p=&a[2];`，循环输出较小值，截图答案为 `1,2,3,`。",
+      "options": [],
+      "answer": "1,2,3,",
+      "answerText": "`1,2,3,`",
+      "referenceAnswer": "",
+      "explanation": "`p` 指向 `a[2]`，通过 `p+i` 访问后续元素，并与 `*a` 或相关表达式比较。题目考查指针偏移和数组元素访问。",
+      "pitfalls": "输出地址、输出 5 开头或忽略逗号，都是没有区分指针值和指针指向内容。"
+    },
+    {
+      "id": "q081",
+      "number": 81,
+      "title": "指针表达式求 9",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "有 `int a[][4]={1,2,3,4,5,6,7,8,9,10}; int *p=*(a+1);`，以下可得数值 9 的表达式是：A. `p+=3,*p++` B. `p+=4,*(p++)` C. `p+=4,*++p` D. `p+=4,++*p`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`p+=3,*p++`"
+        },
+        {
+          "key": "B",
+          "text": "`p+=4,*(p++)`"
+        },
+        {
+          "key": "C",
+          "text": "`p+=4,*++p`"
+        },
+        {
+          "key": "D",
+          "text": "`p+=4,++*p`"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "`p=*(a+1)` 指向第二行第一个元素 5。`p+=4` 后指向第三行第一个元素 9，`*(p++)` 先取 9 再移动指针。",
+      "pitfalls": "A 指向 8；C 先移动到 10；D 对 9 自增后得到 10。"
+    },
+    {
+      "id": "q082",
+      "number": 82,
+      "title": "函数指针调用",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "`int fun(int *c){...}`，`int (*a)(int*)=fun, *b(), w[10], c;`，正确调用语句是：A. `a=a(w);` B. `(*a)(&c);` C. `b=*b(w);` D. `fun(b);`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`a=a(w);`"
+        },
+        {
+          "key": "B",
+          "text": "`(*a)(&c);`"
+        },
+        {
+          "key": "C",
+          "text": "`b=*b(w);`"
+        },
+        {
+          "key": "D",
+          "text": "`fun(b);`"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "`a` 是函数指针，`(*a)(&c)` 调用 `fun`，实参 `&c` 是 `int*`。",
+      "pitfalls": "A 把函数返回值赋给函数指针；C 语义混乱，`b` 是返回 int 指针的函数声明；D `b` 不是 `int*` 实参。"
+    },
+    {
+      "id": "q083",
+      "number": 83,
+      "title": "new 描述",
+      "section": "八、指针与动态内存",
+      "type": "choice",
+      "prompt": "关于 `new` 的描述中，错误的是：A. 可动态创建对象或对象数组 B. 使用它创建的对象或数组可用 `delete` 删除 C. 创建对象时要调用构造函数 D. 创建对象数组时必须指定初始值",
+      "options": [
+        {
+          "key": "A",
+          "text": "可动态创建对象或对象数组"
+        },
+        {
+          "key": "B",
+          "text": "使用它创建的对象或数组可用 `delete` 删除"
+        },
+        {
+          "key": "C",
+          "text": "创建对象时要调用构造函数"
+        },
+        {
+          "key": "D",
+          "text": "创建对象数组时必须指定初始值"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "动态数组可以写 `new Type[n]`，不一定必须指定每个元素初值。",
+      "pitfalls": "A、B、C 是 `new/delete` 的基本规则。注意数组应使用 `delete[]` 释放。"
+    },
+    {
+      "id": "q084",
+      "number": 84,
+      "title": "SimpleCircle 深拷贝编程",
+      "section": "八、指针与动态内存",
+      "type": "program",
+      "prompt": "实现一个名为 `SimpleCircle` 的简单圆类，其数据成员 `int *itsRadius` 为指向半径值的指针，设计对数据成员的各种操作，给出完整实现并测试。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\nusing namespace std;\nclass SimpleCircle {\nprivate:\n    int *itsRadius;\npublic:\n    SimpleCircle(int r = 0) : itsRadius(new int(r)) {}\n    SimpleCircle(const SimpleCircle& other)\n        : itsRadius(new int(*other.itsRadius)) {}\n    ~SimpleCircle() { delete itsRadius; }\n    SimpleCircle& operator=(const SimpleCircle& other) {\n        if (this != &other) {\n            *itsRadius = *other.itsRadius;\n        }\n        return *this;\n    }\n    int getRadius() const { return *itsRadius; }\n    void setRadius(int r) { *itsRadius = r; }\n    double area() const { return 3.14159 * (*itsRadius) * (*itsRadius); }\n};\nint main() {\n    SimpleCircle c1(5);\n    SimpleCircle c2(c1);\n    c2.setRadius(10);\n    cout << c1.getRadius() << \" \" << c2.getRadius() << endl;\n    cout << c1.area() << \" \" << c2.area() << endl;\n    return 0;\n}",
+      "explanation": "类中含有指针并拥有动态内存，应遵守“三法则”：析构、拷贝构造、赋值运算符。拷贝构造必须深拷贝，否则两个对象共享同一块半径内存，析构时会重复释放。",
+      "pitfalls": "只写 `itsRadius = other.itsRadius;` 是浅拷贝；忘记析构会内存泄漏；赋值运算符不判断自赋值通常也可通过本写法安全处理，但复杂资源类应注意自赋值。"
+    },
+    {
+      "id": "q085",
+      "number": 85,
+      "title": "指针交换两个整型变量",
+      "section": "八、指针与动态内存",
+      "type": "program",
+      "prompt": "利用指针，编写交换两个整型变量值的函数，需完整程序代码。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\nusing namespace std;\nvoid swapInt(int *a, int *b) {\n    int t = *a;\n    *a = *b;\n    *b = t;\n}\nint main() {\n    int x, y;\n    cin >> x >> y;\n    swapInt(&x, &y);\n    cout << x << \" \" << y << endl;\n    return 0;\n}",
+      "explanation": "函数形参是地址，函数体通过 `*a`、`*b` 修改实参变量本身。",
+      "pitfalls": "如果形参写成 `int a, int b`，只交换形参副本；如果调用时不取地址，类型不匹配。"
+    },
+    {
+      "id": "q086",
+      "number": 86,
+      "title": "输出字符 A",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "下列各语句是输出字符 `'A'` 的，其中错误语句是：A. `cout << 'A';` B. `cout.put('A');` C. `char ch='A'; cout<<ch;` D. `cout<<put('A');`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`cout << 'A';`"
+        },
+        {
+          "key": "B",
+          "text": "`cout.put('A');`"
+        },
+        {
+          "key": "C",
+          "text": "`char ch='A'; cout<<ch;`"
+        },
+        {
+          "key": "D",
+          "text": "`cout<<put('A');`"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "`put` 是输出流对象的成员函数，应写 `cout.put('A')`。",
+      "pitfalls": "A、B、C 都能正确输出字符 A。"
+    },
+    {
+      "id": "q087",
+      "number": 87,
+      "title": "八进制格式标志",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "在 ios 类中提供的控制格式标志位中，八进制形式的标志位是：A. `hex` B. `dec` C. `oct` D. `basefield`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`hex`"
+        },
+        {
+          "key": "B",
+          "text": "`dec`"
+        },
+        {
+          "key": "C",
+          "text": "`oct`"
+        },
+        {
+          "key": "D",
+          "text": "`basefield`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`oct` 表示八进制；`hex` 十六进制；`dec` 十进制。",
+      "pitfalls": "`basefield` 是进制相关标志位的域，不是具体八进制标志。"
+    },
+    {
+      "id": "q088",
+      "number": 88,
+      "title": "写操作函数",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "在下列读写函数中，进行写操作的函数是：A. `get()` B. `read()` C. `put()` D. `getline()`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`get()`"
+        },
+        {
+          "key": "B",
+          "text": "`read()`"
+        },
+        {
+          "key": "C",
+          "text": "`put()`"
+        },
+        {
+          "key": "D",
+          "text": "`getline()`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`put()` 用于向输出流写入一个字符。",
+      "pitfalls": "`get()`、`getline()` 是读入；`read()` 是输入流从文件/流读取数据。"
+    },
+    {
+      "id": "q089",
+      "number": 89,
+      "title": "文件打开方式",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "已知文本文件 `a.txt`，以读方式打开，下列操作中错误的是：A. `fstream infile(\"a.txt\", ios::in);` B. `ifstream infile(\"a.txt\");` C. `ofstream infile(\"a.txt\");` D. `fstream infile; infile.open(\"a.txt\", ios::in);`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`fstream infile(\"a.txt\", ios::in);`"
+        },
+        {
+          "key": "B",
+          "text": "`ifstream infile(\"a.txt\");`"
+        },
+        {
+          "key": "C",
+          "text": "`ofstream infile(\"a.txt\");`"
+        },
+        {
+          "key": "D",
+          "text": "`fstream infile; infile.open(\"a.txt\", ios::in);`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`ofstream` 默认用于输出，会以写方式打开文件，不是读方式。",
+      "pitfalls": "A、D 明确指定 `ios::in`；B `ifstream` 默认输入方式。"
+    },
+    {
+      "id": "q090",
+      "number": 90,
+      "title": "移动读指针",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "已知 `ifstream input;`，将读指针移到距当前位置后 100 个字节处的语句是：A. `input.seekg(100, ios::beg);` B. `input.seekg(100, ios::cur);` C. `input.seekg(-100, ios::cur);` D. `input.seekg(100, ios::end);`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`input.seekg(100, ios::beg);`"
+        },
+        {
+          "key": "B",
+          "text": "`input.seekg(100, ios::cur);`"
+        },
+        {
+          "key": "C",
+          "text": "`input.seekg(-100, ios::cur);`"
+        },
+        {
+          "key": "D",
+          "text": "`input.seekg(100, ios::end);`"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "`seekg(offset, ios::cur)` 表示相对当前位置移动，正数向文件尾方向移动。",
+      "pitfalls": "A 从文件开头定位；C 向前移动；D 相对文件尾定位。"
+    },
+    {
+      "id": "q091",
+      "number": 91,
+      "title": "宽度、填充与左对齐",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "cout.fill('#');\ncout.width(10);\ncout << setiosflags(ios::left) << 123.456;\n输出结果为：A. `123.456###` B. `123.4560000` C. `####123.456` D. `123.456`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`123.456###`"
+        },
+        {
+          "key": "B",
+          "text": "`123.4560000`"
+        },
+        {
+          "key": "C",
+          "text": "`####123.456`"
+        },
+        {
+          "key": "D",
+          "text": "`123.456`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "输出宽度为 10，数据 `123.456` 长度为 7，左对齐后右侧补 3 个 `#`。",
+      "pitfalls": "B 填充字符错；C 是右对齐效果；D 忽略了宽度和填充。"
+    },
+    {
+      "id": "q092",
+      "number": 92,
+      "title": "二进制写入 double",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "已定义浮点型变量 `data`，以二进制方式把 `data` 的值写入输出文件流对象 `outfile`，正确语句是：A. `outfile.write((double*)&data,sizeof(double));` B. `outfile.write((double*)&data,data);` C. `outfile.write((char*)&data,sizeof(double));` D. `outfile.write((char*)&data,data);`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`outfile.write((double*)&data,sizeof(double));`"
+        },
+        {
+          "key": "B",
+          "text": "`outfile.write((double*)&data,data);`"
+        },
+        {
+          "key": "C",
+          "text": "`outfile.write((char*)&data,sizeof(double));`"
+        },
+        {
+          "key": "D",
+          "text": "`outfile.write((char*)&data,data);`"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "`write` 的第一个参数要求 `const char*`，第二个参数是写入字节数。",
+      "pitfalls": "A 指针类型不对；B 指针类型和长度都不对；D 长度不能用 `data` 的数值。"
+    },
+    {
+      "id": "q093",
+      "number": 93,
+      "title": "getline 分隔符",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "执行 `char a[200]; cin.getline(a,200,'*'); cout<<a;`，若输入 `abcd*1234`，输出什么？",
+      "options": [],
+      "answer": "abcd",
+      "answerText": "`abcd`",
+      "referenceAnswer": "",
+      "explanation": "第三个参数 `'*'` 是分隔符，读取到 `*` 前停止，分隔符本身被丢弃。",
+      "pitfalls": "输出 `abcd 1234` 是忽略分隔符；输出 `1234` 是误以为输出分隔符后内容；乱码说法错误。"
+    },
+    {
+      "id": "q094",
+      "number": 94,
+      "title": "ifstream 默认方式",
+      "section": "九、文件流与 I/O",
+      "type": "choice",
+      "prompt": "使用 `ifstream` 定义文件流，并打开文件与之连接，文件默认打开方式为：A. `ios::in` B. `ios::out` C. `ios::trunc` D. `ios::binary`",
+      "options": [
+        {
+          "key": "A",
+          "text": "`ios::in`"
+        },
+        {
+          "key": "B",
+          "text": "`ios::out`"
+        },
+        {
+          "key": "C",
+          "text": "`ios::trunc`"
+        },
+        {
+          "key": "D",
+          "text": "`ios::binary`"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "`ifstream` 是输入文件流，默认以读方式打开。",
+      "pitfalls": "`ios::out` 是输出；`trunc` 截断文件；`binary` 是二进制模式。"
+    },
+    {
+      "id": "q095",
+      "number": 95,
+      "title": "文本文件写读与统计非空白字符",
+      "section": "九、文件流与 I/O",
+      "type": "program",
+      "prompt": "请编程使用 I/O 流以文本方式建立文件 `test1.txt`，写入字符“已成功写入文件！”，然后读出其内容显示并统计该文件中非空白字符的个数。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\n#include <fstream>\n#include <cctype>\nusing namespace std;\nint main() {\n    ofstream fout(\"test1.txt\");\n    fout << \"已成功写入文件！\";\n    fout.close();\n    ifstream fin(\"test1.txt\");\n    char ch;\n    int count = 0;\n    while (fin.get(ch)) {\n        cout << ch;\n        if (!isspace((unsigned char)ch)) count++;\n    }\n    fin.close();\n    cout << endl << \"非空白字符个数：\" << count << endl;\n    return 0;\n}",
+      "explanation": "`ofstream` 建立并写文本文件；`ifstream` 逐字符读取；`isspace` 判断空白字符。",
+      "pitfalls": "若用 `>>` 读取会跳过空白，不适合原样显示；若文件写完不关闭或刷新就立即读，可能读不到完整内容。"
+    },
+    {
+      "id": "q096",
+      "number": 96,
+      "title": "Dog 对象文件读写",
+      "section": "九、文件流与 I/O",
+      "type": "program",
+      "prompt": "定义一个 `Dog` 类，包含体重和年龄两个成员变量及相应成员函数；声明实例 `dog1`，体重为 5，年龄为 10；使用 I/O 流把 `dog1` 状态写入磁盘文件，再声明 `dog2`，通过读文件把 `dog1` 状态赋给 `dog2`。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\n#include <fstream>\nusing namespace std;\nclass Dog {\nprivate:\n    double weight;\n    int age;\npublic:\n    Dog(double w = 0, int a = 0) : weight(w), age(a) {}\n    void show() const {\n        cout << \"weight=\" << weight << \", age=\" << age << endl;\n    }\n    void save(ofstream& out) const {\n        out << weight << \" \" << age << endl;\n    }\n    void load(ifstream& in) {\n        in >> weight >> age;\n    }\n};\nint main() {\n    Dog dog1(5, 10);\n    ofstream fout(\"dog.txt\");\n    dog1.save(fout);\n    fout.close();\n    Dog dog2;\n    ifstream fin(\"dog.txt\");\n    dog2.load(fin);\n    fin.close();\n    dog2.show();\n    return 0;\n}",
+      "explanation": "文本方式保存对象状态时，可以把各数据成员按顺序写入文件，再按同样顺序读回。",
+      "pitfalls": "若读写顺序不一致，数据会错位；若成员为私有，不能在类外直接访问，应通过成员函数或友元操作。"
+    },
+    {
+      "id": "q097",
+      "number": 97,
+      "title": "统计小写字母个数",
+      "section": "十、综合编程题",
+      "type": "program",
+      "prompt": "输入一行长度不超过 100 的字符串（可能有空格），统计小写字母出现的个数。输入样例：`Ab123456 ef***`，输出样例：`3`。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    string str;\n    getline(cin, str);\n    int count = 0;\n    for (int i = 0; i < (int)str.size(); i++) {\n        if (str[i] >= 'a' && str[i] <= 'z') {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}",
+      "explanation": "题目说明字符串可能有空格，因此必须用 `getline` 读整行；判断小写字母可用 ASCII 范围 `'a'` 到 `'z'`。",
+      "pitfalls": "用 `cin >> str` 会在空格处停止；把大写字母也计入会使样例错误。"
+    },
+    {
+      "id": "q098",
+      "number": 98,
+      "title": "Shape、Rectangle、Circle、Square",
+      "section": "十、综合编程题",
+      "type": "program",
+      "prompt": "定义一个 `Shape` 基类，在此基础上派生出 `Rectangle` 和 `Circle` 类，二者都有 `GetArea()` 函数计算面积。使用 `Rectangle` 类创建派生类 `Square`。要求设计构造函数、拷贝构造函数和析构函数，并在主函数验证。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\n#include <cmath>\nusing namespace std;\nclass Shape {\npublic:\n    Shape() {}\n    Shape(const Shape&) {}\n    virtual ~Shape() {}\n    virtual double GetArea() const = 0;\n};\nclass Rectangle : public Shape {\nprotected:\n    double width, height;\npublic:\n    Rectangle(double w=0, double h=0) : width(w), height(h) {}\n    Rectangle(const Rectangle& r) : Shape(r), width(r.width), height(r.height) {}\n    ~Rectangle() {}\n    double GetArea() const override { return width * height; }\n};\nclass Circle : public Shape {\n    double radius;\npublic:\n    Circle(double r=0) : radius(r) {}\n    Circle(const Circle& c) : Shape(c), radius(c.radius) {}\n    ~Circle() {}\n    double GetArea() const override { return 3.14159 * radius * radius; }\n};\nclass Square : public Rectangle {\npublic:\n    Square(double side=0) : Rectangle(side, side) {}\n    Square(const Square& s) : Rectangle(s) {}\n    ~Square() {}\n};\nint main() {\n    Rectangle r(3, 4);\n    Circle c(2);\n    Square s(5);\n    cout << r.GetArea() << endl;\n    cout << c.GetArea() << endl;\n    cout << s.GetArea() << endl;\n    return 0;\n}",
+      "explanation": "`Shape` 作为抽象基类提供统一接口；派生类重写面积函数；`Square` 是特殊的 `Rectangle`，宽高相等。基类析构函数设为虚函数，有利于多态删除。",
+      "pitfalls": "若 `GetArea` 不设为虚函数，通过基类指针调用时无法动态绑定；若 `Square` 直接重复写宽高逻辑，会降低复用性。"
+    },
+    {
+      "id": "q099",
+      "number": 99,
+      "title": "Point 派生 Circle",
+      "section": "十、综合编程题",
+      "type": "program",
+      "prompt": "定义一个 `Point` 类，派生出 `Circle` 类，计算派生类对象的面积 `Area()`。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\n#include <cmath>\nusing namespace std;\nclass Point {\nprotected:\n    double x, y;\npublic:\n    Point(double x=0, double y=0) : x(x), y(y) {}\n};\nclass Circle : public Point {\n    double r;\npublic:\n    Circle(double x=0, double y=0, double r=0) : Point(x, y), r(r) {}\n    double Area() const { return 3.14159 * r * r; }\n};\nint main() {\n    Circle c(0, 0, 3);\n    cout << c.Area() << endl;\n    return 0;\n}",
+      "explanation": "圆心坐标是点的属性，`Circle` 继承 `Point` 可复用 `x,y`。构造派生类时先调用基类构造函数。",
+      "pitfalls": "若 `Point` 的坐标设为 `private`，派生类不能直接访问；若面积使用 `2*pi*r`，那是周长公式。"
+    },
+    {
+      "id": "q100",
+      "number": 100,
+      "title": "AdvCircle 类",
+      "section": "十、综合编程题",
+      "type": "program",
+      "prompt": "设计并测试一个 `AdvCircle` 类，其圆点坐标为 `Point` 点类，并为其增加构造与拷贝构造函数，实现计算圆的面积、移动圆的位置等功能。",
+      "options": [],
+      "answer": "",
+      "answerText": "",
+      "referenceAnswer": "#include <iostream>\nusing namespace std;\nclass Point {\n    double x, y;\npublic:\n    Point(double x=0, double y=0) : x(x), y(y) {}\n    Point(const Point& p) : x(p.x), y(p.y) {}\n    void move(double dx, double dy) { x += dx; y += dy; }\n    void show() const { cout << \"(\" << x << \",\" << y << \")\"; }\n};\nclass AdvCircle {\n    Point center;\n    double radius;\npublic:\n    AdvCircle(Point c = Point(), double r = 0) : center(c), radius(r) {}\n    AdvCircle(const AdvCircle& other)\n        : center(other.center), radius(other.radius) {}\n    double area() const { return 3.14159 * radius * radius; }\n    void move(double dx, double dy) { center.move(dx, dy); }\n    void show() const {\n        cout << \"center=\";\n        center.show();\n        cout << \", radius=\" << radius << \", area=\" << area() << endl;\n    }\n};\nint main() {\n    AdvCircle c1(Point(1, 2), 3);\n    AdvCircle c2(c1);\n    c2.move(5, 6);\n    c1.show();\n    c2.show();\n    return 0;\n}",
+      "explanation": "题目说“圆点坐标为 Point 点类”，更适合使用组合：`AdvCircle` 包含一个 `Point center`。移动圆的位置本质上是移动圆心。",
+      "pitfalls": "若只存 `x,y` 两个 double，就没有体现 Point 类；若拷贝构造遗漏 `center`，复制出的圆心错误。"
+    }
+  ],
+  "notes": [
+    {
+      "id": "note-1",
+      "title": "数组名不是可修改左值，指针变量是可修改左值。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-2",
+      "title": "字符串常量末尾自动有 `'\\0'`，字节数要多算 1。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-3",
+      "title": "引用参数 `int&` 需要可修改左值；临时表达式和字面量不能绑定到非常量左值引用。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-4",
+      "title": "函数重载只看参数列表，不看返回值、不看参数名。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-5",
+      "title": "有动态资源的类重点写析构、拷贝构造、赋值运算符，防止浅拷贝。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-6",
+      "title": "`class` 默认私有继承，`struct` 默认公有继承。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-7",
+      "title": "多态需要虚函数，并通过基类指针或引用调用。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-8",
+      "title": "抽象类可有指针和引用，但不能直接创建对象。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-9",
+      "title": "`ofstream` 写文件，`ifstream` 读文件，`fstream` 可指定读写方式。",
+      "section": "十一、考前速记"
+    },
+    {
+      "id": "note-10",
+      "title": "`seekg` 移动读指针，`seekp` 移动写指针；`ios::cur` 表示当前位置。",
+      "section": "十一、考前速记"
+    }
+  ]
+}
