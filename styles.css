@@ -93,7 +93,7 @@ h1 {
 
 .module-card,
 .study-panel,
-.chapter-panel,
+.filter-button,
 .practice-toolbar,
 .queue-item,
 .stat-card {
@@ -347,27 +347,94 @@ h1 {
   font-weight: 750;
 }
 
-.chapter-panel {
-  padding: 16px;
-  box-shadow: none;
+.filter-row {
+  margin-bottom: 14px;
 }
 
-.section-head {
+.filter-button {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  margin-bottom: 12px;
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 16px;
+  color: var(--ink);
+  text-align: left;
 }
 
-.section-head h2 {
+.filter-button span {
   font-size: 18px;
+  font-weight: 850;
+}
+
+.filter-button strong {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: rgba(20, 32, 51, 0);
+  transition: background 0.18s ease;
+}
+
+.drawer-backdrop.open {
+  pointer-events: auto;
+  background: rgba(20, 32, 51, 0.28);
+}
+
+.section-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 21;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  width: min(420px, 82vw);
+  height: 100vh;
+  padding: 18px;
+  border-left: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: -18px 0 42px rgba(31, 42, 68, 0.16);
+  transform: translateX(105%);
+  transition: transform 0.2s ease;
+}
+
+.section-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.drawer-head h2 {
+  margin-top: 4px;
+  font-size: 28px;
+}
+
+.drawer-toggle {
+  margin-bottom: 12px;
 }
 
 .section-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.drawer-section-list {
+  align-content: start;
+  overflow: auto;
+  padding-right: 4px;
 }
 
 .section-option {
@@ -715,8 +782,8 @@ textarea:focus {
 @media (max-width: 820px) {
   .home-shell,
   .practice-shell {
-    width: min(100% - 20px, 1120px);
-    padding-top: 16px;
+    width: min(100% - 18px, 1120px);
+    padding-top: 14px;
   }
 
   .home-header,
@@ -724,23 +791,136 @@ textarea:focus {
     align-items: flex-start;
   }
 
-  .module-grid,
-  .stat-grid {
-    grid-template-columns: 1fr;
+  .home-header {
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .home-header h1 {
+    font-size: 34px;
+  }
+
+  .danger-button {
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 
   .module-card {
-    min-height: 170px;
-    padding: 22px;
+    min-height: 154px;
+    padding: 16px;
+    gap: 8px;
+  }
+
+  .module-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    font-size: 25px;
+  }
+
+  .module-title {
+    font-size: 24px;
+    line-height: 1.1;
+  }
+
+  .module-count {
+    font-size: 20px;
+  }
+
+  .module-subtitle {
+    font-size: 15px;
+  }
+
+  .module-progress {
+    height: 8px;
+    margin-top: 4px;
+  }
+
+  .study-panel {
+    margin-top: 14px;
+    padding: 16px;
   }
 
   .study-head {
     grid-template-columns: auto 1fr;
+    gap: 10px 12px;
+  }
+
+  .study-head h2 {
+    font-size: 24px;
   }
 
   .study-head span:not(.study-icon) {
     grid-column: span 1;
+    font-size: 14px;
+  }
+
+  .study-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 22px;
+  }
+
+  .progress-line {
+    height: 10px;
+    margin: 16px 0;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 14px;
+  }
+
+  .stat-card strong {
     font-size: 16px;
+  }
+
+  .stat-card b {
+    margin: 12px 0;
+    font-size: 40px;
+  }
+
+  .stat-card small {
+    font-size: 18px;
+  }
+
+  .stat-card div {
+    font-size: 12px;
+  }
+
+  .practice-top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  .practice-top h1 {
+    font-size: 28px;
+  }
+
+  .practice-count {
+    font-size: 20px;
+  }
+
+  .filter-button {
+    min-height: 50px;
+    padding: 12px 14px;
+  }
+
+  .section-drawer {
+    width: min(78vw, 340px);
+    padding: 14px;
   }
 
   .section-option {

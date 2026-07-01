@@ -16,6 +16,7 @@ const state = {
   records: loadRecords(),
   route: currentRoute(),
   selectedSections: new Set(),
+  drawerOpen: false,
   currentIndex: 0,
   expanded: true,
   selectedAnswers: new Set(),
@@ -204,6 +205,14 @@ function moduleProgress(key) {
   };
 }
 
+function selectedSectionSummary() {
+  const selected = state.selectedSections.size;
+  const total = state.data.sections.length;
+  if (selected === total) return `全部章节 · ${total}`;
+  if (selected === 0) return "未选择章节";
+  return `已选 ${selected}/${total} 章`;
+}
+
 function renderHome() {
   const all = moduleProgress("all");
   const accuracy = all.done ? Math.round((all.correct / all.done) * 100) : 0;
@@ -287,15 +296,14 @@ function renderModulePage() {
         <div class="practice-count">${list.length}/${base.length}</div>
       </header>
 
-      <section class="chapter-panel">
-        <div class="section-head">
-          <h2>章节筛选</h2>
-          <button class="text-button" data-action="toggle-sections" type="button">${state.selectedSections.size ? "全不选" : "全选"}</button>
-        </div>
-        <div class="section-list">
-          ${state.data.sections.map(renderSectionOption).join("")}
-        </div>
+      <section class="filter-row">
+        <button class="filter-button" data-action="open-section-drawer" type="button">
+          <span>章节筛选</span>
+          <strong>${selectedSectionSummary()}</strong>
+        </button>
       </section>
+
+      ${renderSectionDrawer()}
 
       <section class="practice-toolbar">
         <button class="icon-button" data-action="prev" title="上一题" aria-label="上一题">‹</button>
@@ -309,6 +317,25 @@ function renderModulePage() {
     </main>
   `;
   syncActiveIntoView(current);
+}
+
+function renderSectionDrawer() {
+  return `
+    <div class="drawer-backdrop ${state.drawerOpen ? "open" : ""}" data-action="close-section-drawer"></div>
+    <aside class="section-drawer ${state.drawerOpen ? "open" : ""}" aria-label="章节筛选">
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">按章节练习</p>
+          <h2>章节筛选</h2>
+        </div>
+        <button class="icon-button" data-action="close-section-drawer" type="button" aria-label="关闭">×</button>
+      </div>
+      <button class="secondary-button drawer-toggle" data-action="toggle-sections" type="button">${state.selectedSections.size ? "全不选" : "全选"}</button>
+      <div class="section-list drawer-section-list">
+        ${state.data.sections.map(renderSectionOption).join("")}
+      </div>
+    </aside>
+  `;
 }
 
 function renderSectionOption(section) {
@@ -587,6 +614,16 @@ app.addEventListener("click", (event) => {
     render();
     return;
   }
+  if (action === "open-section-drawer") {
+    state.drawerOpen = true;
+    render();
+    return;
+  }
+  if (action === "close-section-drawer") {
+    state.drawerOpen = false;
+    render();
+    return;
+  }
   if (action === "toggle-sections") {
     state.selectedSections = new Set(state.selectedSections.size ? [] : state.data.sections);
     state.currentIndex = 0;
@@ -668,6 +705,7 @@ app.addEventListener("input", (event) => {
 
 window.addEventListener("hashchange", () => {
   state.route = currentRoute();
+  state.drawerOpen = false;
   if (state.route !== "home") resetModuleState();
   render();
 });
