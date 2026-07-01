@@ -225,6 +225,16 @@ PROMPT_OVERRIDES = {
         "answer": "D",
         "answerText": "D",
     },
+    41: {
+        "title": "析构输出",
+        "type": "fill",
+        "prompt": "如下程序的运行结果是：\nclass A {\n    int a;\npublic:\n    A(int aa) : a(aa) {\n        cout << a << \",\";\n    }\n    void set_a(int x) { a = x; }\n    ~A();\n};\nA::~A() { cout << a << endl; }\nint main() {\n    A x(2);\n    x.set_a(10);\n    return 0;\n}\n答案：[填空1]",
+        "options": [],
+        "answer": "2,10",
+        "answerText": "`2,10`",
+        "explanation": "构造对象 `x(2)` 时构造函数先输出 `2,`；随后 `set_a(10)` 把成员 `a` 改为 10；`main` 结束时对象析构，析构函数输出当前 `a`，所以完整输出为 `2,10`。",
+        "pitfalls": "只输出 2 的答案忽略析构；输出 2,2 的答案忽略成员值被修改。",
+    },
     54: {
         "title": "const/static 编译判断",
         "prompt": "class Test {\npublic:\n    Test() { a = 0; c = 0; }        // 1\n    int f(int m) const { a = m; }   // 2\n    void h(int b) { Test::b = b; }  // 3\n    static int g() { return a; }    // 4\nprivate:\n    int a;\n    static int b;\n    const int c;\n};\n在标注号码的行中，能被正确编译的是：",

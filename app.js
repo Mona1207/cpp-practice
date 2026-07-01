@@ -711,7 +711,7 @@ window.addEventListener("hashchange", () => {
 });
 
 async function init() {
-  const response = await fetch("./data/questions.json");
+  const response = await fetch("./data/questions.json?v=20260701-q41-full");
   state.data = await response.json();
   state.selectedSections = new Set(state.data.sections);
   render();
