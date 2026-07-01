@@ -563,10 +563,19 @@ pre {
   overflow: auto;
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid #d8dde6;
-  background: #111a27;
-  color: #eef4f8;
+  border: 1px solid #263449;
+  background: #0f1722;
+  color: #d8e6f3;
   line-height: 1.55;
+  white-space: pre;
+}
+
+pre code {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
   white-space: pre;
 }
 

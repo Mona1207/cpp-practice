@@ -17,6 +17,7 @@ const state = {
   route: currentRoute(),
   selectedSections: new Set(),
   currentIndex: 0,
+  expanded: true,
   selectedAnswers: new Set(),
   fillAnswer: "",
   optionOrders: {},
@@ -324,7 +325,7 @@ function renderSectionOption(section) {
 
 function renderQueueItem(question, index) {
   const record = state.records[question.id] || {};
-  const isActive = index === state.currentIndex;
+  const isActive = state.expanded && index === state.currentIndex;
   const flags = [
     typeLabel(question.type),
     record.starred ? "星标" : "",
@@ -336,7 +337,7 @@ function renderQueueItem(question, index) {
       <button class="queue-summary" data-jump="${index}" type="button">
         <span class="queue-title">${question.number}. ${escapeHtml(question.title)}</span>
         <span class="queue-meta">${flags.map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</span>
-        <span class="queue-state">${isActive ? "正在做" : "展开"}</span>
+        <span class="queue-state">${isActive ? "收起" : "展开"}</span>
       </button>
       ${isActive ? `<div class="queue-expanded">${renderQuestionContent(question)}</div>` : ""}
     </article>
@@ -508,14 +509,21 @@ function move(delta) {
   const list = filteredQuestions();
   if (!list.length) return;
   state.currentIndex = (state.currentIndex + delta + list.length) % list.length;
+  state.expanded = true;
   resetAnswerState(list[state.currentIndex]);
   render();
 }
 
 function jumpTo(index) {
   const list = filteredQuestions();
-  if (index === state.currentIndex) return;
+  if (index === state.currentIndex && state.expanded) {
+    state.expanded = false;
+    resetAnswerState(list[state.currentIndex]);
+    render();
+    return;
+  }
   state.currentIndex = Math.max(0, Math.min(index, list.length - 1));
+  state.expanded = true;
   resetAnswerState(list[state.currentIndex]);
   render();
 }
@@ -541,6 +549,7 @@ function render() {
 function resetModuleState() {
   state.selectedSections = new Set(state.data.sections);
   state.currentIndex = 0;
+  state.expanded = true;
   resetAnswerState(currentQuestion());
 }
 
@@ -578,6 +587,7 @@ app.addEventListener("click", (event) => {
   if (action === "toggle-sections") {
     state.selectedSections = new Set(state.selectedSections.size ? [] : state.data.sections);
     state.currentIndex = 0;
+    state.expanded = true;
     resetAnswerState(currentQuestion());
     render();
     return;
@@ -588,6 +598,7 @@ app.addEventListener("click", (event) => {
     const list = filteredQuestions();
     if (!list.length) return;
     state.currentIndex = Math.floor(Math.random() * list.length);
+    state.expanded = true;
     resetAnswerState(list[state.currentIndex]);
     render();
     return;
@@ -631,6 +642,7 @@ app.addEventListener("change", (event) => {
   if (event.target.checked) state.selectedSections.add(event.target.value);
   else state.selectedSections.delete(event.target.value);
   state.currentIndex = 0;
+  state.expanded = true;
   resetAnswerState(currentQuestion());
   render();
 });
