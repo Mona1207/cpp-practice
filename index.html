@@ -7,96 +7,9 @@
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-    <div class="app-shell">
-      <aside class="sidebar" aria-label="刷题筛选">
-        <div class="brand">
-          <div class="brand-mark" aria-hidden="true">C++</div>
-          <div>
-            <h1>C++ 程序设计刷题站</h1>
-            <p id="datasetMeta">正在加载题库...</p>
-          </div>
-        </div>
-
-        <label class="search-box">
-          <span>搜索</span>
-          <input id="searchInput" type="search" placeholder="题干、标题、知识点">
-        </label>
-
-        <section class="control-group" aria-labelledby="typeHeading">
-          <h2 id="typeHeading">题型</h2>
-          <div class="segmented" role="group" aria-label="题型筛选">
-            <button class="segment active" data-type="all">全部</button>
-            <button class="segment" data-type="choice">选择题</button>
-            <button class="segment" data-type="fill">填空题</button>
-            <button class="segment" data-type="program">程序题</button>
-          </div>
-        </section>
-
-        <section class="control-group" aria-labelledby="statusHeading">
-          <h2 id="statusHeading">状态</h2>
-          <div class="filter-grid">
-            <button class="chip active" data-status="all">全部</button>
-            <button class="chip" data-status="wrong">错题</button>
-            <button class="chip" data-status="starred">星标</button>
-            <button class="chip" data-status="unseen">未做</button>
-          </div>
-        </section>
-
-        <section class="control-group" aria-labelledby="sectionHeading">
-          <div class="section-head">
-            <h2 id="sectionHeading">知识点</h2>
-            <button id="toggleSections" class="text-button">全不选</button>
-          </div>
-          <div id="sectionList" class="section-list"></div>
-        </section>
-
-        <button id="resetProgress" class="danger-button">清空本地记录</button>
-      </aside>
-
-      <main class="workspace">
-        <section class="stats-strip" aria-label="学习统计">
-          <div>
-            <span id="totalCount">0</span>
-            <small>当前题目</small>
-          </div>
-          <div>
-            <span id="doneCount">0</span>
-            <small>已练习</small>
-          </div>
-          <div>
-            <span id="wrongCount">0</span>
-            <small>错题</small>
-          </div>
-          <div>
-            <span id="starCount">0</span>
-            <small>星标</small>
-          </div>
-        </section>
-
-        <section class="question-stage" aria-live="polite">
-          <div class="question-toolbar">
-            <button id="prevBtn" class="icon-button" title="上一题" aria-label="上一题">‹</button>
-            <button id="randomBtn" class="secondary-button">随机</button>
-            <button id="nextBtn" class="icon-button" title="下一题" aria-label="下一题">›</button>
-            <button id="starBtn" class="star-button" aria-pressed="false">☆ 星标</button>
-          </div>
-
-          <article id="questionCard" class="question-card">
-            <div class="empty-state">题库加载中...</div>
-          </article>
-        </section>
-      </main>
-
-      <aside class="queue-panel" aria-label="题目列表与速记">
-        <div class="panel-tabs" role="tablist">
-          <button id="questionsTab" class="tab active" type="button">题目</button>
-          <button id="notesTab" class="tab" type="button">速记</button>
-        </div>
-        <div id="queueList" class="queue-list"></div>
-        <div id="notesList" class="notes-list hidden"></div>
-      </aside>
+    <div id="app">
+      <div class="loading">题库加载中...</div>
     </div>
-
-    <script src="./app.js?v=20260701-chapter-pdfs" type="module"></script>
+    <script src="./app.js?v=20260701-module-dashboard-2" type="module"></script>
   </body>
 </html>

@@ -1,32 +1,20 @@
 const STORE_KEY = "cpp-practice-records-v1";
 
-const els = {
-  datasetMeta: document.querySelector("#datasetMeta"),
-  searchInput: document.querySelector("#searchInput"),
-  sectionList: document.querySelector("#sectionList"),
-  toggleSections: document.querySelector("#toggleSections"),
-  resetProgress: document.querySelector("#resetProgress"),
-  totalCount: document.querySelector("#totalCount"),
-  doneCount: document.querySelector("#doneCount"),
-  wrongCount: document.querySelector("#wrongCount"),
-  starCount: document.querySelector("#starCount"),
-  questionCard: document.querySelector("#questionCard"),
-  queueList: document.querySelector("#queueList"),
-  notesList: document.querySelector("#notesList"),
-  questionsTab: document.querySelector("#questionsTab"),
-  notesTab: document.querySelector("#notesTab"),
-  prevBtn: document.querySelector("#prevBtn"),
-  nextBtn: document.querySelector("#nextBtn"),
-  randomBtn: document.querySelector("#randomBtn"),
-  starBtn: document.querySelector("#starBtn"),
+const app = document.querySelector("#app");
+
+const MODULES = {
+  all: { title: "全部题", subtitle: "所有题目", icon: "▰", accent: "blue" },
+  choice: { title: "选择题", subtitle: "选择题目", icon: "✓", accent: "green", type: "choice" },
+  fill: { title: "填空题", subtitle: "填空题目", icon: "✎", accent: "orange", type: "fill" },
+  program: { title: "程序题", subtitle: "程序题目", icon: "</>", accent: "purple", type: "program" },
+  wrong: { title: "错题", subtitle: "错题重练", icon: "!", accent: "red", status: "wrong" },
+  starred: { title: "星标题", subtitle: "重点收藏", icon: "★", accent: "amber", status: "starred" },
 };
 
 const state = {
   data: null,
   records: loadRecords(),
-  type: "all",
-  status: "all",
-  query: "",
+  route: currentRoute(),
   selectedSections: new Set(),
   currentIndex: 0,
   selectedAnswers: new Set(),
@@ -60,6 +48,11 @@ function ensureRecord(id) {
   return state.records[id];
 }
 
+function currentRoute() {
+  const key = location.hash.replace(/^#\/?/, "") || "home";
+  return key in MODULES ? key : "home";
+}
+
 function escapeHtml(value = "") {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -91,7 +84,7 @@ function normalizeFillAnswer(answer = "") {
   return String(answer)
     .replace(/[`"'“”‘’]/g, "")
     .replace(/[，]/g, ",")
-    .replace(/[；]/g, ";")
+    .replace(/[；、]/g, ";")
     .replace(/\s+/g, "")
     .toLowerCase();
 }
@@ -129,33 +122,25 @@ function ensureOptionOrder(question) {
   return state.optionOrders[question.id];
 }
 
-function getFilteredQuestions() {
+function moduleQuestions(key) {
   if (!state.data) return [];
-  const query = state.query.trim().toLowerCase();
+  const config = MODULES[key] || MODULES.all;
   return state.data.questions.filter((question) => {
     const record = state.records[question.id] || {};
-    if (state.type !== "all" && question.type !== state.type) return false;
-    if (!state.selectedSections.has(question.section)) return false;
-    if (state.status === "wrong" && !record.wrong) return false;
-    if (state.status === "starred" && !record.starred) return false;
-    if (state.status === "unseen" && record.attempts) return false;
-    if (!query) return true;
-    const haystack = [
-      question.title,
-      question.section,
-      question.prompt,
-      question.answerText,
-      question.explanation,
-      question.pitfalls,
-    ]
-      .join(" ")
-      .toLowerCase();
-    return haystack.includes(query);
+    if (config.type && question.type !== config.type) return false;
+    if (config.status === "wrong" && !record.wrong) return false;
+    if (config.status === "starred" && !record.starred) return false;
+    return true;
   });
 }
 
+function filteredQuestions() {
+  const base = moduleQuestions(state.route);
+  return base.filter((question) => state.selectedSections.has(question.section));
+}
+
 function currentQuestion() {
-  const list = getFilteredQuestions();
+  const list = filteredQuestions();
   if (!list.length) return null;
   state.currentIndex = Math.max(0, Math.min(state.currentIndex, list.length - 1));
   return list[state.currentIndex];
@@ -176,7 +161,7 @@ function resetAnswerState(question) {
   state.answerVisible = false;
   state.lastResult = null;
   const record = state.records[question?.id];
-  if (record?.lastChoice?.length && !record?.wrong) {
+  if (record?.lastChoice?.length && !record?.wrong && question?.type === "choice") {
     state.selectedAnswers = new Set(record.lastChoice);
   }
 }
@@ -185,89 +170,196 @@ function scheduleAutoAdvance(questionId) {
   clearAutoAdvance();
   state.autoAdvanceTimer = setTimeout(() => {
     if (currentQuestion()?.id !== questionId) return;
-    const list = getFilteredQuestions();
+    const list = filteredQuestions();
     if (list.length <= 1) return;
     move(1);
   }, 850);
 }
 
-function revealAnswer(question) {
-  state.answerVisible = true;
-  renderAll();
-  requestAnimationFrame(() => {
-    const host = document.querySelector(".queue-item.active") || els.questionCard;
-    const panel = host.querySelector(".answer-panel");
-    if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
-    if (question?.type === "program") {
-      host.querySelector("[data-action='show-answer']")?.focus();
-    }
-  });
+function doneCount(questions) {
+  return questions.filter((question) => (state.records[question.id] || {}).attempts > 0).length;
 }
 
-function renderSections() {
-  const counts = new Map();
-  state.data.questions.forEach((question) => {
-    counts.set(question.section, (counts.get(question.section) || 0) + 1);
-  });
-  els.sectionList.innerHTML = state.data.sections
-    .map((section) => {
-      const checked = state.selectedSections.has(section) ? "checked" : "";
-      return `
-        <label class="section-option">
-          <input type="checkbox" value="${escapeHtml(section)}" ${checked}>
-          <span>${escapeHtml(section.replace(/^[一二三四五六七八九十]+、/, ""))}</span>
-          <span>${counts.get(section) || 0}</span>
-        </label>
-      `;
-    })
-    .join("");
+function correctCount(questions) {
+  return questions.filter((question) => {
+    const record = state.records[question.id] || {};
+    return record.correct > 0 && !record.wrong;
+  }).length;
 }
 
-function renderStats() {
-  const filtered = getFilteredQuestions();
-  const records = Object.values(state.records);
-  els.totalCount.textContent = filtered.length;
-  els.doneCount.textContent = records.filter((record) => record.attempts > 0).length;
-  els.wrongCount.textContent = records.filter((record) => record.wrong).length;
-  els.starCount.textContent = records.filter((record) => record.starred).length;
+function wrongCount(questions) {
+  return questions.filter((question) => (state.records[question.id] || {}).wrong).length;
 }
 
-function renderQuestion() {
-  const question = currentQuestion();
-  if (!question) {
-    els.questionCard.innerHTML = `<div class="empty-state">当前筛选下没有题目。</div>`;
-    els.starBtn.classList.remove("active");
-    els.starBtn.setAttribute("aria-pressed", "false");
-    return;
-  }
+function moduleProgress(key) {
+  const questions = moduleQuestions(key);
+  const done = doneCount(questions);
+  return {
+    total: questions.length,
+    done,
+    correct: correctCount(questions),
+    wrong: wrongCount(questions),
+    percent: questions.length ? Math.round((done / questions.length) * 100) : 0,
+  };
+}
 
-  els.questionCard.innerHTML = renderQuestionContent(question);
+function renderHome() {
+  const all = moduleProgress("all");
+  const accuracy = all.done ? Math.round((all.correct / all.done) * 100) : 0;
+  app.innerHTML = `
+    <main class="home-shell">
+      <header class="home-header">
+        <div>
+          <p class="eyebrow">C++ 程序设计</p>
+          <h1>刷题题库</h1>
+        </div>
+        <button class="danger-button" data-action="reset-progress" type="button">清空记录</button>
+      </header>
+
+      <section class="module-grid" aria-label="题库模块">
+        ${Object.keys(MODULES).map(renderModuleCard).join("")}
+      </section>
+
+      <section class="study-panel" aria-label="学习统计">
+        <div class="study-head">
+          <span class="study-icon">▥</span>
+          <h2>学习统计</h2>
+          <span>进度 <strong>${all.done}/${all.total}</strong></span>
+          <span>正确率 <strong>${accuracy}%</strong></span>
+        </div>
+        <div class="progress-line"><span style="width:${all.percent}%"></span></div>
+        <div class="stat-grid">
+          ${["all", "choice", "fill", "program"].map(renderStatCard).join("")}
+        </div>
+      </section>
+    </main>
+  `;
+}
+
+function renderModuleCard(key) {
+  const config = MODULES[key];
+  const stats = moduleProgress(key);
+  return `
+    <a class="module-card ${config.accent}" href="#/${key}" data-module="${key}">
+      <span class="module-icon">${escapeHtml(config.icon)}</span>
+      <span class="module-title">${config.title}</span>
+      <span class="module-count">${stats.done}/${stats.total}</span>
+      <span class="module-subtitle">${config.subtitle}</span>
+      <span class="module-progress"><span style="width:${stats.percent}%"></span></span>
+    </a>
+  `;
+}
+
+function renderStatCard(key) {
+  const config = MODULES[key];
+  const stats = moduleProgress(key);
+  const label = stats.percent >= 90 ? "优秀" : stats.percent >= 60 ? "良好" : "一般";
+  return `
+    <div class="stat-card">
+      <div>
+        <strong>${config.title}</strong>
+        <span>${stats.done}/${stats.total}</span>
+      </div>
+      <b>${stats.percent}<small>%</small></b>
+      <div class="mini-progress"><span style="width:${stats.percent}%"></span></div>
+      <div>
+        <span>${stats.correct} 对 ${stats.wrong} 错</span>
+        <em>${label}</em>
+      </div>
+    </div>
+  `;
+}
+
+function renderModulePage() {
+  const config = MODULES[state.route];
+  const list = filteredQuestions();
+  const base = moduleQuestions(state.route);
+  const current = currentQuestion();
+  app.innerHTML = `
+    <main class="practice-shell">
+      <header class="practice-top">
+        <a class="back-link" href="#/">‹ 题库</a>
+        <div>
+          <p class="eyebrow">${config.subtitle}</p>
+          <h1>${config.title}</h1>
+        </div>
+        <div class="practice-count">${list.length}/${base.length}</div>
+      </header>
+
+      <section class="chapter-panel">
+        <div class="section-head">
+          <h2>章节筛选</h2>
+          <button class="text-button" data-action="toggle-sections" type="button">${state.selectedSections.size ? "全不选" : "全选"}</button>
+        </div>
+        <div class="section-list">
+          ${state.data.sections.map(renderSectionOption).join("")}
+        </div>
+      </section>
+
+      <section class="practice-toolbar">
+        <button class="icon-button" data-action="prev" title="上一题" aria-label="上一题">‹</button>
+        <button class="secondary-button" data-action="random" type="button">随机</button>
+        <button class="icon-button" data-action="next" title="下一题" aria-label="下一题">›</button>
+      </section>
+
+      <section class="question-list">
+        ${list.length ? list.map(renderQueueItem).join("") : `<div class="empty-state">当前模块或章节下没有题目。</div>`}
+      </section>
+    </main>
+  `;
+  syncActiveIntoView(current);
+}
+
+function renderSectionOption(section) {
+  const checked = state.selectedSections.has(section) ? "checked" : "";
+  const count = moduleQuestions(state.route).filter((question) => question.section === section).length;
+  return `
+    <label class="section-option">
+      <input type="checkbox" value="${escapeHtml(section)}" ${checked}>
+      <span>${escapeHtml(section)}</span>
+      <span>${count}</span>
+    </label>
+  `;
+}
+
+function renderQueueItem(question, index) {
+  const record = state.records[question.id] || {};
+  const isActive = index === state.currentIndex;
+  const flags = [
+    typeLabel(question.type),
+    record.starred ? "星标" : "",
+    record.wrong ? "错题" : "",
+    record.attempts ? `${record.attempts} 次` : "未做",
+  ].filter(Boolean);
+  return `
+    <article class="queue-item ${isActive ? "active" : ""}">
+      <button class="queue-summary" data-jump="${index}" type="button">
+        <span class="queue-title">${question.number}. ${escapeHtml(question.title)}</span>
+        <span class="queue-meta">${flags.map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</span>
+        <span class="queue-state">${isActive ? "正在做" : "展开"}</span>
+      </button>
+      ${isActive ? `<div class="queue-expanded">${renderQuestionContent(question)}</div>` : ""}
+    </article>
+  `;
 }
 
 function renderQuestionContent(question) {
   const record = ensureRecord(question.id);
-  els.starBtn.classList.toggle("active", Boolean(record.starred));
-  els.starBtn.textContent = record.starred ? "★ 已星标" : "☆ 星标";
-  els.starBtn.setAttribute("aria-pressed", String(Boolean(record.starred)));
-
-  const label = typeLabel(question.type);
   const answerArea = question.type === "program"
     ? renderProgramArea(question, record)
     : question.type === "fill"
-      ? renderFillArea(question)
+      ? renderFillArea()
       : renderChoiceArea(question);
-
   return `
     <div class="question-header">
       <div class="badges">
-        <span class="badge">${question.section}</span>
-        <span class="badge ${question.type}">${label}</span>
+        <span class="badge">${escapeHtml(question.section)}</span>
+        <span class="badge ${question.type}">${typeLabel(question.type)}</span>
         ${record.wrong ? `<span class="badge wrong">错题</span>` : ""}
-        ${record.attempts ? `<span class="badge">已练 ${record.attempts} 次</span>` : ""}
       </div>
       <div class="question-title-row">
         <h2>${question.number}. ${escapeHtml(question.title)}</h2>
-        <button class="star-button inline-star ${record.starred ? "active" : ""}" data-action="toggle-star" aria-pressed="${String(Boolean(record.starred))}">
+        <button class="star-button inline-star ${record.starred ? "active" : ""}" data-action="toggle-star" type="button" aria-pressed="${String(Boolean(record.starred))}">
           ${record.starred ? "★ 已星标" : "☆ 星标"}
         </button>
       </div>
@@ -279,17 +371,6 @@ function renderQuestionContent(question) {
 }
 
 function renderChoiceArea(question) {
-  if (!question.options.length) {
-    return `
-      <div class="action-row">
-        <button class="primary-button" data-action="show-answer">查看答案</button>
-        <button class="secondary-button" data-action="mark-correct">会了</button>
-        <button class="secondary-button" data-action="mark-wrong">记入错题</button>
-      </div>
-      ${state.lastResult ? renderResult() : ""}
-    `;
-  }
-
   const selected = state.selectedAnswers;
   const correctSet = new Set(normalizeAnswer(question.answer).split("、").filter(Boolean));
   const optionMap = new Map(question.options.map((option) => [option.key, option]));
@@ -304,9 +385,7 @@ function renderChoiceArea(question) {
         isSelected ? "selected" : "",
         show && isCorrect ? "correct" : "",
         show && isSelected && !isCorrect ? "incorrect" : "",
-      ]
-        .filter(Boolean)
-        .join(" ");
+      ].filter(Boolean).join(" ");
       return `
         <button class="${className}" data-option="${option.key}" type="button">
           <span class="option-key">${index + 1}</span>
@@ -315,29 +394,12 @@ function renderChoiceArea(question) {
       `;
     })
     .join("");
-
   return `
     <div class="option-list">${options}</div>
     <div class="action-row">
-      <button class="primary-button" data-action="submit-choice">提交</button>
-      <button class="secondary-button" data-action="show-answer">查看答案</button>
-      <button class="secondary-button" data-action="clear-choice">重选</button>
-    </div>
-    ${state.lastResult ? renderResult() : ""}
-  `;
-}
-
-function renderProgramArea(question, record) {
-  const draftKey = `draft:${question.id}`;
-  const draft = localStorage.getItem(draftKey) || "";
-  const answerLabel = state.answerVisible ? "参考答案已展开" : "查看参考答案";
-  return `
-    <textarea data-draft="${question.id}" spellcheck="false" placeholder="这里写你的思路或代码，内容只保存在本机浏览器。">${escapeHtml(draft)}</textarea>
-    <div class="action-row">
-      <button class="primary-button" data-action="show-answer">${answerLabel}</button>
-      <button class="secondary-button" data-action="mark-correct">做对了</button>
-      <button class="secondary-button" data-action="mark-wrong">记入错题</button>
-      ${record.wrong ? `<button class="secondary-button" data-action="clear-wrong">移出错题</button>` : ""}
+      <button class="primary-button" data-action="submit-choice" type="button">提交</button>
+      <button class="secondary-button" data-action="show-answer" type="button">查看答案</button>
+      <button class="secondary-button" data-action="clear-choice" type="button">重选</button>
     </div>
     ${state.lastResult ? renderResult() : ""}
   `;
@@ -347,9 +409,24 @@ function renderFillArea() {
   return `
     <textarea class="fill-input" data-fill-answer spellcheck="false" placeholder="输入填空答案；多个空可以用分号或顿号隔开。">${escapeHtml(state.fillAnswer)}</textarea>
     <div class="action-row">
-      <button class="primary-button" data-action="submit-fill">提交</button>
-      <button class="secondary-button" data-action="show-answer">查看答案</button>
-      <button class="secondary-button" data-action="clear-fill">重填</button>
+      <button class="primary-button" data-action="submit-fill" type="button">提交</button>
+      <button class="secondary-button" data-action="show-answer" type="button">查看答案</button>
+      <button class="secondary-button" data-action="clear-fill" type="button">重填</button>
+    </div>
+    ${state.lastResult ? renderResult() : ""}
+  `;
+}
+
+function renderProgramArea(question, record) {
+  const draftKey = `draft:${question.id}`;
+  const draft = localStorage.getItem(draftKey) || "";
+  return `
+    <textarea data-draft="${question.id}" spellcheck="false" placeholder="这里写你的思路或代码，内容只保存在本机浏览器。">${escapeHtml(draft)}</textarea>
+    <div class="action-row">
+      <button class="primary-button" data-action="show-answer" type="button">${state.answerVisible ? "参考答案已展开" : "查看参考答案"}</button>
+      <button class="secondary-button" data-action="mark-correct" type="button">做对了</button>
+      <button class="secondary-button" data-action="mark-wrong" type="button">记入错题</button>
+      ${record.wrong ? `<button class="secondary-button" data-action="clear-wrong" type="button">移出错题</button>` : ""}
     </div>
     ${state.lastResult ? renderResult() : ""}
   `;
@@ -357,17 +434,16 @@ function renderFillArea() {
 
 function renderResult() {
   const ok = state.lastResult === "correct";
-  return `<div class="result-line ${ok ? "ok" : "bad"}">${ok ? "答对了，即将进入下一题。" : "已记入错题，之后可在错题筛选里重练。"}</div>`;
+  return `<div class="result-line ${ok ? "ok" : "bad"}">${ok ? "答对了，即将进入下一题。" : "已记入错题，之后可在错题模块重练。"}</div>`;
 }
 
 function renderAnswerPanels(question) {
   const answer = question.referenceAnswer
     ? `<pre><code>${escapeHtml(question.referenceAnswer)}</code></pre>`
     : `<p>${renderBlock(question.answerText || question.answer)}</p>`;
-  const answerTitle = question.referenceAnswer ? "参考答案" : "答案";
   return `
     <section class="answer-panel ${question.referenceAnswer ? "program-answer" : ""}">
-      <h3>${answerTitle}</h3>
+      <h3>${question.referenceAnswer ? "参考答案" : "答案"}</h3>
       ${answer}
     </section>
     <section class="explanation-panel">
@@ -378,78 +454,24 @@ function renderAnswerPanels(question) {
   `;
 }
 
-function renderQueue() {
-  const list = getFilteredQuestions();
-  els.queueList.innerHTML = list
-    .map((question, index) => {
-      const record = state.records[question.id] || {};
-      const isActive = index === state.currentIndex;
-      const flags = [
-        typeLabel(question.type),
-        record.starred ? "星标" : "",
-        record.wrong ? "错题" : "",
-        record.attempts ? `${record.attempts} 次` : "未做",
-      ].filter(Boolean);
-      return `
-        <article class="queue-item ${isActive ? "active" : ""}" data-card="${index}">
-          <button class="queue-summary" data-jump="${index}" type="button">
-            <span class="queue-title">${question.number}. ${escapeHtml(question.title)}</span>
-            <span class="queue-meta">${flags.map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</span>
-            <span class="queue-state">${isActive ? "正在做" : "展开"}</span>
-          </button>
-          ${isActive ? `<div class="queue-expanded">${renderQuestionContent(question)}</div>` : ""}
-        </article>
-      `;
-    })
-    .join("") || `<div class="empty-state">没有匹配的题目。</div>`;
-}
-
-function renderNotes() {
-  els.notesList.innerHTML = state.data.notes
-    .map((note) => `
-      <div class="note-item">
-        <span class="queue-title">${escapeHtml(note.title)}</span>
-      </div>
-    `)
-    .join("");
-}
-
-function renderAll() {
-  renderStats();
-  renderQuestion();
-  renderQueue();
-}
-
 function gradeChoice(question) {
   const selected = normalizeAnswer([...state.selectedAnswers].join("、"));
   if (!selected) return;
   const correct = normalizeAnswer(question.answer);
-  const record = ensureRecord(question.id);
-  const isCorrect = selected === correct;
-  record.attempts += 1;
-  record.lastChoice = [...state.selectedAnswers];
-  if (isCorrect) {
-    record.correct += 1;
-    record.wrong = false;
-    state.lastResult = "correct";
-  } else {
-    record.wrong = true;
-    state.lastResult = "wrong";
-  }
-  state.answerVisible = true;
-  saveRecords();
-  renderAll();
-  if (isCorrect) scheduleAutoAdvance(question.id);
+  finishObjective(question, selected === correct, [...state.selectedAnswers]);
 }
 
 function gradeFill(question) {
   const selected = normalizeFillAnswer(state.fillAnswer);
   if (!selected) return;
   const correct = normalizeFillAnswer(question.answer || question.answerText);
+  finishObjective(question, selected === correct, [state.fillAnswer]);
+}
+
+function finishObjective(question, isCorrect, lastChoice) {
   const record = ensureRecord(question.id);
-  const isCorrect = selected === correct;
   record.attempts += 1;
-  record.lastChoice = [state.fillAnswer];
+  record.lastChoice = lastChoice;
   if (isCorrect) {
     record.correct += 1;
     record.wrong = false;
@@ -460,7 +482,7 @@ function gradeFill(question) {
   }
   state.answerVisible = true;
   saveRecords();
-  renderAll();
+  render();
   if (isCorrect) scheduleAutoAdvance(question.id);
 }
 
@@ -478,211 +500,165 @@ function markCurrent(outcome) {
   state.lastResult = outcome;
   state.answerVisible = true;
   saveRecords();
-  renderAll();
+  render();
   if (outcome === "correct") scheduleAutoAdvance(question.id);
 }
 
 function move(delta) {
-  const list = getFilteredQuestions();
+  const list = filteredQuestions();
   if (!list.length) return;
   state.currentIndex = (state.currentIndex + delta + list.length) % list.length;
   resetAnswerState(list[state.currentIndex]);
-  renderAll();
+  render();
 }
 
 function jumpTo(index) {
-  const list = getFilteredQuestions();
+  const list = filteredQuestions();
   if (index === state.currentIndex) return;
   state.currentIndex = Math.max(0, Math.min(index, list.length - 1));
   resetAnswerState(list[state.currentIndex]);
-  renderAll();
+  render();
 }
 
-function bindEvents() {
-  document.querySelectorAll("[data-type]").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll("[data-type]").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      state.type = button.dataset.type;
-      state.currentIndex = 0;
-      resetAnswerState(currentQuestion());
-      renderAll();
-    });
+function syncActiveIntoView(question) {
+  if (!question) return;
+  requestAnimationFrame(() => {
+    document.querySelector(".queue-item.active")?.scrollIntoView({ block: "nearest" });
   });
+}
 
-  document.querySelectorAll("[data-status]").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll("[data-status]").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      state.status = button.dataset.status;
-      state.currentIndex = 0;
-      resetAnswerState(currentQuestion());
-      renderAll();
-    });
-  });
+function render() {
+  if (!state.data) return;
+  state.route = currentRoute();
+  if (state.route === "home") {
+    clearAutoAdvance();
+    renderHome();
+    return;
+  }
+  renderModulePage();
+}
 
-  els.searchInput.addEventListener("input", (event) => {
-    state.query = event.target.value;
-    state.currentIndex = 0;
-    resetAnswerState(currentQuestion());
-    renderAll();
-  });
+function resetModuleState() {
+  state.selectedSections = new Set(state.data.sections);
+  state.currentIndex = 0;
+  resetAnswerState(currentQuestion());
+}
 
-  els.sectionList.addEventListener("change", (event) => {
-    if (event.target.matches("input[type='checkbox']")) {
-      if (event.target.checked) state.selectedSections.add(event.target.value);
-      else state.selectedSections.delete(event.target.value);
-      els.toggleSections.textContent = state.selectedSections.size ? "全不选" : "全选";
-      state.currentIndex = 0;
-      resetAnswerState(currentQuestion());
-      renderAll();
-    }
-  });
+app.addEventListener("click", (event) => {
+  const action = event.target.closest("[data-action]")?.dataset.action;
+  const option = event.target.closest("[data-option]");
+  const jump = event.target.closest("[data-jump]");
+  const question = currentQuestion();
 
-  els.toggleSections.addEventListener("click", () => {
-    const shouldSelectAll = state.selectedSections.size === 0;
-    state.selectedSections = new Set(shouldSelectAll ? state.data.sections : []);
-    els.toggleSections.textContent = shouldSelectAll ? "全不选" : "全选";
-    renderSections();
-    state.currentIndex = 0;
-    resetAnswerState(currentQuestion());
-    renderAll();
-  });
-
-  function handlePracticeClick(event) {
-    const option = event.target.closest("[data-option]");
-    const action = event.target.closest("[data-action]")?.dataset.action;
-    const question = currentQuestion();
-    if (!question) return;
-
-    if (option) {
-      const key = option.dataset.option;
-      if (state.selectedAnswers.has(key)) state.selectedAnswers.delete(key);
-      else state.selectedAnswers.add(key);
-      state.lastResult = null;
-      renderAll();
-      return;
-    }
-
-    if (action === "submit-choice") gradeChoice(question);
-    if (action === "submit-fill") gradeFill(question);
-    if (action === "show-answer") revealAnswer(question);
-    if (action === "clear-choice") {
-      state.selectedAnswers.clear();
-      state.answerVisible = false;
-      state.lastResult = null;
-      renderAll();
-    }
-    if (action === "clear-fill") {
-      state.fillAnswer = "";
-      state.answerVisible = false;
-      state.lastResult = null;
-      renderAll();
-    }
-    if (action === "mark-correct") markCurrent("correct");
-    if (action === "mark-wrong") markCurrent("wrong");
-    if (action === "clear-wrong") {
-      ensureRecord(question.id).wrong = false;
-      saveRecords();
-      renderAll();
-    }
-    if (action === "toggle-star") {
-      const record = ensureRecord(question.id);
-      record.starred = !record.starred;
-      saveRecords();
-      renderAll();
-    }
+  if (option && question) {
+    const key = option.dataset.option;
+    if (state.selectedAnswers.has(key)) state.selectedAnswers.delete(key);
+    else state.selectedAnswers.add(key);
+    state.lastResult = null;
+    render();
+    return;
   }
 
-  els.questionCard.addEventListener("click", handlePracticeClick);
+  if (jump) {
+    jumpTo(Number(jump.dataset.jump));
+    return;
+  }
 
-  els.questionCard.addEventListener("input", (event) => {
-    if (event.target.matches("[data-draft]")) {
-      localStorage.setItem(`draft:${event.target.dataset.draft}`, event.target.value);
-    }
-    if (event.target.matches("[data-fill-answer]")) {
-      state.fillAnswer = event.target.value;
-      state.lastResult = null;
-    }
-  });
-
-  els.queueList.addEventListener("click", (event) => {
-    if (event.target.closest("[data-option]") || event.target.closest("[data-action]")) {
-      handlePracticeClick(event);
-      return;
-    }
-    const item = event.target.closest("[data-jump]");
-    if (item) jumpTo(Number(item.dataset.jump));
-  });
-
-  els.queueList.addEventListener("input", (event) => {
-    if (event.target.matches("[data-draft]")) {
-      localStorage.setItem(`draft:${event.target.dataset.draft}`, event.target.value);
-    }
-    if (event.target.matches("[data-fill-answer]")) {
-      state.fillAnswer = event.target.value;
-      state.lastResult = null;
-    }
-  });
-
-  els.prevBtn.addEventListener("click", () => move(-1));
-  els.nextBtn.addEventListener("click", () => move(1));
-  els.randomBtn.addEventListener("click", () => {
-    const list = getFilteredQuestions();
-    if (!list.length) return;
-    state.currentIndex = Math.floor(Math.random() * list.length);
-    resetAnswerState(list[state.currentIndex]);
-    renderAll();
-  });
-
-  els.starBtn.addEventListener("click", () => {
-    const question = currentQuestion();
-    if (!question) return;
-    const record = ensureRecord(question.id);
-    record.starred = !record.starred;
-    saveRecords();
-    renderAll();
-  });
-
-  els.resetProgress.addEventListener("click", () => {
+  if (!action) return;
+  if (action === "reset-progress") {
     if (!confirm("确定清空所有错题、星标、练习次数和草稿吗？")) return;
     localStorage.removeItem(STORE_KEY);
     Object.keys(localStorage)
       .filter((key) => key.startsWith("draft:q"))
       .forEach((key) => localStorage.removeItem(key));
     state.records = {};
+    render();
+    return;
+  }
+  if (action === "toggle-sections") {
+    state.selectedSections = new Set(state.selectedSections.size ? [] : state.data.sections);
+    state.currentIndex = 0;
     resetAnswerState(currentQuestion());
-    renderAll();
-  });
+    render();
+    return;
+  }
+  if (action === "prev") return move(-1);
+  if (action === "next") return move(1);
+  if (action === "random") {
+    const list = filteredQuestions();
+    if (!list.length) return;
+    state.currentIndex = Math.floor(Math.random() * list.length);
+    resetAnswerState(list[state.currentIndex]);
+    render();
+    return;
+  }
+  if (!question) return;
+  if (action === "submit-choice") gradeChoice(question);
+  if (action === "submit-fill") gradeFill(question);
+  if (action === "show-answer") {
+    state.answerVisible = true;
+    render();
+  }
+  if (action === "clear-choice") {
+    state.selectedAnswers.clear();
+    state.answerVisible = false;
+    state.lastResult = null;
+    render();
+  }
+  if (action === "clear-fill") {
+    state.fillAnswer = "";
+    state.answerVisible = false;
+    state.lastResult = null;
+    render();
+  }
+  if (action === "mark-correct") markCurrent("correct");
+  if (action === "mark-wrong") markCurrent("wrong");
+  if (action === "clear-wrong") {
+    ensureRecord(question.id).wrong = false;
+    saveRecords();
+    render();
+  }
+  if (action === "toggle-star") {
+    const record = ensureRecord(question.id);
+    record.starred = !record.starred;
+    saveRecords();
+    render();
+  }
+});
 
-  els.questionsTab.addEventListener("click", () => {
-    els.questionsTab.classList.add("active");
-    els.notesTab.classList.remove("active");
-    els.queueList.classList.remove("hidden");
-    els.notesList.classList.add("hidden");
-  });
+app.addEventListener("change", (event) => {
+  if (!event.target.matches(".section-option input")) return;
+  if (event.target.checked) state.selectedSections.add(event.target.value);
+  else state.selectedSections.delete(event.target.value);
+  state.currentIndex = 0;
+  resetAnswerState(currentQuestion());
+  render();
+});
 
-  els.notesTab.addEventListener("click", () => {
-    els.notesTab.classList.add("active");
-    els.questionsTab.classList.remove("active");
-    els.notesList.classList.remove("hidden");
-    els.queueList.classList.add("hidden");
-  });
-}
+app.addEventListener("input", (event) => {
+  if (event.target.matches("[data-draft]")) {
+    localStorage.setItem(`draft:${event.target.dataset.draft}`, event.target.value);
+  }
+  if (event.target.matches("[data-fill-answer]")) {
+    state.fillAnswer = event.target.value;
+    state.lastResult = null;
+  }
+});
+
+window.addEventListener("hashchange", () => {
+  state.route = currentRoute();
+  if (state.route !== "home") resetModuleState();
+  render();
+});
 
 async function init() {
   const response = await fetch("./data/questions.json");
   state.data = await response.json();
   state.selectedSections = new Set(state.data.sections);
-  els.datasetMeta.textContent = `${state.data.questionCount} 题 · ${state.data.choiceCount} 选择题 · ${state.data.fillCount || 0} 填空题 · ${state.data.programCount} 程序题`;
-  renderSections();
-  renderNotes();
-  bindEvents();
-  resetAnswerState(currentQuestion());
-  renderAll();
+  render();
 }
 
 init().catch((error) => {
   console.error(error);
-  els.questionCard.innerHTML = `<div class="empty-state">题库加载失败，请检查 data/questions.json。</div>`;
+  app.innerHTML = `<div class="loading">题库加载失败，请检查 data/questions.json。</div>`;
 });
