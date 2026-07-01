@@ -42,9 +42,12 @@ button {
 
 .app-shell {
   display: grid;
-  grid-template-columns: minmax(220px, 300px) minmax(0, 1fr) minmax(240px, 310px);
-  grid-template-areas: "queue main filters";
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "filters"
+    "main"
+    "queue";
+  gap: 12px;
   min-height: 100vh;
   padding: 14px;
 }
@@ -60,12 +63,12 @@ button {
 
 .sidebar {
   grid-area: filters;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(230px, 1fr) minmax(220px, 1fr) minmax(320px, 2fr);
   gap: 14px;
   padding: 14px;
-  max-height: calc(100vh - 28px);
-  overflow: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 .brand {
@@ -146,6 +149,11 @@ textarea:focus {
 .control-group {
   display: grid;
   gap: 10px;
+  align-content: start;
+}
+
+.control-group[aria-labelledby="sectionHeading"] {
+  grid-column: 1 / -1;
 }
 
 .section-head {
@@ -200,8 +208,12 @@ textarea:focus {
 }
 
 .section-list {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+  max-height: 118px;
+  overflow: auto;
+  padding-right: 4px;
 }
 
 .section-option {
@@ -214,6 +226,8 @@ textarea:focus {
   border-radius: 6px;
   background: #fff;
   font-size: 13px;
+  min-width: 190px;
+  flex: 1 1 190px;
 }
 
 .section-option input {
@@ -234,7 +248,8 @@ textarea:focus {
 }
 
 .danger-button {
-  margin-top: auto;
+  grid-column: 1 / -1;
+  justify-self: end;
   border-color: rgba(181, 59, 53, 0.25);
   background: #fff6f3;
   color: var(--red);
@@ -242,9 +257,7 @@ textarea:focus {
 
 .workspace {
   grid-area: main;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  gap: 12px;
+  display: block;
   min-width: 0;
 }
 
@@ -278,7 +291,7 @@ textarea:focus {
 }
 
 .question-stage {
-  display: grid;
+  display: none;
   grid-template-rows: auto minmax(0, 1fr);
   min-height: 0;
 }
@@ -322,6 +335,10 @@ textarea:focus {
   border-radius: 8px;
   background: rgba(255, 253, 248, 0.96);
   box-shadow: var(--shadow);
+}
+
+.queue-expanded .question-card {
+  box-shadow: none;
 }
 
 .question-header {
@@ -507,8 +524,8 @@ textarea {
   grid-area: queue;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  max-height: calc(100vh - 28px);
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
 }
 
 .panel-tabs {
@@ -533,7 +550,7 @@ textarea {
 
 .queue-list,
 .notes-list {
-  overflow: auto;
+  overflow: visible;
   padding: 12px;
 }
 
@@ -541,16 +558,35 @@ textarea {
 .note-item {
   width: 100%;
   margin-bottom: 10px;
-  padding: 12px;
+  padding: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
   text-align: left;
+  overflow: hidden;
 }
 
 .queue-item.active {
   border-color: var(--teal);
-  box-shadow: inset 4px 0 0 var(--teal);
+  box-shadow: 0 12px 28px rgba(0, 109, 119, 0.12);
+}
+
+.queue-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 14px;
+  align-items: center;
+  width: 100%;
+  min-height: 58px;
+  padding: 14px 16px;
+  border: 0;
+  background: #fff;
+  color: var(--ink);
+  text-align: left;
+}
+
+.queue-item.active .queue-summary {
+  background: var(--teal-soft);
 }
 
 .queue-title {
@@ -567,6 +603,24 @@ textarea {
   font-size: 12px;
 }
 
+.queue-state {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.queue-expanded {
+  padding: 20px;
+  border-top: 1px solid var(--line);
+  background: rgba(255, 253, 248, 0.84);
+}
+
+.queue-expanded .question-header h2 {
+  font-size: 26px;
+}
+
 .hidden {
   display: none;
 }
@@ -581,15 +635,22 @@ textarea {
 
 @media (max-width: 1160px) {
   .app-shell {
-    grid-template-columns: minmax(230px, 300px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "queue main"
-      "filters main";
+      "filters"
+      "main"
+      "queue";
   }
 
-  .sidebar,
-  .queue-panel {
-    max-height: none;
+  .sidebar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .brand,
+  .search-box,
+  .control-group[aria-labelledby="sectionHeading"],
+  .danger-button {
+    grid-column: 1 / -1;
   }
 }
 
@@ -600,21 +661,16 @@ textarea {
   }
 
   .app-shell {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     padding: 10px;
   }
 
-  .workspace {
-    order: 1;
-  }
-
-  .queue-panel {
-    order: 2;
-  }
-
   .sidebar {
-    order: 3;
+    grid-template-columns: 1fr;
+  }
+
+  .section-list {
+    max-height: 150px;
   }
 
   .sidebar,
@@ -640,6 +696,10 @@ textarea {
 
   .question-card {
     padding: 16px;
+  }
+
+  .queue-expanded {
+    padding: 14px;
   }
 
   .question-header h2 {

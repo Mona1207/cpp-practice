@@ -147,12 +147,13 @@ function scheduleAutoAdvance(questionId) {
 
 function revealAnswer(question) {
   state.answerVisible = true;
-  renderQuestion();
+  renderAll();
   requestAnimationFrame(() => {
-    const panel = els.questionCard.querySelector(".answer-panel");
+    const host = document.querySelector(".queue-item.active") || els.questionCard;
+    const panel = host.querySelector(".answer-panel");
     if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
     if (question?.type === "program") {
-      els.questionCard.querySelector("[data-action='show-answer']")?.focus();
+      host.querySelector("[data-action='show-answer']")?.focus();
     }
   });
 }
@@ -194,6 +195,10 @@ function renderQuestion() {
     return;
   }
 
+  els.questionCard.innerHTML = renderQuestionContent(question);
+}
+
+function renderQuestionContent(question) {
   const record = ensureRecord(question.id);
   els.starBtn.classList.toggle("active", Boolean(record.starred));
   els.starBtn.textContent = record.starred ? "★ 已星标" : "☆ 星标";
@@ -202,7 +207,7 @@ function renderQuestion() {
   const typeLabel = question.type === "program" ? "程序题" : "选择题";
   const answerArea = question.type === "program" ? renderProgramArea(question, record) : renderChoiceArea(question);
 
-  els.questionCard.innerHTML = `
+  return `
     <div class="question-header">
       <div class="badges">
         <span class="badge">${question.section}</span>
@@ -210,7 +215,12 @@ function renderQuestion() {
         ${record.wrong ? `<span class="badge wrong">错题</span>` : ""}
         ${record.attempts ? `<span class="badge">已练 ${record.attempts} 次</span>` : ""}
       </div>
-      <h2>${question.number}. ${escapeHtml(question.title)}</h2>
+      <div class="question-title-row">
+        <h2>${question.number}. ${escapeHtml(question.title)}</h2>
+        <button class="star-button inline-star ${record.starred ? "active" : ""}" data-action="toggle-star" aria-pressed="${String(Boolean(record.starred))}">
+          ${record.starred ? "★ 已星标" : "☆ 星标"}
+        </button>
+      </div>
     </div>
     <div class="prompt">${renderBlock(question.prompt)}</div>
     ${answerArea}
@@ -309,6 +319,7 @@ function renderQueue() {
   els.queueList.innerHTML = list
     .map((question, index) => {
       const record = state.records[question.id] || {};
+      const isActive = index === state.currentIndex;
       const flags = [
         question.type === "program" ? "程序题" : "选择题",
         record.starred ? "星标" : "",
@@ -316,10 +327,14 @@ function renderQueue() {
         record.attempts ? `${record.attempts} 次` : "未做",
       ].filter(Boolean);
       return `
-        <button class="queue-item ${index === state.currentIndex ? "active" : ""}" data-jump="${index}">
-          <span class="queue-title">${question.number}. ${escapeHtml(question.title)}</span>
-          <span class="queue-meta">${flags.map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</span>
-        </button>
+        <article class="queue-item ${isActive ? "active" : ""}" data-card="${index}">
+          <button class="queue-summary" data-jump="${index}" type="button">
+            <span class="queue-title">${question.number}. ${escapeHtml(question.title)}</span>
+            <span class="queue-meta">${flags.map((flag) => `<span>${escapeHtml(flag)}</span>`).join("")}</span>
+            <span class="queue-state">${isActive ? "正在做" : "展开"}</span>
+          </button>
+          ${isActive ? `<div class="queue-expanded">${renderQuestionContent(question)}</div>` : ""}
+        </article>
       `;
     })
     .join("") || `<div class="empty-state">没有匹配的题目。</div>`;
@@ -391,6 +406,7 @@ function move(delta) {
 
 function jumpTo(index) {
   const list = getFilteredQuestions();
+  if (index === state.currentIndex) return;
   state.currentIndex = Math.max(0, Math.min(index, list.length - 1));
   resetAnswerState(list[state.currentIndex]);
   renderAll();
@@ -447,7 +463,7 @@ function bindEvents() {
     renderAll();
   });
 
-  els.questionCard.addEventListener("click", (event) => {
+  function handlePracticeClick(event) {
     const option = event.target.closest("[data-option]");
     const action = event.target.closest("[data-action]")?.dataset.action;
     const question = currentQuestion();
@@ -458,7 +474,7 @@ function bindEvents() {
       if (state.selectedAnswers.has(key)) state.selectedAnswers.delete(key);
       else state.selectedAnswers.add(key);
       state.lastResult = null;
-      renderQuestion();
+      renderAll();
       return;
     }
 
@@ -468,7 +484,7 @@ function bindEvents() {
       state.selectedAnswers.clear();
       state.answerVisible = false;
       state.lastResult = null;
-      renderQuestion();
+      renderAll();
     }
     if (action === "mark-correct") markCurrent("correct");
     if (action === "mark-wrong") markCurrent("wrong");
@@ -477,7 +493,15 @@ function bindEvents() {
       saveRecords();
       renderAll();
     }
-  });
+    if (action === "toggle-star") {
+      const record = ensureRecord(question.id);
+      record.starred = !record.starred;
+      saveRecords();
+      renderAll();
+    }
+  }
+
+  els.questionCard.addEventListener("click", handlePracticeClick);
 
   els.questionCard.addEventListener("input", (event) => {
     if (event.target.matches("[data-draft]")) {
@@ -486,8 +510,18 @@ function bindEvents() {
   });
 
   els.queueList.addEventListener("click", (event) => {
+    if (event.target.closest("[data-option]") || event.target.closest("[data-action]")) {
+      handlePracticeClick(event);
+      return;
+    }
     const item = event.target.closest("[data-jump]");
     if (item) jumpTo(Number(item.dataset.jump));
+  });
+
+  els.queueList.addEventListener("input", (event) => {
+    if (event.target.matches("[data-draft]")) {
+      localStorage.setItem(`draft:${event.target.dataset.draft}`, event.target.value);
+    }
   });
 
   els.prevBtn.addEventListener("click", () => move(-1));
