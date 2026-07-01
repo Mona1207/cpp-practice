@@ -30,6 +30,7 @@ const state = {
   selectedSections: new Set(),
   currentIndex: 0,
   selectedAnswers: new Set(),
+  fillAnswer: "",
   optionOrders: {},
   answerVisible: false,
   lastResult: null,
@@ -84,6 +85,21 @@ function normalizeAnswer(answer = "") {
     .filter(Boolean)
     .sort()
     .join("、");
+}
+
+function normalizeFillAnswer(answer = "") {
+  return String(answer)
+    .replace(/[`"'“”‘’]/g, "")
+    .replace(/[，]/g, ",")
+    .replace(/[；]/g, ";")
+    .replace(/\s+/g, "")
+    .toLowerCase();
+}
+
+function typeLabel(type) {
+  if (type === "program") return "程序题";
+  if (type === "fill") return "填空题";
+  return "选择题";
 }
 
 function strippedPrompt(question) {
@@ -155,6 +171,7 @@ function clearAutoAdvance() {
 function resetAnswerState(question) {
   clearAutoAdvance();
   state.selectedAnswers = new Set();
+  state.fillAnswer = "";
   if (question?.id) delete state.optionOrders[question.id];
   state.answerVisible = false;
   state.lastResult = null;
@@ -233,14 +250,18 @@ function renderQuestionContent(question) {
   els.starBtn.textContent = record.starred ? "★ 已星标" : "☆ 星标";
   els.starBtn.setAttribute("aria-pressed", String(Boolean(record.starred)));
 
-  const typeLabel = question.type === "program" ? "程序题" : "选择题";
-  const answerArea = question.type === "program" ? renderProgramArea(question, record) : renderChoiceArea(question);
+  const label = typeLabel(question.type);
+  const answerArea = question.type === "program"
+    ? renderProgramArea(question, record)
+    : question.type === "fill"
+      ? renderFillArea(question)
+      : renderChoiceArea(question);
 
   return `
     <div class="question-header">
       <div class="badges">
         <span class="badge">${question.section}</span>
-        <span class="badge ${question.type}">${typeLabel}</span>
+        <span class="badge ${question.type}">${label}</span>
         ${record.wrong ? `<span class="badge wrong">错题</span>` : ""}
         ${record.attempts ? `<span class="badge">已练 ${record.attempts} 次</span>` : ""}
       </div>
@@ -322,6 +343,18 @@ function renderProgramArea(question, record) {
   `;
 }
 
+function renderFillArea() {
+  return `
+    <textarea class="fill-input" data-fill-answer spellcheck="false" placeholder="输入填空答案；多个空可以用分号或顿号隔开。">${escapeHtml(state.fillAnswer)}</textarea>
+    <div class="action-row">
+      <button class="primary-button" data-action="submit-fill">提交</button>
+      <button class="secondary-button" data-action="show-answer">查看答案</button>
+      <button class="secondary-button" data-action="clear-fill">重填</button>
+    </div>
+    ${state.lastResult ? renderResult() : ""}
+  `;
+}
+
 function renderResult() {
   const ok = state.lastResult === "correct";
   return `<div class="result-line ${ok ? "ok" : "bad"}">${ok ? "答对了，即将进入下一题。" : "已记入错题，之后可在错题筛选里重练。"}</div>`;
@@ -352,7 +385,7 @@ function renderQueue() {
       const record = state.records[question.id] || {};
       const isActive = index === state.currentIndex;
       const flags = [
-        question.type === "program" ? "程序题" : "选择题",
+        typeLabel(question.type),
         record.starred ? "星标" : "",
         record.wrong ? "错题" : "",
         record.attempts ? `${record.attempts} 次` : "未做",
@@ -395,6 +428,28 @@ function gradeChoice(question) {
   const isCorrect = selected === correct;
   record.attempts += 1;
   record.lastChoice = [...state.selectedAnswers];
+  if (isCorrect) {
+    record.correct += 1;
+    record.wrong = false;
+    state.lastResult = "correct";
+  } else {
+    record.wrong = true;
+    state.lastResult = "wrong";
+  }
+  state.answerVisible = true;
+  saveRecords();
+  renderAll();
+  if (isCorrect) scheduleAutoAdvance(question.id);
+}
+
+function gradeFill(question) {
+  const selected = normalizeFillAnswer(state.fillAnswer);
+  if (!selected) return;
+  const correct = normalizeFillAnswer(question.answer || question.answerText);
+  const record = ensureRecord(question.id);
+  const isCorrect = selected === correct;
+  record.attempts += 1;
+  record.lastChoice = [state.fillAnswer];
   if (isCorrect) {
     record.correct += 1;
     record.wrong = false;
@@ -510,9 +565,16 @@ function bindEvents() {
     }
 
     if (action === "submit-choice") gradeChoice(question);
+    if (action === "submit-fill") gradeFill(question);
     if (action === "show-answer") revealAnswer(question);
     if (action === "clear-choice") {
       state.selectedAnswers.clear();
+      state.answerVisible = false;
+      state.lastResult = null;
+      renderAll();
+    }
+    if (action === "clear-fill") {
+      state.fillAnswer = "";
       state.answerVisible = false;
       state.lastResult = null;
       renderAll();
@@ -538,6 +600,10 @@ function bindEvents() {
     if (event.target.matches("[data-draft]")) {
       localStorage.setItem(`draft:${event.target.dataset.draft}`, event.target.value);
     }
+    if (event.target.matches("[data-fill-answer]")) {
+      state.fillAnswer = event.target.value;
+      state.lastResult = null;
+    }
   });
 
   els.queueList.addEventListener("click", (event) => {
@@ -552,6 +618,10 @@ function bindEvents() {
   els.queueList.addEventListener("input", (event) => {
     if (event.target.matches("[data-draft]")) {
       localStorage.setItem(`draft:${event.target.dataset.draft}`, event.target.value);
+    }
+    if (event.target.matches("[data-fill-answer]")) {
+      state.fillAnswer = event.target.value;
+      state.lastResult = null;
     }
   });
 
@@ -604,7 +674,7 @@ async function init() {
   const response = await fetch("./data/questions.json");
   state.data = await response.json();
   state.selectedSections = new Set(state.data.sections);
-  els.datasetMeta.textContent = `${state.data.questionCount} 题 · ${state.data.choiceCount} 选择题 · ${state.data.programCount} 程序题`;
+  els.datasetMeta.textContent = `${state.data.questionCount} 题 · ${state.data.choiceCount} 选择题 · ${state.data.fillCount || 0} 填空题 · ${state.data.programCount} 程序题`;
   renderSections();
   renderNotes();
   bindEvents();

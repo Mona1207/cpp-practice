@@ -170,7 +170,7 @@ textarea:focus {
 }
 
 .segmented {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -375,6 +375,11 @@ textarea:focus {
   color: var(--teal);
 }
 
+.badge.fill {
+  background: #fff4dc;
+  color: #80510a;
+}
+
 .badge.wrong {
   background: #ffe4df;
   color: var(--red);
@@ -518,6 +523,10 @@ textarea {
   padding: 12px;
   resize: vertical;
   line-height: 1.55;
+}
+
+.fill-input {
+  min-height: 96px;
 }
 
 .queue-panel {
@@ -692,6 +701,10 @@ textarea {
 
   .question-toolbar {
     justify-content: space-between;
+  }
+
+  .segmented {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .question-card {
