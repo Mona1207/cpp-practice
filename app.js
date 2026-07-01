@@ -359,7 +359,10 @@ function renderQuestionContent(question) {
         ${record.wrong ? `<span class="badge wrong">错题</span>` : ""}
       </div>
       <div class="question-title-row">
-        <h2>${question.number}. ${escapeHtml(question.title)}</h2>
+        <button class="expanded-title-button" data-action="collapse-current" type="button">
+          <span>${question.number}. ${escapeHtml(question.title)}</span>
+          <small>点击收起</small>
+        </button>
         <button class="star-button inline-star ${record.starred ? "active" : ""}" data-action="toggle-star" type="button" aria-pressed="${String(Boolean(record.starred))}">
           ${record.starred ? "★ 已星标" : "☆ 星标"}
         </button>
@@ -440,7 +443,7 @@ function renderResult() {
 
 function renderAnswerPanels(question) {
   const answer = question.referenceAnswer
-    ? `<pre><code>${escapeHtml(question.referenceAnswer)}</code></pre>`
+    ? `<pre class="code-answer">${escapeHtml(question.referenceAnswer)}</pre>`
     : `<p>${renderBlock(question.answerText || question.answer)}</p>`;
   return `
     <section class="answer-panel ${question.referenceAnswer ? "program-answer" : ""}">
@@ -604,6 +607,12 @@ app.addEventListener("click", (event) => {
     return;
   }
   if (!question) return;
+  if (action === "collapse-current") {
+    state.expanded = false;
+    resetAnswerState(question);
+    render();
+    return;
+  }
   if (action === "submit-choice") gradeChoice(question);
   if (action === "submit-fill") gradeFill(question);
   if (action === "show-answer") {
