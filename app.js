@@ -1,4 +1,5 @@
 const STORE_KEY = "cpp-practice-records-v1";
+const POSITION_KEY = "cpp-practice-positions-v1";
 
 const app = document.querySelector("#app");
 
@@ -14,6 +15,7 @@ const MODULES = {
 const state = {
   data: null,
   records: loadRecords(),
+  positions: loadPositions(),
   route: currentRoute(),
   selectedSections: new Set(),
   drawerOpen: false,
@@ -35,8 +37,20 @@ function loadRecords() {
   }
 }
 
+function loadPositions() {
+  try {
+    return JSON.parse(localStorage.getItem(POSITION_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
 function saveRecords() {
   localStorage.setItem(STORE_KEY, JSON.stringify(state.records));
+}
+
+function savePositions() {
+  localStorage.setItem(POSITION_KEY, JSON.stringify(state.positions));
 }
 
 function ensureRecord(id) {
@@ -166,6 +180,25 @@ function resetAnswerState(question) {
   if (record?.lastChoice?.length && !record?.wrong && question?.type === "choice") {
     state.selectedAnswers = new Set(record.lastChoice);
   }
+}
+
+function rememberCurrentPosition() {
+  if (!(state.route in MODULES)) return;
+  const question = currentQuestion();
+  if (!question) return;
+  state.positions[state.route] = question.id;
+  savePositions();
+}
+
+function restoreModuleState() {
+  state.selectedSections = new Set(state.data.sections);
+  state.expanded = true;
+  const list = filteredQuestions();
+  const savedId = state.positions[state.route];
+  const savedIndex = list.findIndex((question) => question.id === savedId);
+  state.currentIndex = savedIndex >= 0 ? savedIndex : 0;
+  resetAnswerState(currentQuestion());
+  rememberCurrentPosition();
 }
 
 function scheduleAutoAdvance(questionId) {
@@ -470,7 +503,7 @@ function renderResult() {
 
 function renderAnswerPanels(question) {
   const answer = question.referenceAnswer
-    ? `<pre class="code-answer">${escapeHtml(question.referenceAnswer)}</pre>`
+    ? `<div class="answer-text">${renderBlock(question.referenceAnswer)}</div>`
     : `<p>${renderBlock(question.answerText || question.answer)}</p>`;
   return `
     <section class="answer-panel ${question.referenceAnswer ? "program-answer" : ""}">
@@ -513,6 +546,7 @@ function finishObjective(question, isCorrect, lastChoice) {
   }
   state.answerVisible = true;
   saveRecords();
+  rememberCurrentPosition();
   render();
   if (isCorrect) scheduleAutoAdvance(question.id);
 }
@@ -531,6 +565,7 @@ function markCurrent(outcome) {
   state.lastResult = outcome;
   state.answerVisible = true;
   saveRecords();
+  rememberCurrentPosition();
   render();
   if (outcome === "correct") scheduleAutoAdvance(question.id);
 }
@@ -541,6 +576,7 @@ function move(delta) {
   state.currentIndex = (state.currentIndex + delta + list.length) % list.length;
   state.expanded = true;
   resetAnswerState(list[state.currentIndex]);
+  rememberCurrentPosition();
   render();
 }
 
@@ -555,6 +591,7 @@ function jumpTo(index) {
   state.currentIndex = Math.max(0, Math.min(index, list.length - 1));
   state.expanded = true;
   resetAnswerState(list[state.currentIndex]);
+  rememberCurrentPosition();
   render();
 }
 
@@ -574,13 +611,6 @@ function render() {
     return;
   }
   renderModulePage();
-}
-
-function resetModuleState() {
-  state.selectedSections = new Set(state.data.sections);
-  state.currentIndex = 0;
-  state.expanded = true;
-  resetAnswerState(currentQuestion());
 }
 
 app.addEventListener("click", (event) => {
@@ -607,10 +637,12 @@ app.addEventListener("click", (event) => {
   if (action === "reset-progress") {
     if (!confirm("确定清空所有错题、星标、练习次数和草稿吗？")) return;
     localStorage.removeItem(STORE_KEY);
+    localStorage.removeItem(POSITION_KEY);
     Object.keys(localStorage)
       .filter((key) => key.startsWith("draft:q"))
       .forEach((key) => localStorage.removeItem(key));
     state.records = {};
+    state.positions = {};
     render();
     return;
   }
@@ -629,6 +661,7 @@ app.addEventListener("click", (event) => {
     state.currentIndex = 0;
     state.expanded = true;
     resetAnswerState(currentQuestion());
+    rememberCurrentPosition();
     render();
     return;
   }
@@ -640,6 +673,7 @@ app.addEventListener("click", (event) => {
     state.currentIndex = Math.floor(Math.random() * list.length);
     state.expanded = true;
     resetAnswerState(list[state.currentIndex]);
+    rememberCurrentPosition();
     render();
     return;
   }
@@ -654,6 +688,7 @@ app.addEventListener("click", (event) => {
   if (action === "submit-fill") gradeFill(question);
   if (action === "show-answer") {
     state.answerVisible = true;
+    rememberCurrentPosition();
     render();
   }
   if (action === "clear-choice") {
@@ -679,6 +714,7 @@ app.addEventListener("click", (event) => {
     const record = ensureRecord(question.id);
     record.starred = !record.starred;
     saveRecords();
+    rememberCurrentPosition();
     render();
   }
 });
@@ -690,6 +726,7 @@ app.addEventListener("change", (event) => {
   state.currentIndex = 0;
   state.expanded = true;
   resetAnswerState(currentQuestion());
+  rememberCurrentPosition();
   render();
 });
 
@@ -706,14 +743,15 @@ app.addEventListener("input", (event) => {
 window.addEventListener("hashchange", () => {
   state.route = currentRoute();
   state.drawerOpen = false;
-  if (state.route !== "home") resetModuleState();
+  if (state.route in MODULES) restoreModuleState();
   render();
 });
 
 async function init() {
-  const response = await fetch("./data/questions.json?v=20260701-q41-full");
+  const response = await fetch("./data/questions.json?v=20260702-position-answer");
   state.data = await response.json();
   state.selectedSections = new Set(state.data.sections);
+  if (state.route in MODULES) restoreModuleState();
   render();
 }
 

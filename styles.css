@@ -642,8 +642,7 @@ code {
   background: #f3f5f8;
 }
 
-pre,
-.code-answer {
+pre {
   overflow: auto;
   padding: 16px;
   border-radius: 8px;
@@ -652,12 +651,6 @@ pre,
   color: #d8e6f3;
   line-height: 1.55;
   white-space: pre;
-}
-
-.code-answer {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 14px;
-  text-shadow: none;
 }
 
 .option-list {
@@ -748,6 +741,22 @@ textarea:focus {
 
 .answer-panel.program-answer {
   background: #f8fbff;
+}
+
+.answer-text {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.answer-panel code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
 }
 
 .answer-panel h3,
