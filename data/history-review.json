@@ -1,0 +1,2052 @@
+{
+  "source": "近代史选择题_重点精选_含答案解析.docx",
+  "bankId": "history",
+  "bankName": "zhs错题-近代史复习",
+  "subject": "中国近现代史纲要",
+  "questionCount": 58,
+  "choiceCount": 58,
+  "fillCount": 0,
+  "programCount": 0,
+  "sections": [
+    "第一章 反对外国侵略的斗争",
+    "第二章 对国家出路的早期探索",
+    "第三章 辛亥革命与君主专制制度的终结",
+    "第四章 开天辟地的大事变",
+    "第五章 中国革命的新道路",
+    "第六章 中华民族的抗日战争",
+    "第七章 为新中国而奋斗"
+  ],
+  "questions": [
+    {
+      "id": "history001",
+      "number": 1,
+      "originalNumber": 8,
+      "title": "造成近代中国贫穷落后的根本原因是",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "造成近代中国贫穷落后的根本原因是（ ）。",
+      "options": [
+        {
+          "key": "A",
+          "text": "中国落后的经济制度"
+        },
+        {
+          "key": "B",
+          "text": "中国落后的政治制度"
+        },
+        {
+          "key": "C",
+          "text": "资本—帝国主义的侵略"
+        },
+        {
+          "key": "D",
+          "text": "统治集团的腐败"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "资本—帝国主义的侵略破坏了中国的主权和经济基础，是近代中国贫穷落后的根本原因；落后的经济、政治制度和统治集团腐败是内部原因，但不是根本原因。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 单项选择题 原第8题"
+    },
+    {
+      "id": "history002",
+      "number": 2,
+      "originalNumber": 10,
+      "title": "中国近代史上人民第一次大规模的反侵略武装斗争是",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "中国近代史上人民第一次大规模的反侵略武装斗争是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "虎门销烟"
+        },
+        {
+          "key": "B",
+          "text": "三元里人民抗英斗争"
+        },
+        {
+          "key": "C",
+          "text": "太平天国运动"
+        },
+        {
+          "key": "D",
+          "text": "义和团运动"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "1841年三元里人民抗英斗争是鸦片战争期间广州郊区民众自发组织的抗英武装斗争，是近代中国人民第一次大规模的反侵略武装斗争；虎门销烟是禁烟行动，并非武装斗争。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 单项选择题 原第10题"
+    },
+    {
+      "id": "history003",
+      "number": 3,
+      "originalNumber": 12,
+      "title": "近代中国看世界的第一人是",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "近代中国看世界的第一人是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "李鸿章"
+        },
+        {
+          "key": "B",
+          "text": "魏源"
+        },
+        {
+          "key": "C",
+          "text": "郑观应"
+        },
+        {
+          "key": "D",
+          "text": "林则徐"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "林则徐在广州禁烟期间组织人员编译外国资料（如《四洲志》），开创了近代中国人\"开眼看世界\"的先河，被称为\"近代中国睁眼看世界第一人\"；魏源在此基础上编成《海国图志》。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 单项选择题 原第12题"
+    },
+    {
+      "id": "history004",
+      "number": 4,
+      "originalNumber": 2,
+      "title": "近代半殖民地半封建社会，中国人民的两大历史任务是",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "近代半殖民地半封建社会，中国人民的两大历史任务是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "争取民族独立和人民解放"
+        },
+        {
+          "key": "B",
+          "text": "反抗帝国主义的侵略"
+        },
+        {
+          "key": "C",
+          "text": "反抗封建主义的压迫"
+        },
+        {
+          "key": "D",
+          "text": "实现国家富强和人民富裕"
+        }
+      ],
+      "answer": "A、D",
+      "answerText": "A、D",
+      "referenceAnswer": "",
+      "explanation": "近代中国人民肩负着争取民族独立、人民解放和实现国家富强、人民富裕两大历史任务，前者为后者扫清障碍、创造前提；B、C是第一大任务的具体斗争内容，不是并列的\"两大任务\"表述。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 多项选择题 原第2题"
+    },
+    {
+      "id": "history005",
+      "number": 5,
+      "originalNumber": 6,
+      "title": "为了统治中国，资本—帝国主义列强在政治上采取的主要方式是",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "为了统治中国，资本—帝国主义列强在政治上采取的主要方式是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "控制中国的内政、外交"
+        },
+        {
+          "key": "B",
+          "text": "发动侵略战争，划分势力范围"
+        },
+        {
+          "key": "C",
+          "text": "镇压中国人民的反抗"
+        },
+        {
+          "key": "D",
+          "text": "扶植、收买代理人"
+        }
+      ],
+      "answer": "A、C、D",
+      "answerText": "A、C、D",
+      "referenceAnswer": "",
+      "explanation": "列强在政治上通过控制中国内政外交、镇压人民反抗、扶植和收买代理人（清政府、军阀）来维护其统治；发动侵略战争、划分势力范围属于军事和势力范围手段，不属于本题所指的政治统治方式。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 多项选择题 原第6题"
+    },
+    {
+      "id": "history006",
+      "number": 6,
+      "originalNumber": 7,
+      "title": "资本—帝国主义对中国的入侵",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "资本—帝国主义对中国的入侵（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "为中国带来了资本主义的先进生产方式"
+        },
+        {
+          "key": "B",
+          "text": "是决定近代中国社会性质、革命性质的重要依据"
+        },
+        {
+          "key": "C",
+          "text": "是产生近代中国社会基本矛盾和各种社会矛盾的主要根源"
+        },
+        {
+          "key": "D",
+          "text": "是近代中国社会贫困落后的根本原因"
+        }
+      ],
+      "answer": "B、C、D",
+      "answerText": "B、C、D",
+      "referenceAnswer": "",
+      "explanation": "列强侵略客观上带来了少量先进生产方式，但这并非其入侵的主流影响，教材并不以此为其\"作用\"的正面概括，故A不选；B、C、D准确概括了侵略对近代中国社会性质、社会矛盾与贫困落后根源的决定性影响。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 多项选择题 原第7题"
+    },
+    {
+      "id": "history007",
+      "number": 7,
+      "originalNumber": 8,
+      "title": "中日甲午战争后，劝告日本退还辽东半岛的国家有",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "中日甲午战争后，劝告日本退还辽东半岛的国家有（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "英国"
+        },
+        {
+          "key": "B",
+          "text": "俄国"
+        },
+        {
+          "key": "C",
+          "text": "法国"
+        },
+        {
+          "key": "D",
+          "text": "德国"
+        }
+      ],
+      "answer": "B、C、D",
+      "answerText": "B、C、D",
+      "referenceAnswer": "",
+      "explanation": "即\"三国干涉还辽\"事件：俄、法、德三国因自身在华利益受到日本占领辽东半岛的威胁，联合出面干涉，迫使日本将辽东半岛交还中国（日本获得\"赎辽费\"作为补偿）。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 多项选择题 原第8题"
+    },
+    {
+      "id": "history008",
+      "number": 8,
+      "originalNumber": 9,
+      "title": "帝国主义对华资本输出的方式有",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "帝国主义对华资本输出的方式有（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "开设工厂"
+        },
+        {
+          "key": "B",
+          "text": "设立银行"
+        },
+        {
+          "key": "C",
+          "text": "向清政府进行政治贷款"
+        },
+        {
+          "key": "D",
+          "text": "争夺中国铁路的投资权，投资中国矿山"
+        }
+      ],
+      "answer": "A、B、C、D",
+      "answerText": "A、B、C、D",
+      "referenceAnswer": "",
+      "explanation": "甲午战后列强对华经济侵略由以商品输出为主转向以资本输出为主，具体方式包括开办工厂、设立银行、发放政治贷款、投资铁路矿山等。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 多项选择题 原第9题"
+    },
+    {
+      "id": "history009",
+      "number": 9,
+      "originalNumber": 10,
+      "title": "近代中国人民的反侵略战争",
+      "section": "第一章 反对外国侵略的斗争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "近代中国人民的反侵略战争（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "沉重地打击了资本—帝国主义列强的侵华野心"
+        },
+        {
+          "key": "B",
+          "text": "使我们的国家和民族历尽劫难、屡遭侵略而不亡"
+        },
+        {
+          "key": "C",
+          "text": "它表现出来的爱国主义精神，铸成了中华民族的民族魂"
+        },
+        {
+          "key": "D",
+          "text": "反侵略战争的失败，从反面教育了中国人民，极大地促进了中国人的思考、探索和奋起，反侵略战争的过程，是中华民族逐步觉醒的过程"
+        }
+      ],
+      "answer": "A、B、C、D",
+      "answerText": "A、B、C、D",
+      "referenceAnswer": "",
+      "explanation": "近代反侵略战争虽多以失败告终，但打击了侵略者的气焰，保存了民族血脉，培育和铸就了伟大的爱国主义精神，也从反面唤醒和促进了民族觉醒，四项均是教材对反侵略战争意义的完整概括。",
+      "pitfalls": "",
+      "source": "第一章 反对外国侵略的斗争 · 多项选择题 原第10题"
+    },
+    {
+      "id": "history010",
+      "number": 10,
+      "originalNumber": 3,
+      "title": "一定程度上说，太平天国农民起义是中国农民战争的最高峰，依据在于",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "一定程度上说，太平天国农民起义是中国农民战争的最高峰，依据在于（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "其时间和空间跨度均属空前"
+        },
+        {
+          "key": "B",
+          "text": "制定了比较完善的革命纲领"
+        },
+        {
+          "key": "C",
+          "text": "建立了与清政府对峙的长达十年的政权"
+        },
+        {
+          "key": "D",
+          "text": "对封建政权的打击非常猛烈"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "太平天国颁布《天朝田亩制度》，是几千年来农民反封建斗争的思想结晶，提出了较为完整的社会改革纲领，这是它超越以往历代农民战争、堪称\"最高峰\"的关键依据，而非仅时间空间跨度或打击力度。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 单项选择题 原第3题"
+    },
+    {
+      "id": "history011",
+      "number": 11,
+      "originalNumber": 7,
+      "title": "洋务运动的指导思想是",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "洋务运动的指导思想是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "师夷长技以制夷"
+        },
+        {
+          "key": "B",
+          "text": "中学为体，西学为用"
+        },
+        {
+          "key": "C",
+          "text": "自强、求富"
+        },
+        {
+          "key": "D",
+          "text": "西学为体，中学为用"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "\"中学为体，西学为用\"是洋务派处理中西文化关系、推行洋务运动的根本指导思想，即以中国传统纲常伦理为立国根本，以西方科技为辅助手段；\"自强\"\"求富\"是洋务运动的口号（目标），并非其指导思想。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 单项选择题 原第7题"
+    },
+    {
+      "id": "history012",
+      "number": 12,
+      "originalNumber": 10,
+      "title": "洋务运动中，洋务派兴办的民用企业多数属于",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "洋务运动中，洋务派兴办的民用企业多数属于（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "官办"
+        },
+        {
+          "key": "B",
+          "text": "商办"
+        },
+        {
+          "key": "C",
+          "text": "官督商办"
+        },
+        {
+          "key": "D",
+          "text": "官商合办"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "洋务派兴办的民用企业（如轮船招商局、开平矿务局等）大多采用\"官督商办\"形式，即由政府监督、商人出资经营，这是与纯官办军事工业的重要区别。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 单项选择题 原第10题"
+    },
+    {
+      "id": "history013",
+      "number": 13,
+      "originalNumber": 13,
+      "title": "中国近代资本主义",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "中国近代资本主义（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "是由封建社会中的资本主义萌芽发展而来的"
+        },
+        {
+          "key": "B",
+          "text": "与明清手工业在行业上分布基本相同"
+        },
+        {
+          "key": "C",
+          "text": "是在外国资本主义入侵刺激下产生的"
+        },
+        {
+          "key": "D",
+          "text": "从根本上破坏了封建地主土地所有制"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "中国近代资本主义并非明清资本主义萌芽的自然延续，而是在外国资本主义侵略的刺激下，由官僚、买办、商人等投资新式企业催生的\"后发外生型\"资本主义。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 单项选择题 原第13题"
+    },
+    {
+      "id": "history014",
+      "number": 14,
+      "originalNumber": 14,
+      "title": "戊戌维新时期，严复在天津主办的报纸是",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "戊戌维新时期，严复在天津主办的报纸是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "《国闻报》"
+        },
+        {
+          "key": "B",
+          "text": "《时务报》"
+        },
+        {
+          "key": "C",
+          "text": "《京报》"
+        },
+        {
+          "key": "D",
+          "text": "《大公报》"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "严复于1897年在天津创办《国闻报》，是北方宣传维新变法思想的重要阵地；《时务报》则由梁启超在上海主编。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 单项选择题 原第14题"
+    },
+    {
+      "id": "history015",
+      "number": 15,
+      "originalNumber": 2,
+      "title": "关于《天朝田亩制度》，正确的说法有",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "关于《天朝田亩制度》，正确的说法有（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "是最能体现太平天国社会理想和农民起义特色的纲领性文件"
+        },
+        {
+          "key": "B",
+          "text": "以解决土地问题为中心，并包括政治、经济、军事、宗教、教育等方面内容"
+        },
+        {
+          "key": "C",
+          "text": "希望建立一个\"无处不均匀，无人不饱暖\"的理想社会"
+        },
+        {
+          "key": "D",
+          "text": "具有资本主义色彩，完全符合时代潮流"
+        }
+      ],
+      "answer": "A、B、C",
+      "answerText": "A、B、C",
+      "referenceAnswer": "",
+      "explanation": "《天朝田亩制度》以土地问题为核心，描绘了绝对平均主义的理想社会蓝图，体现了农民阶级的革命性与空想性；具有资本主义色彩的方案是《资政新篇》，D项与本文件不符，故不选。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 多项选择题 原第2题"
+    },
+    {
+      "id": "history016",
+      "number": 16,
+      "originalNumber": 3,
+      "title": "关于《资政新篇》的评价正确的是",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "关于《资政新篇》的评价正确的是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "带有鲜明的资本主义色彩的改革和建设方案"
+        },
+        {
+          "key": "B",
+          "text": "未涉及农民问题和土地问题"
+        },
+        {
+          "key": "C",
+          "text": "缺乏实施的阶级基础和社会条件"
+        },
+        {
+          "key": "D",
+          "text": "主张\"中学为体，西学为用\""
+        }
+      ],
+      "answer": "A、B、C",
+      "answerText": "A、B、C",
+      "referenceAnswer": "",
+      "explanation": "《资政新篇》由洪仁玕提出，主张发展资本主义工商业，具有鲜明的资本主义色彩，但未触及农民最关心的土地问题，且在战争环境下缺乏实施的社会条件；\"中学为体，西学为用\"是洋务派的主张，与此无关。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 多项选择题 原第3题"
+    },
+    {
+      "id": "history017",
+      "number": 17,
+      "originalNumber": 4,
+      "title": "洋务派的主要代表人物有",
+      "section": "第二章 对国家出路的早期探索",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "洋务派的主要代表人物有（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "奕訢"
+        },
+        {
+          "key": "B",
+          "text": "曾国藩"
+        },
+        {
+          "key": "C",
+          "text": "李鸿章"
+        },
+        {
+          "key": "D",
+          "text": "左宗棠"
+        }
+      ],
+      "answer": "A、B、C、D",
+      "answerText": "A、B、C、D",
+      "referenceAnswer": "",
+      "explanation": "奕訢是中央洋务派的代表，曾国藩、李鸿章、左宗棠是地方洋务派的代表，四人共同构成了洋务运动的核心领导群体。",
+      "pitfalls": "",
+      "source": "第二章 对国家出路的早期探索 · 多项选择题 原第4题"
+    },
+    {
+      "id": "history018",
+      "number": 18,
+      "originalNumber": 2,
+      "title": "清末\"预备立宪\"的根本目的在于",
+      "section": "第三章 辛亥革命与君主专制制度的终结",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "清末\"预备立宪\"的根本目的在于（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "仿效欧美政体"
+        },
+        {
+          "key": "B",
+          "text": "发展资本主义"
+        },
+        {
+          "key": "C",
+          "text": "延续反动统治"
+        },
+        {
+          "key": "D",
+          "text": "缓和阶级矛盾"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "清政府推行\"预备立宪\"是在革命形势高涨下的自救之举，其根本目的是借形式上的改革抵制革命、拉拢立宪派，以延续满清皇族的反动统治，而非真心仿效西方政体或发展资本主义。",
+      "pitfalls": "",
+      "source": "第三章 辛亥革命与君主专制制度的终结 · 单项选择题 原第2题"
+    },
+    {
+      "id": "history019",
+      "number": 19,
+      "originalNumber": 5,
+      "title": "武昌起义前同盟会领导的影响最大的武装起义是",
+      "section": "第三章 辛亥革命与君主专制制度的终结",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "武昌起义前同盟会领导的影响最大的武装起义是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "广州起义"
+        },
+        {
+          "key": "B",
+          "text": "萍浏醴起义"
+        },
+        {
+          "key": "C",
+          "text": "镇南关起义"
+        },
+        {
+          "key": "D",
+          "text": "黄花岗起义"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "1911年4月27日黄花岗起义（广州\"三·二九\"起义）是武昌起义前同盟会发动的规模最大、影响最深远的一次武装起义，\"黄花岗七十二烈士\"极大地鼓舞了全国的革命精神。",
+      "pitfalls": "",
+      "source": "第三章 辛亥革命与君主专制制度的终结 · 单项选择题 原第5题"
+    },
+    {
+      "id": "history020",
+      "number": 20,
+      "originalNumber": 6,
+      "title": "武昌起义的导火线是",
+      "section": "第三章 辛亥革命与君主专制制度的终结",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "武昌起义的导火线是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "黄花岗起义"
+        },
+        {
+          "key": "B",
+          "text": "萍浏醴起义"
+        },
+        {
+          "key": "C",
+          "text": "保路运动"
+        },
+        {
+          "key": "D",
+          "text": "广州起义"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "清政府将民办铁路收归\"国有\"并向列强借款修路，引发四川及各地保路运动；湖北新军被调入川镇压，武汉防务空虚，为革命党人发动武昌起义提供了契机，保路运动因此成为武昌起义的直接导火线。",
+      "pitfalls": "",
+      "source": "第三章 辛亥革命与君主专制制度的终结 · 单项选择题 原第6题"
+    },
+    {
+      "id": "history021",
+      "number": 21,
+      "originalNumber": 12,
+      "title": "1915年，在云南率先举起反袁护国旗帜发动护国战争的是",
+      "section": "第三章 辛亥革命与君主专制制度的终结",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1915年，在云南率先举起反袁护国旗帜发动护国战争的是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "黄兴"
+        },
+        {
+          "key": "B",
+          "text": "段祺瑞"
+        },
+        {
+          "key": "C",
+          "text": "蔡锷"
+        },
+        {
+          "key": "D",
+          "text": "孙中山"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "1915年12月，蔡锷在云南联合唐继尧等宣布云南独立，组织护国军讨伐袁世凯复辟帝制，护国战争由此爆发。",
+      "pitfalls": "",
+      "source": "第三章 辛亥革命与君主专制制度的终结 · 单项选择题 原第12题"
+    },
+    {
+      "id": "history022",
+      "number": 22,
+      "originalNumber": 7,
+      "title": "《临时约法》的内容包括",
+      "section": "第三章 辛亥革命与君主专制制度的终结",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "《临时约法》的内容包括（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "中华民国主权属于国民全体"
+        },
+        {
+          "key": "B",
+          "text": "人民享有各项权利"
+        },
+        {
+          "key": "C",
+          "text": "实行总统制，总统有行政、立法、司法权"
+        },
+        {
+          "key": "D",
+          "text": "国家体制实行内阁制"
+        }
+      ],
+      "answer": "A、B、D",
+      "answerText": "A、B、D",
+      "referenceAnswer": "",
+      "explanation": "《中华民国临时约法》确立主权在民原则，规定人民享有言论、出版、集会等自由权利，并为限制袁世凯权力而将总统制改为责任内阁制；C项\"总统制\"及总统独揽三权与史实相反，故不选。",
+      "pitfalls": "",
+      "source": "第三章 辛亥革命与君主专制制度的终结 · 多项选择题 原第7题"
+    },
+    {
+      "id": "history023",
+      "number": 23,
+      "originalNumber": 8,
+      "title": "南京临时政府的局限性表现为",
+      "section": "第三章 辛亥革命与君主专制制度的终结",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "南京临时政府的局限性表现为（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "承认清政府与列强所订的一切不平等条约和一切外债有效"
+        },
+        {
+          "key": "B",
+          "text": "没有提出任何可以满足农民土地要求的政策和措施"
+        },
+        {
+          "key": "C",
+          "text": "维护封建土地制度以及官僚、地主所占有的土地财产"
+        },
+        {
+          "key": "D",
+          "text": "主体是资产阶级革命派"
+        }
+      ],
+      "answer": "A、B、C",
+      "answerText": "A、B、C",
+      "referenceAnswer": "",
+      "explanation": "南京临时政府为争取列强承认，承诺继续承认既有不平等条约和外债，未能解决农民土地问题，也未触动封建土地所有制，充分反映了资产阶级革命的软弱性和不彻底性；D项\"主体是资产阶级革命派\"是其性质特征而非局限性，故不选。",
+      "pitfalls": "",
+      "source": "第三章 辛亥革命与君主专制制度的终结 · 多项选择题 原第8题"
+    },
+    {
+      "id": "history024",
+      "number": 24,
+      "originalNumber": 9,
+      "title": "辛亥革命失败后，资产阶级革命派为挽救革命成果而进行的斗争主要有",
+      "section": "第三章 辛亥革命与君主专制制度的终结",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "辛亥革命失败后，资产阶级革命派为挽救革命成果而进行的斗争主要有（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "二次革命"
+        },
+        {
+          "key": "B",
+          "text": "护国运动"
+        },
+        {
+          "key": "C",
+          "text": "护法运动"
+        },
+        {
+          "key": "D",
+          "text": "保路风潮"
+        }
+      ],
+      "answer": "A、B、C",
+      "answerText": "A、B、C",
+      "referenceAnswer": "",
+      "explanation": "二次革命（讨袁）、护国运动（反对复辟帝制）、护法运动（维护《临时约法》）是辛亥革命失败后革命派为挽救共和成果进行的三次主要斗争；保路风潮发生在辛亥革命之前，是武昌起义的导火线，不属于\"挽救革命成果\"的斗争。",
+      "pitfalls": "",
+      "source": "第三章 辛亥革命与君主专制制度的终结 · 多项选择题 原第9题"
+    },
+    {
+      "id": "history025",
+      "number": 25,
+      "originalNumber": 2,
+      "title": "前期新文化运动与资产阶级改良派、革命派思想相比，就其作用而言，主要\"新\"",
+      "section": "第四章 开天辟地的大事变",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "前期新文化运动与资产阶级改良派、革命派思想相比，就其作用而言，主要\"新\"在（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "传播了资产阶级民权平等思想"
+        },
+        {
+          "key": "B",
+          "text": "动摇了封建正统思想的统治地位"
+        },
+        {
+          "key": "C",
+          "text": "绝对肯定了西方文化的进步性"
+        },
+        {
+          "key": "D",
+          "text": "深入研究和传播了马克思主义"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "戊戌变法、辛亥革命时期已宣传过民权平等思想，A项并非\"新\"处；新文化运动的独特贡献在于高举民主、科学旗帜，对封建礼教纲常发起猛烈批判，从而动摇了封建正统思想长期以来的统治地位；深入传播马克思主义是运动后期（五四以后）的事，非前期特点。",
+      "pitfalls": "",
+      "source": "第四章 开天辟地的大事变 · 单项选择题 原第2题"
+    },
+    {
+      "id": "history026",
+      "number": 26,
+      "originalNumber": 6,
+      "title": "标志着中国新民主主义革命开端的是",
+      "section": "第四章 开天辟地的大事变",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "标志着中国新民主主义革命开端的是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "新文化运动"
+        },
+        {
+          "key": "B",
+          "text": "五四运动"
+        },
+        {
+          "key": "C",
+          "text": "中国共产党的诞生"
+        },
+        {
+          "key": "D",
+          "text": "辛亥革命"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "1919年五四运动中，无产阶级第一次以独立姿态登上政治舞台，运动具有反帝反封建的彻底性，标志着中国革命由旧民主主义革命阶段转入新民主主义革命阶段。",
+      "pitfalls": "",
+      "source": "第四章 开天辟地的大事变 · 单项选择题 原第6题"
+    },
+    {
+      "id": "history027",
+      "number": 27,
+      "originalNumber": 9,
+      "title": "中国共产党第一次提出明确的反帝反封建的民主革命纲领是在",
+      "section": "第四章 开天辟地的大事变",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "中国共产党第一次提出明确的反帝反封建的民主革命纲领是在（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "《新青年》创刊号上"
+        },
+        {
+          "key": "B",
+          "text": "中共\"一大\"会议上"
+        },
+        {
+          "key": "C",
+          "text": "中共\"二大\"会议上"
+        },
+        {
+          "key": "D",
+          "text": "中共\"三大\"会议上"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "1922年中共\"二大\"第一次明确提出反帝反封建的民主革命纲领（最低纲领），这是党对中国革命性质、对象、任务认识的重大飞跃；\"一大\"只提出了社会主义、共产主义的最高纲领。",
+      "pitfalls": "",
+      "source": "第四章 开天辟地的大事变 · 单项选择题 原第9题"
+    },
+    {
+      "id": "history028",
+      "number": 28,
+      "originalNumber": 10,
+      "title": "孙中山说：\"国民党在堕落中死亡，因此要救活它，就需要新鲜血液。\"为此他采",
+      "section": "第四章 开天辟地的大事变",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "孙中山说：\"国民党在堕落中死亡，因此要救活它，就需要新鲜血液。\"为此他采取的主要措施是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "接受中共反帝反封建的主张"
+        },
+        {
+          "key": "B",
+          "text": "重新解释三民主义"
+        },
+        {
+          "key": "C",
+          "text": "以党内合作方式同共产党合作"
+        },
+        {
+          "key": "D",
+          "text": "建立黄埔军校，培养新式军事干部"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "孙中山痛感国民党组织涣散、脱离群众，决定改组国民党，采取共产党员以个人身份加入国民党的\"党内合作\"方式实现国共合作，这是\"输入新鲜血液\"的核心举措；重新解释三民主义、建立黄埔军校是合作展开后取得的具体成果，而非\"主要措施\"本身。",
+      "pitfalls": "",
+      "source": "第四章 开天辟地的大事变 · 单项选择题 原第10题"
+    },
+    {
+      "id": "history029",
+      "number": 29,
+      "originalNumber": 13,
+      "title": "大革命取得的最突出的成就是",
+      "section": "第四章 开天辟地的大事变",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "大革命取得的最突出的成就是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "促使工农运动蓬勃开展"
+        },
+        {
+          "key": "B",
+          "text": "进行了北伐战争"
+        },
+        {
+          "key": "C",
+          "text": "基本推翻了北洋军阀的统治"
+        },
+        {
+          "key": "D",
+          "text": "扩大了中国共产党在群众中的影响"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "国民革命（大革命）通过北伐战争基本推翻了北洋军阀在全国的统治，这是这场革命最直接、最突出的成果，其余选项均是伴随北伐取得的次要或过程性成果。",
+      "pitfalls": "",
+      "source": "第四章 开天辟地的大事变 · 单项选择题 原第13题"
+    },
+    {
+      "id": "history030",
+      "number": 30,
+      "originalNumber": 14,
+      "title": "第一次国共合作终于全面破裂的历史事件是",
+      "section": "第四章 开天辟地的大事变",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "第一次国共合作终于全面破裂的历史事件是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "\"四·一二\"政变"
+        },
+        {
+          "key": "B",
+          "text": "马日事变"
+        },
+        {
+          "key": "C",
+          "text": "夏斗寅叛乱"
+        },
+        {
+          "key": "D",
+          "text": "\"七·一五\"政变"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "1927年7月15日，汪精卫在武汉发动\"七·一五\"反革命政变，公开\"分共\"、大肆屠杀共产党人和革命群众，标志着第一次国共合作全面破裂、大革命最终失败；\"四·一二\"政变是蒋介石在上海率先叛变革命的事件，尚未导致合作\"全面\"破裂。",
+      "pitfalls": "",
+      "source": "第四章 开天辟地的大事变 · 单项选择题 原第14题"
+    },
+    {
+      "id": "history031",
+      "number": 31,
+      "originalNumber": 7,
+      "title": "中共\"二大\"制定的民主革命纲领包括",
+      "section": "第四章 开天辟地的大事变",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "中共\"二大\"制定的民主革命纲领包括（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "打倒军阀"
+        },
+        {
+          "key": "B",
+          "text": "推翻帝国主义压迫"
+        },
+        {
+          "key": "C",
+          "text": "实现共产主义"
+        },
+        {
+          "key": "D",
+          "text": "统一中国为真正的民主共和国"
+        }
+      ],
+      "answer": "A、B、D",
+      "answerText": "A、B、D",
+      "referenceAnswer": "",
+      "explanation": "中共\"二大\"制定的最低纲领（民主革命纲领）内容是打倒军阀、推翻国际帝国主义压迫、统一中国为真正的民主共和国；\"实现共产主义\"属于党纲中的最高纲领，与民主革命阶段纲领性质不同，故不选。",
+      "pitfalls": "",
+      "source": "第四章 开天辟地的大事变 · 多项选择题 原第7题"
+    },
+    {
+      "id": "history032",
+      "number": 32,
+      "originalNumber": 1,
+      "title": "1927年南昌起义的最大意义在于",
+      "section": "第五章 中国革命的新道路",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1927年南昌起义的最大意义在于（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "开始与国民党反动派武装对抗"
+        },
+        {
+          "key": "B",
+          "text": "确立党对军队的绝对领导"
+        },
+        {
+          "key": "C",
+          "text": "建立了第一个无产阶级革命政权"
+        },
+        {
+          "key": "D",
+          "text": "开创了\"工农武装割据\"的革命道路"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "1927年8月1日南昌起义打响了武装反抗国民党反动统治的第一枪，其最大意义在于开创了中国共产党独立领导武装斗争、以武装的革命反对武装的反革命的新阶段；确立党对军队绝对领导是三湾改编、古田会议的成果，\"工农武装割据\"是井冈山斗争的产物。",
+      "pitfalls": "",
+      "source": "第五章 中国革命的新道路 · 单项选择题 原第1题"
+    },
+    {
+      "id": "history033",
+      "number": 33,
+      "originalNumber": 2,
+      "title": "南昌起义、秋收起义、广州起义中得出的深刻教训是",
+      "section": "第五章 中国革命的新道路",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "南昌起义、秋收起义、广州起义中得出的深刻教训是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "必须武装反抗国民党反动派"
+        },
+        {
+          "key": "B",
+          "text": "必须建立党对军队的绝对领导"
+        },
+        {
+          "key": "C",
+          "text": "必须建立新型的人民军队"
+        },
+        {
+          "key": "D",
+          "text": "走适合中国国情的革命道路"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "三次起义均以攻打大城市为目标而相继受挫，血的教训促使党认识到必须把工作重心转向农村，走农村包围城市、武装夺取政权这条适合中国国情的革命新道路，这是最深层次的经验总结。",
+      "pitfalls": "",
+      "source": "第五章 中国革命的新道路 · 单项选择题 原第2题"
+    },
+    {
+      "id": "history034",
+      "number": 34,
+      "originalNumber": 5,
+      "title": "1927年下半年，中国革命呈现出的根本趋势是",
+      "section": "第五章 中国革命的新道路",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1927年下半年，中国革命呈现出的根本趋势是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "中共的工作重心开始由城市转移到农村"
+        },
+        {
+          "key": "B",
+          "text": "中共发动武装起义夺取城市"
+        },
+        {
+          "key": "C",
+          "text": "中共发动了一系列罢工，反对国民党统治"
+        },
+        {
+          "key": "D",
+          "text": "中共党内出现了\"左\"倾机会主义错误"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "大革命失败后，随着城市武装起义相继受挫和农村革命根据地的开辟（如井冈山），党的工作重心开始从城市转向农村，这是这一时期最根本、最深远的历史趋势。",
+      "pitfalls": "",
+      "source": "第五章 中国革命的新道路 · 单项选择题 原第5题"
+    },
+    {
+      "id": "history035",
+      "number": 35,
+      "originalNumber": 7,
+      "title": "确立党对人民军队的绝对领导这个根本原则是在",
+      "section": "第五章 中国革命的新道路",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "确立党对人民军队的绝对领导这个根本原则是在（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "古田会议"
+        },
+        {
+          "key": "B",
+          "text": "三湾改编"
+        },
+        {
+          "key": "C",
+          "text": "《中国革命战争的战略问题》"
+        },
+        {
+          "key": "D",
+          "text": "《战争和战略问题》"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "1929年12月古田会议明确规定了红军党的建设的基本原则，特别是从思想上、组织上确立了党对军队绝对领导的根本原则，是人民军队建设史上的里程碑；三湾改编（1927年）初步实践了\"支部建在连上\"，是这一原则的开端探索，但\"确立\"以古田会议为标志。",
+      "pitfalls": "",
+      "source": "第五章 中国革命的新道路 · 单项选择题 原第7题"
+    },
+    {
+      "id": "history036",
+      "number": 36,
+      "originalNumber": 4,
+      "title": "武装斗争、土地革命、根据地建设在\"工农武装割据\"中各自的地位是",
+      "section": "第五章 中国革命的新道路",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "武装斗争、土地革命、根据地建设在\"工农武装割据\"中各自的地位是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "武装斗争是主要形式，土地革命是基本内容"
+        },
+        {
+          "key": "B",
+          "text": "根据地是开展武装斗争和土地革命的战略依托"
+        },
+        {
+          "key": "C",
+          "text": "以建立和扩大根据地为中心工作"
+        },
+        {
+          "key": "D",
+          "text": "土地革命是中心工作"
+        }
+      ],
+      "answer": "A、B、D",
+      "answerText": "A、B、D",
+      "referenceAnswer": "",
+      "explanation": "\"工农武装割据\"思想中，武装斗争是主要斗争形式，土地革命是基本内容和中心工作，农村根据地建设是战略依托和战略基地，三者密切结合、缺一不可；C项将根据地建设本身表述为\"中心工作\"与教材表述（土地革命才是中心工作）不符，故不选。",
+      "pitfalls": "",
+      "source": "第五章 中国革命的新道路 · 多项选择题 原第4题"
+    },
+    {
+      "id": "history037",
+      "number": 37,
+      "originalNumber": 9,
+      "title": "下列关于遵义会议的表述正确的是",
+      "section": "第五章 中国革命的新道路",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "下列关于遵义会议的表述正确的是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "事实上确立了毛泽东为核心的正确领导"
+        },
+        {
+          "key": "B",
+          "text": "彻底清算了王明\"左\"倾错误路线"
+        },
+        {
+          "key": "C",
+          "text": "在危急的情况下挽救了党和红军"
+        },
+        {
+          "key": "D",
+          "text": "取消了李德的军事最高指挥权"
+        }
+      ],
+      "answer": "A、C、D",
+      "answerText": "A、C、D",
+      "referenceAnswer": "",
+      "explanation": "1935年1月遵义会议集中解决了当时最迫切的军事和组织问题，取消了李德、博古的最高军事指挥权，事实上确立了以毛泽东为核心的党中央的正确领导，在最危急的关头挽救了党、红军和中国革命；但会议并未从思想上彻底清算王明\"左\"倾错误的教条主义根源，这一任务是后来延安整风才完成的，故B项错误。",
+      "pitfalls": "",
+      "source": "第五章 中国革命的新道路 · 多项选择题 原第9题"
+    },
+    {
+      "id": "history038",
+      "number": 38,
+      "originalNumber": 1,
+      "title": "1932年1月28日，奋起抵抗日军进攻上海的是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1932年1月28日，奋起抵抗日军进攻上海的是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "第二十九军"
+        },
+        {
+          "key": "B",
+          "text": "第十九路军"
+        },
+        {
+          "key": "C",
+          "text": "第二十六路军"
+        },
+        {
+          "key": "D",
+          "text": "第二十五军"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "\"一·二八\"事变中，驻沪的国民党第十九路军在蒋光鼐、蔡廷锴指挥下奋起抵抗日军进攻，坚持淞沪抗战一个多月；第二十九军则是后来长城抗战、卢沟桥事变的抵抗部队。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第1题"
+    },
+    {
+      "id": "history039",
+      "number": 39,
+      "originalNumber": 3,
+      "title": "1935年12月，中共中央提出了抗日民族统一战线的政策会议是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1935年12月，中共中央提出了抗日民族统一战线的政策会议是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "洛川会议"
+        },
+        {
+          "key": "B",
+          "text": "瓦窑堡会议"
+        },
+        {
+          "key": "C",
+          "text": "八七会议"
+        },
+        {
+          "key": "D",
+          "text": "十二月会议"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "1935年12月瓦窑堡会议正式确立了建立抗日民族统一战线的新策略方针，是党的策略路线实现历史性转变的重要会议；洛川会议（1937年8月）是全面抗战爆发后制定抗日救国十大纲领的会议。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第3题"
+    },
+    {
+      "id": "history040",
+      "number": 40,
+      "originalNumber": 6,
+      "title": "日本全面侵华战争开始的标志是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "日本全面侵华战争开始的标志是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "\"九一八\"事变"
+        },
+        {
+          "key": "B",
+          "text": "华北事变"
+        },
+        {
+          "key": "C",
+          "text": "卢沟桥事变"
+        },
+        {
+          "key": "D",
+          "text": "\"一二八\"事变"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "1937年7月7日卢沟桥事变（七七事变）标志着日本发动全面侵华战争、中国全民族抗战的开始；\"九一八\"事变（1931年）是日本局部侵华的开端。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第6题"
+    },
+    {
+      "id": "history041",
+      "number": 41,
+      "originalNumber": 7,
+      "title": "1937年8月，中国共产党制定抗日救国十大纲领的会议是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1937年8月，中国共产党制定抗日救国十大纲领的会议是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "洛川会议"
+        },
+        {
+          "key": "B",
+          "text": "瓦窑堡会议"
+        },
+        {
+          "key": "C",
+          "text": "八七会议"
+        },
+        {
+          "key": "D",
+          "text": "十二月会议"
+        }
+      ],
+      "answer": "A",
+      "answerText": "A",
+      "referenceAnswer": "",
+      "explanation": "1937年8月，中共中央在陕北洛川召开政治局扩大会议（洛川会议），通过了《抗日救国十大纲领》，制定了全面抗战路线。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第7题"
+    },
+    {
+      "id": "history042",
+      "number": 42,
+      "originalNumber": 9,
+      "title": "抗日战争时期，根据地政权民主建设主要体现为",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "抗日战争时期，根据地政权民主建设主要体现为（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "建立中华苏维埃共和国"
+        },
+        {
+          "key": "B",
+          "text": "实行\"三三制\"原则"
+        },
+        {
+          "key": "C",
+          "text": "开展整风运动"
+        },
+        {
+          "key": "D",
+          "text": "推行精兵简政政策"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "抗日根据地政权建设实行\"三三制\"原则，即共产党员、非党左派进步人士、中间人士各占三分之一，体现了抗日民主政权的广泛代表性；建立中华苏维埃共和国是土地革命战争时期的政权形式，整风运动和精兵简政属于党建、政策调整，不属于\"政权民主建设\"本身。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第9题"
+    },
+    {
+      "id": "history043",
+      "number": 43,
+      "originalNumber": 11,
+      "title": "1944年4月至1945年1月，日本发动打通中国大陆交通线的战役是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1944年4月至1945年1月，日本发动打通中国大陆交通线的战役是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "忻口战役"
+        },
+        {
+          "key": "B",
+          "text": "淞沪战役"
+        },
+        {
+          "key": "C",
+          "text": "豫湘桂战役"
+        },
+        {
+          "key": "D",
+          "text": "枣宜会战"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "1944年日军为打通从中国东北到越南的大陆交通线并摧毁沿线美军空军基地，发动了豫湘桂战役，国民党正面战场在此战役中遭受严重溃败。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第11题"
+    },
+    {
+      "id": "history044",
+      "number": 44,
+      "originalNumber": 12,
+      "title": "近代以来中华民族第一次取得反侵略完全胜利的战争是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "近代以来中华民族第一次取得反侵略完全胜利的战争是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "中法战争"
+        },
+        {
+          "key": "B",
+          "text": "甲午战争"
+        },
+        {
+          "key": "C",
+          "text": "中国人民抗日战争"
+        },
+        {
+          "key": "D",
+          "text": "抗美援朝战争"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "中国人民抗日战争的胜利，是近代以来中国人民反抗外敌入侵历经百余年屈辱之后取得的第一次完全胜利，洗刷了民族百年耻辱，具有伟大的历史意义。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第12题"
+    },
+    {
+      "id": "history045",
+      "number": 45,
+      "originalNumber": 13,
+      "title": "中国人民抗战胜利纪念日",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "中国人民抗战胜利纪念日（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "9月2日"
+        },
+        {
+          "key": "B",
+          "text": "9月3日"
+        },
+        {
+          "key": "C",
+          "text": "8月15日"
+        },
+        {
+          "key": "D",
+          "text": "10月25日"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "1945年9月2日日本正式签署投降书，我国将9月3日确定为中国人民抗日战争胜利纪念日；8月15日是日本天皇宣布无条件投降的广播日期，并非中国官方纪念日。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第13题"
+    },
+    {
+      "id": "history046",
+      "number": 46,
+      "originalNumber": 15,
+      "title": "明确将毛泽东思想规定为党的指导思想的会议是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "明确将毛泽东思想规定为党的指导思想的会议是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "中国共产党六届七中全会"
+        },
+        {
+          "key": "B",
+          "text": "中国共产党第七次全国代表大会"
+        },
+        {
+          "key": "C",
+          "text": "中国共产党第六次全国代表大会"
+        },
+        {
+          "key": "D",
+          "text": "中国共产党七届二中全会"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "1945年中共七大将毛泽东思想确立为党的指导思想并写入党章，这是党的历史上具有深远意义的重大决策。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 单项选择题 原第15题"
+    },
+    {
+      "id": "history047",
+      "number": 47,
+      "originalNumber": 9,
+      "title": "中国共产党在中国革命中战胜敌人的三个主要法宝是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "中国共产党在中国革命中战胜敌人的三个主要法宝是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "统一战线"
+        },
+        {
+          "key": "B",
+          "text": "武装斗争"
+        },
+        {
+          "key": "C",
+          "text": "实事求是"
+        },
+        {
+          "key": "D",
+          "text": "党的建设"
+        }
+      ],
+      "answer": "A、B、D",
+      "answerText": "A、B、D",
+      "referenceAnswer": "",
+      "explanation": "毛泽东在《〈共产党人〉发刊词》中指出，统一战线、武装斗争、党的建设是中国共产党战胜敌人的三大法宝；\"实事求是\"是党的思想路线，并非这\"三大法宝\"之一。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 多项选择题 原第9题"
+    },
+    {
+      "id": "history048",
+      "number": 48,
+      "originalNumber": 10,
+      "title": "1942年，延安整风的主要内容是",
+      "section": "第六章 中华民族的抗日战争",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "1942年，延安整风的主要内容是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "反对主观主义以整顿学风"
+        },
+        {
+          "key": "B",
+          "text": "反对官僚主义"
+        },
+        {
+          "key": "C",
+          "text": "反对党八股以整顿文风"
+        },
+        {
+          "key": "D",
+          "text": "反对宗派主义以整顿党风"
+        }
+      ],
+      "answer": "A、C、D",
+      "answerText": "A、C、D",
+      "referenceAnswer": "",
+      "explanation": "延安整风运动的内容是\"反对主观主义以整顿学风、反对宗派主义以整顿党风、反对党八股以整顿文风\"，\"反对官僚主义\"不属于延安整风的这三大主要内容。",
+      "pitfalls": "",
+      "source": "第六章 中华民族的抗日战争 · 多项选择题 原第10题"
+    },
+    {
+      "id": "history049",
+      "number": 49,
+      "originalNumber": 2,
+      "title": "1945年8月25日中国共产党在对时局的宣言中明确提出",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1945年8月25日中国共产党在对时局的宣言中明确提出（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "避免内战，和平建国"
+        },
+        {
+          "key": "B",
+          "text": "建立民主联合政府"
+        },
+        {
+          "key": "C",
+          "text": "和平、民主、团结"
+        },
+        {
+          "key": "D",
+          "text": "打到蒋介石，解放全中国"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "抗战胜利后，中共中央于1945年8月25日发表《对目前时局的宣言》，明确提出\"和平、民主、团结\"三大口号，为争取国内和平、推动重庆谈判奠定了方针基础。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 单项选择题 原第2题"
+    },
+    {
+      "id": "history050",
+      "number": 50,
+      "originalNumber": 3,
+      "title": "1946年10月10日，国共两党经过谈判，签订《政府与中共代表会谈纪要》",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1946年10月10日，国共两党经过谈判，签订《政府与中共代表会谈纪要》，确定（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "建立民主联合政府"
+        },
+        {
+          "key": "B",
+          "text": "和平建国的基本方针"
+        },
+        {
+          "key": "C",
+          "text": "实行宪政、结束训政"
+        },
+        {
+          "key": "D",
+          "text": "保护人民的民主、自由权利"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "国共双方签订《政府与中共代表会谈纪要》（即\"双十协定\"），确定了和平建国的基本方针，但对解放区政权和军队等关键问题未能达成一致意见。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 单项选择题 原第3题"
+    },
+    {
+      "id": "history051",
+      "number": 51,
+      "originalNumber": 6,
+      "title": "对第三次国内革命战争时期反蒋斗争第二条战线的准确表述是",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "对第三次国内革命战争时期反蒋斗争第二条战线的准确表述是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "国统区的学生运动"
+        },
+        {
+          "key": "B",
+          "text": "国统区的工农运动"
+        },
+        {
+          "key": "C",
+          "text": "国统区的地下斗争"
+        },
+        {
+          "key": "D",
+          "text": "国统区的民主运动"
+        }
+      ],
+      "answer": "D",
+      "answerText": "D",
+      "referenceAnswer": "",
+      "explanation": "\"第二条战线\"是指解放战争时期在国民党统治区兴起的、以学生运动为先导并有各阶层广泛参与的人民民主运动，是与人民解放军正面战场（第一条战线）相配合的另一条战线，\"民主运动\"这一表述最全面准确地概括了其性质。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 单项选择题 原第6题"
+    },
+    {
+      "id": "history052",
+      "number": 52,
+      "originalNumber": 8,
+      "title": "解放战争期间，台湾人民反抗国民党暴政的重要活动是",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "解放战争期间，台湾人民反抗国民党暴政的重要活动是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "五二〇运动"
+        },
+        {
+          "key": "B",
+          "text": "二二八起义"
+        },
+        {
+          "key": "C",
+          "text": "一二九运动"
+        },
+        {
+          "key": "D",
+          "text": "一二一运动"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "1947年2月28日，台湾民众因不满国民党当局的专制统治和经济掠夺爆发\"二二八起义\"，是台湾人民反抗国民党暴政的重要斗争。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 单项选择题 原第8题"
+    },
+    {
+      "id": "history053",
+      "number": 53,
+      "originalNumber": 9,
+      "title": "我国最早建立的少数民族自治区是",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "我国最早建立的少数民族自治区是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "新疆维吾尔族自治区"
+        },
+        {
+          "key": "B",
+          "text": "广西壮族自治区"
+        },
+        {
+          "key": "C",
+          "text": "内蒙古自治区"
+        },
+        {
+          "key": "D",
+          "text": "宁夏回族自治区"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "内蒙古自治区于1947年5月1日成立，是中国共产党领导建立的第一个省级少数民族自治区，为民族区域自治制度的确立积累了经验。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 单项选择题 原第9题"
+    },
+    {
+      "id": "history054",
+      "number": 54,
+      "originalNumber": 11,
+      "title": "中共七届二中全会需要解决的重要问题是",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "中共七届二中全会需要解决的重要问题是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "如何夺取全国革命胜利"
+        },
+        {
+          "key": "B",
+          "text": "如何解决民主革命遗留的任务的问题"
+        },
+        {
+          "key": "C",
+          "text": "党的工作重心转移问题"
+        },
+        {
+          "key": "D",
+          "text": "民主革命向社会主义革命转变的问题"
+        }
+      ],
+      "answer": "C",
+      "answerText": "C",
+      "referenceAnswer": "",
+      "explanation": "1949年3月中共七届二中全会在全国胜利前夕召开，主要解决党的工作重心从乡村转移到城市、由农业国转变为工业国、由新民主主义社会转变为社会主义社会等一系列根本性问题，\"工作重心转移\"是会议的核心议题。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 单项选择题 原第11题"
+    },
+    {
+      "id": "history055",
+      "number": 55,
+      "originalNumber": 12,
+      "title": "1949年6月30日毛泽东发表的，向全中国人民阐述中国共产党在建立新中国",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "单选题",
+      "multiple": false,
+      "prompt": "1949年6月30日毛泽东发表的，向全中国人民阐述中国共产党在建立新中国问题上主张的文章是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "《论联合政府》"
+        },
+        {
+          "key": "B",
+          "text": "《论人民民主专政》"
+        },
+        {
+          "key": "C",
+          "text": "《新民主主义论》"
+        },
+        {
+          "key": "D",
+          "text": "《目前的形势和我们的任务》"
+        }
+      ],
+      "answer": "B",
+      "answerText": "B",
+      "referenceAnswer": "",
+      "explanation": "1949年6月30日毛泽东发表《论人民民主专政》，系统阐述了建立人民民主专政的新中国的理论和纲领，为新中国的建立作了理论和政策准备。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 单项选择题 原第12题"
+    },
+    {
+      "id": "history056",
+      "number": 56,
+      "originalNumber": 4,
+      "title": "1947年3月，国民党军队重点进攻的解放区是",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "1947年3月，国民党军队重点进攻的解放区是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "山东"
+        },
+        {
+          "key": "B",
+          "text": "中原"
+        },
+        {
+          "key": "C",
+          "text": "晋冀鲁豫"
+        },
+        {
+          "key": "D",
+          "text": "陕北"
+        }
+      ],
+      "answer": "A、D",
+      "answerText": "A、D",
+      "referenceAnswer": "",
+      "explanation": "1947年3月，国民党军队在全面进攻受挫后，改为对山东解放区和陕北解放区实施重点进攻，企图消灭我军主力和中共中央机关。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 多项选择题 原第4题"
+    },
+    {
+      "id": "history057",
+      "number": 57,
+      "originalNumber": 6,
+      "title": "从抗战结束到新中国建立前，中国共产党关于土地问题的文件有",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "从抗战结束到新中国建立前，中国共产党关于土地问题的文件有（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "《五四指示》"
+        },
+        {
+          "key": "B",
+          "text": "《兴国土地法》"
+        },
+        {
+          "key": "C",
+          "text": "《共同纲领》"
+        },
+        {
+          "key": "D",
+          "text": "《中国土地法大纲》"
+        }
+      ],
+      "answer": "A、D",
+      "answerText": "A、D",
+      "referenceAnswer": "",
+      "explanation": "抗战胜利后，中共中央先后发布1946年《五四指示》和1947年《中国土地法大纲》，将减租减息政策转变为实行\"耕者有其田\"的土地改革；《兴国土地法》是土地革命战争时期（1930年前后）的文件，《共同纲领》是新中国成立时起临时宪法作用的文件，均不属于这一时期的土地问题文件。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 多项选择题 原第6题"
+    },
+    {
+      "id": "history058",
+      "number": 58,
+      "originalNumber": 9,
+      "title": "毛泽东提出的\"两个务必\"是",
+      "section": "第七章 为新中国而奋斗",
+      "type": "choice",
+      "choiceType": "多选题",
+      "multiple": true,
+      "prompt": "毛泽东提出的\"两个务必\"是（ ）",
+      "options": [
+        {
+          "key": "A",
+          "text": "务必使同志们继续地保持谦虚，谨慎，不骄，不躁的作风"
+        },
+        {
+          "key": "B",
+          "text": "务必使同志们继续地保持艰苦奋斗的作风"
+        },
+        {
+          "key": "C",
+          "text": "务必使同志们继续保持密切联系群众的作风"
+        },
+        {
+          "key": "D",
+          "text": "务必使同志们继续保持团结协作的作风"
+        }
+      ],
+      "answer": "A、B",
+      "answerText": "A、B",
+      "referenceAnswer": "",
+      "explanation": "毛泽东在七届二中全会上告诫全党务必继续保持谦虚谨慎、不骄不躁的作风，务必继续保持艰苦奋斗的作风，这就是著名的\"两个务必\"，是对全党在胜利面前保持清醒头脑的谆谆告诫。",
+      "pitfalls": "",
+      "source": "第七章 为新中国而奋斗 · 多项选择题 原第9题"
+    }
+  ],
+  "notes": []
+}

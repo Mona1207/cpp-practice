@@ -1,7 +1,26 @@
-const STORE_KEY = "cpp-practice-records-v1";
-const POSITION_KEY = "cpp-practice-positions-v1";
+const LEGACY_STORE_KEY = "cpp-practice-records-v1";
+const LEGACY_POSITION_KEY = "cpp-practice-positions-v1";
+const BANK_KEY = "mona-practice-bank-v1";
+const VERSION = "20260705-multi-bank";
 
 const app = document.querySelector("#app");
+
+const QUESTION_BANKS = {
+  cpp: {
+    name: "C++复习",
+    subject: "C++ 程序设计",
+    description: "程序设计章节题库，包含选择、填空、程序题。",
+    file: "./data/cpp-review.json",
+    accent: "blue",
+  },
+  history: {
+    name: "zhs错题-近代史复习",
+    subject: "中国近现代史纲要",
+    description: "近代史重点选择题精选，含答案与解析。",
+    file: "./data/history-review.json",
+    accent: "amber",
+  },
+};
 
 const MODULES = {
   all: { title: "全部题", subtitle: "所有题目", icon: "▰", accent: "blue" },
@@ -13,9 +32,10 @@ const MODULES = {
 };
 
 const state = {
+  bankKey: loadBankKey(),
   data: null,
-  records: loadRecords(),
-  positions: loadPositions(),
+  records: {},
+  positions: {},
   route: currentRoute(),
   selectedSections: new Set(),
   drawerOpen: false,
@@ -29,28 +49,51 @@ const state = {
   autoAdvanceTimer: null,
 };
 
-function loadRecords() {
+function loadBankKey() {
+  const saved = localStorage.getItem(BANK_KEY);
+  return saved in QUESTION_BANKS ? saved : "cpp";
+}
+
+function bankConfig(key = state.bankKey) {
+  return QUESTION_BANKS[key] || QUESTION_BANKS.cpp;
+}
+
+function recordsStorageKey(key = state.bankKey) {
+  return `mona-practice-records-${key}-v1`;
+}
+
+function positionsStorageKey(key = state.bankKey) {
+  return `mona-practice-positions-${key}-v1`;
+}
+
+function loadRecords(key = state.bankKey) {
   try {
-    return JSON.parse(localStorage.getItem(STORE_KEY)) || {};
+    const value = localStorage.getItem(recordsStorageKey(key));
+    if (value) return JSON.parse(value) || {};
+    if (key === "cpp") return JSON.parse(localStorage.getItem(LEGACY_STORE_KEY)) || {};
+    return {};
   } catch {
     return {};
   }
 }
 
-function loadPositions() {
+function loadPositions(key = state.bankKey) {
   try {
-    return JSON.parse(localStorage.getItem(POSITION_KEY)) || {};
+    const value = localStorage.getItem(positionsStorageKey(key));
+    if (value) return JSON.parse(value) || {};
+    if (key === "cpp") return JSON.parse(localStorage.getItem(LEGACY_POSITION_KEY)) || {};
+    return {};
   } catch {
     return {};
   }
 }
 
 function saveRecords() {
-  localStorage.setItem(STORE_KEY, JSON.stringify(state.records));
+  localStorage.setItem(recordsStorageKey(), JSON.stringify(state.records));
 }
 
 function savePositions() {
-  localStorage.setItem(POSITION_KEY, JSON.stringify(state.positions));
+  localStorage.setItem(positionsStorageKey(), JSON.stringify(state.positions));
 }
 
 function ensureRecord(id) {
@@ -66,6 +109,7 @@ function ensureRecord(id) {
 
 function currentRoute() {
   const key = location.hash.replace(/^#\/?/, "") || "home";
+  if (key === "knowledge") return key;
   return key in MODULES ? key : "home";
 }
 
@@ -87,7 +131,15 @@ function renderBlock(text = "") {
 }
 
 function normalizeAnswer(answer = "") {
-  return answer
+  const cleaned = String(answer).trim().replace(/\s+/g, "");
+  if (/^[A-Za-z]+$/.test(cleaned)) {
+    return cleaned
+      .toUpperCase()
+      .split("")
+      .sort()
+      .join("、");
+  }
+  return String(answer)
     .replace(/[，,/]/g, "、")
     .split("、")
     .map((item) => item.trim().toUpperCase())
@@ -109,6 +161,12 @@ function typeLabel(type) {
   if (type === "program") return "程序题";
   if (type === "fill") return "填空题";
   return "选择题";
+}
+
+function questionTypeLabel(question) {
+  if (question.type === "choice" && question.choiceType) return question.choiceType;
+  if (question.type === "choice" && question.multiple) return "多选题";
+  return typeLabel(question.type);
 }
 
 function strippedPrompt(question) {
@@ -247,17 +305,30 @@ function selectedSectionSummary() {
 }
 
 function renderHome() {
+  const bank = bankConfig();
   const all = moduleProgress("all");
   const accuracy = all.done ? Math.round((all.correct / all.done) * 100) : 0;
   app.innerHTML = `
     <main class="home-shell">
       <header class="home-header">
         <div>
-          <p class="eyebrow">C++ 程序设计</p>
-          <h1>刷题题库</h1>
+          <p class="eyebrow">当前题库 · ${escapeHtml(bank.name)}</p>
+          <h1>莫娜刷题站</h1>
         </div>
         <button class="danger-button" data-action="reset-progress" type="button">清空记录</button>
       </header>
+
+      <section class="bank-panel" aria-label="题库选择">
+        <div class="bank-head">
+          <div>
+            <p class="eyebrow">选择题库</p>
+            <h2>${escapeHtml(bank.subject)}</h2>
+          </div>
+        </div>
+        <div class="bank-grid">
+          ${Object.keys(QUESTION_BANKS).map(renderBankCard).join("")}
+        </div>
+      </section>
 
       <section class="module-grid" aria-label="题库模块">
         ${Object.keys(MODULES).map(renderModuleCard).join("")}
@@ -275,7 +346,43 @@ function renderHome() {
           ${["all", "choice", "fill", "program"].map(renderStatCard).join("")}
         </div>
       </section>
+
+      ${(state.data.notes || []).length ? `<section class="knowledge-panel" aria-label="知识点速记">
+        <div class="knowledge-home-head">
+          <div>
+            <p class="eyebrow">前九章常考基础</p>
+            <h2>知识点速记</h2>
+          </div>
+          <a class="secondary-button" href="#/knowledge">查看全部</a>
+        </div>
+        <div class="knowledge-preview-grid">
+          ${(state.data.notes || []).slice(0, 3).map(renderKnowledgePreviewCard).join("")}
+        </div>
+      </section>` : ""}
     </main>
+  `;
+}
+
+function renderBankCard(key) {
+  const bank = QUESTION_BANKS[key];
+  const active = key === state.bankKey;
+  return `
+    <button class="bank-card ${bank.accent} ${active ? "active" : ""}" data-action="choose-bank" data-bank="${key}" type="button">
+      <span>${escapeHtml(bank.name)}</span>
+      <strong>${escapeHtml(bank.subject)}</strong>
+      <small>${escapeHtml(bank.description)}</small>
+    </button>
+  `;
+}
+
+function renderKnowledgePreviewCard(note) {
+  const tips = note.examTips || [];
+  return `
+    <article class="knowledge-preview-card">
+      <span>${escapeHtml(note.title)}</span>
+      <p>${escapeHtml(note.summary || "本章知识点整理。")}</p>
+      ${tips.length ? `<strong>${escapeHtml(tips[0])}</strong>` : ""}
+    </article>
   `;
 }
 
@@ -315,15 +422,16 @@ function renderStatCard(key) {
 
 function renderModulePage() {
   const config = MODULES[state.route];
+  const bank = bankConfig();
   const list = filteredQuestions();
   const base = moduleQuestions(state.route);
   const current = currentQuestion();
   app.innerHTML = `
     <main class="practice-shell">
       <header class="practice-top">
-        <a class="back-link" href="#/">‹ 题库</a>
+        <a class="back-link" href="#/">‹ 首页</a>
         <div>
-          <p class="eyebrow">${config.subtitle}</p>
+          <p class="eyebrow">${escapeHtml(bank.name)} · ${config.subtitle}</p>
           <h1>${config.title}</h1>
         </div>
         <div class="practice-count">${list.length}/${base.length}</div>
@@ -350,6 +458,55 @@ function renderModulePage() {
     </main>
   `;
   syncActiveIntoView(current);
+}
+
+function renderKnowledgePage() {
+  const bank = bankConfig();
+  const notes = state.data.notes || [];
+  app.innerHTML = `
+    <main class="knowledge-shell">
+      <header class="practice-top">
+        <a class="back-link" href="#/">‹ 题库</a>
+        <div>
+          <p class="eyebrow">${escapeHtml(bank.name)} · 根据课本目录与小结整理</p>
+          <h1>前九章知识点</h1>
+        </div>
+        <div class="practice-count">${notes.length} 章</div>
+      </header>
+
+      <section class="knowledge-board" aria-label="前九章常考基础知识点">
+        ${notes.map(renderKnowledgeNote).join("")}
+      </section>
+    </main>
+  `;
+}
+
+function renderKnowledgeNote(note, index) {
+  return `
+    <article class="knowledge-card">
+      <header class="knowledge-card-head">
+        <span>${String(index + 1).padStart(2, "0")}</span>
+        <div>
+          <h2>${escapeHtml(note.title)}</h2>
+          <p>${escapeHtml(note.summary || "")}</p>
+        </div>
+      </header>
+      ${renderNoteList("核心知识", note.points)}
+      ${renderNoteList("常考点", note.examTips)}
+    </article>
+  `;
+}
+
+function renderNoteList(title, items = []) {
+  if (!items.length) return "";
+  return `
+    <section class="knowledge-list-block">
+      <h3>${escapeHtml(title)}</h3>
+      <ul>
+        ${items.map((item) => `<li>${renderInline(item)}</li>`).join("")}
+      </ul>
+    </section>
+  `;
 }
 
 function renderSectionDrawer() {
@@ -387,7 +544,7 @@ function renderQueueItem(question, index) {
   const record = state.records[question.id] || {};
   const isActive = state.expanded && index === state.currentIndex;
   const flags = [
-    typeLabel(question.type),
+    questionTypeLabel(question),
     record.starred ? "星标" : "",
     record.wrong ? "错题" : "",
     record.attempts ? `${record.attempts} 次` : "未做",
@@ -415,7 +572,7 @@ function renderQuestionContent(question) {
     <div class="question-header">
       <div class="badges">
         <span class="badge">${escapeHtml(question.section)}</span>
-        <span class="badge ${question.type}">${typeLabel(question.type)}</span>
+        <span class="badge ${question.type}">${questionTypeLabel(question)}</span>
         ${record.wrong ? `<span class="badge wrong">错题</span>` : ""}
       </div>
       <div class="question-title-row">
@@ -482,8 +639,9 @@ function renderFillArea() {
 }
 
 function renderProgramArea(question, record) {
-  const draftKey = `draft:${question.id}`;
-  const draft = localStorage.getItem(draftKey) || "";
+  const draftKey = `draft:${state.bankKey}:${question.id}`;
+  const legacyDraftKey = `draft:${question.id}`;
+  const draft = localStorage.getItem(draftKey) || (state.bankKey === "cpp" ? localStorage.getItem(legacyDraftKey) : "") || "";
   return `
     <textarea data-draft="${question.id}" spellcheck="false" placeholder="这里写你的思路或代码，内容只保存在本机浏览器。">${escapeHtml(draft)}</textarea>
     <div class="action-row">
@@ -610,10 +768,40 @@ function render() {
     renderHome();
     return;
   }
+  if (state.route === "knowledge") {
+    clearAutoAdvance();
+    renderKnowledgePage();
+    return;
+  }
   renderModulePage();
 }
 
-app.addEventListener("click", (event) => {
+async function loadQuestionBank(key = state.bankKey) {
+  const bank = bankConfig(key);
+  const response = await fetch(`${bank.file}?v=${VERSION}`);
+  state.data = await response.json();
+  state.records = loadRecords(key);
+  state.positions = loadPositions(key);
+  state.selectedSections = new Set(state.data.sections);
+  state.optionOrders = {};
+  state.currentIndex = 0;
+  state.expanded = true;
+  resetAnswerState(null);
+  if (state.route in MODULES) restoreModuleState();
+}
+
+async function switchBank(key) {
+  if (!(key in QUESTION_BANKS) || key === state.bankKey) return;
+  clearAutoAdvance();
+  state.bankKey = key;
+  localStorage.setItem(BANK_KEY, key);
+  state.drawerOpen = false;
+  if (state.route === "knowledge") location.hash = "#/";
+  await loadQuestionBank(key);
+  render();
+}
+
+app.addEventListener("click", async (event) => {
   const action = event.target.closest("[data-action]")?.dataset.action;
   const option = event.target.closest("[data-option]");
   const jump = event.target.closest("[data-jump]");
@@ -634,12 +822,21 @@ app.addEventListener("click", (event) => {
   }
 
   if (!action) return;
+  if (action === "choose-bank") {
+    const key = event.target.closest("[data-bank]")?.dataset.bank;
+    await switchBank(key);
+    return;
+  }
   if (action === "reset-progress") {
     if (!confirm("确定清空所有错题、星标、练习次数和草稿吗？")) return;
-    localStorage.removeItem(STORE_KEY);
-    localStorage.removeItem(POSITION_KEY);
+    localStorage.removeItem(recordsStorageKey());
+    localStorage.removeItem(positionsStorageKey());
+    if (state.bankKey === "cpp") {
+      localStorage.removeItem(LEGACY_STORE_KEY);
+      localStorage.removeItem(LEGACY_POSITION_KEY);
+    }
     Object.keys(localStorage)
-      .filter((key) => key.startsWith("draft:q"))
+      .filter((key) => key.startsWith(`draft:${state.bankKey}:`) || (state.bankKey === "cpp" && key.startsWith("draft:q")))
       .forEach((key) => localStorage.removeItem(key));
     state.records = {};
     state.positions = {};
@@ -732,7 +929,7 @@ app.addEventListener("change", (event) => {
 
 app.addEventListener("input", (event) => {
   if (event.target.matches("[data-draft]")) {
-    localStorage.setItem(`draft:${event.target.dataset.draft}`, event.target.value);
+    localStorage.setItem(`draft:${state.bankKey}:${event.target.dataset.draft}`, event.target.value);
   }
   if (event.target.matches("[data-fill-answer]")) {
     state.fillAnswer = event.target.value;
@@ -748,14 +945,11 @@ window.addEventListener("hashchange", () => {
 });
 
 async function init() {
-  const response = await fetch("./data/questions.json?v=20260702-position-answer");
-  state.data = await response.json();
-  state.selectedSections = new Set(state.data.sections);
-  if (state.route in MODULES) restoreModuleState();
+  await loadQuestionBank(state.bankKey);
   render();
 }
 
 init().catch((error) => {
   console.error(error);
-  app.innerHTML = `<div class="loading">题库加载失败，请检查 data/questions.json。</div>`;
+  app.innerHTML = `<div class="loading">题库加载失败，请检查题库数据文件。</div>`;
 });
